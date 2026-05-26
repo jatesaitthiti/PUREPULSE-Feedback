@@ -2,165 +2,162 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PUREPULSE Gel — Feedback Summary</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; }
   body {
-    font-family: 'Noto Sans Thai', 'Inter', system-ui, sans-serif;
-    margin: 0;
-    padding: 32px 20px;
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    color: #e2e8f0;
+    font-family: 'Inter', 'Noto Sans Thai', system-ui, sans-serif;
+    padding: 48px 24px;
+    background: #fafafa;
+    color: #1a1a2e;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
   .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
   }
-  header { margin-bottom: 28px; }
+  header { margin-bottom: 36px; }
   h1 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
-    margin: 0 0 6px;
-    background: linear-gradient(90deg, #a78bfa, #f472b6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: -0.5px;
+    color: #1a1a2e;
+    margin-bottom: 6px;
   }
   .subtitle {
-    color: #94a3b8;
+    color: #8c8c9a;
     font-size: 14px;
+    font-weight: 400;
+  }
+  .alert-banner {
+    background: #fff;
+    border: 1px solid #f0c8a0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #7a5c30;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid #ebebef;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1;
+  }
+  .stat .num.negative { color: #d94f4f; }
+  .stat .num.positive { color: #2d9d5e; }
+  .stat .label {
+    font-size: 12px;
+    color: #8c8c9a;
+    margin-top: 6px;
   }
   .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  @media (max-width: 860px) {
-    .layout { grid-template-columns: 1fr; }
+    gap: 20px;
   }
   .card {
-    background: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    border-radius: 16px;
+    background: #fff;
+    border: 1px solid #ebebef;
+    border-radius: 12px;
     padding: 24px;
   }
   .chart-wrap {
     position: relative;
-    height: 420px;
+    height: 400px;
+    max-height: 50vh;
   }
   .hint {
     text-align: center;
-    color: #94a3b8;
+    color: #b0b0ba;
     font-size: 13px;
-    margin-top: 12px;
+    margin-top: 14px;
   }
   .detail-empty {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: #64748b;
+    color: #b0b0ba;
     font-size: 15px;
     text-align: center;
   }
   .detail h2 {
     margin: 0 0 4px;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
   }
   .detail .meta {
-    color: #94a3b8;
+    color: #8c8c9a;
     font-size: 13px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    line-height: 1.5;
   }
   .section-title {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 22px;
-    margin-bottom: 12px;
-    font-size: 14px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
   }
   .section-title .dot {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
   }
-  .section-title.positive .dot { background: #4ade80; }
-  .section-title.problem  .dot { background: #f87171; }
-  .section-title.positive { color: #4ade80; }
-  .section-title.problem  { color: #f87171; }
+  .section-title.positive .dot { background: #2d9d5e; }
+  .section-title.problem  .dot { background: #d94f4f; }
+  .section-title.positive { color: #2d9d5e; }
+  .section-title.problem  { color: #d94f4f; }
   .quote {
-    background: rgba(15, 23, 42, 0.5);
-    border-left: 3px solid var(--accent, #a78bfa);
+    background: #f7f7f9;
+    border-left: 3px solid var(--accent, #999);
     padding: 10px 14px;
     margin-bottom: 8px;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 14px;
-    line-height: 1.55;
+    line-height: 1.6;
+    color: #3a3a4a;
   }
   .quote .tester {
     font-weight: 600;
-    color: #c4b5fd;
+    color: #1a1a2e;
     margin-right: 6px;
   }
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .stat {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    border-radius: 12px;
-    padding: 14px;
-    text-align: center;
-  }
-  .stat .num {
-    font-size: 26px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-  }
-  .stat .label {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-top: 4px;
-  }
-  .badge {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-left: 6px;
-  }
-  .badge.p0 { background: rgba(248,113,113,0.2); color: #fca5a5; }
-  .badge.p1 { background: rgba(251,146,60,0.2); color: #fdba74; }
-  .badge.p2 { background: rgba(74,222,128,0.2); color: #86efac; }
-  .badge.new { background: rgba(56,189,248,0.2); color: #7dd3fc; }
-  .alert-banner {
-    background: rgba(251,146,60,0.15);
-    border: 1px solid rgba(251,146,60,0.4);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.6;
+  .card.actions {
+    margin-top: 20px;
   }
   .actions {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(148, 163, 184, 0.15);
+    padding-top: 0;
+    border-top: none;
+  }
+  .actions h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
   }
   .action-item {
     display: flex;
@@ -168,7 +165,42 @@
     gap: 10px;
     padding: 10px 0;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.55;
+    color: #3a3a4a;
+    border-bottom: 1px solid #f0f0f3;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge.p0 { background: #fde8e8; color: #b83232; }
+  .badge.p1 { background: #fef3e2; color: #a0611a; }
+  .badge.p2 { background: #e8f5ec; color: #2d7a4a; }
+  .badge.new { background: #e8f0fe; color: #3565b0; margin-left: 6px; }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 20px 14px; }
+    h1 { font-size: 21px; }
+    .subtitle { font-size: 13px; }
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .stat { padding: 12px; }
+    .stat .num { font-size: 22px; }
+    .card { padding: 16px; border-radius: 10px; }
+    .chart-wrap { height: 260px; }
+    .detail h2 { font-size: 17px; }
+    .quote { padding: 8px 10px; font-size: 13px; }
+    .alert-banner { padding: 10px 12px; font-size: 13px; }
+    .action-item { font-size: 13px; }
   }
 </style>
 </head>
@@ -186,8 +218,8 @@
   <div class="stats">
     <div class="stat"><div class="num">16</div><div class="label">ผู้ทดสอบ</div></div>
     <div class="stat"><div class="num">3</div><div class="label">ถามว่าขายเมื่อไหร่</div></div>
-    <div class="stat"><div class="num" style="color:#f87171">12</div><div class="label">พูดถึง texture หนืด</div></div>
-    <div class="stat"><div class="num" style="color:#4ade80">13</div><div class="label">พลังงานเสถียร</div></div>
+    <div class="stat"><div class="num negative">12</div><div class="label">พูดถึง texture หนืด</div></div>
+    <div class="stat"><div class="num positive">13</div><div class="label">พลังงานเสถียร</div></div>
   </div>
 
   <div class="layout">
@@ -195,7 +227,7 @@
       <div class="chart-wrap">
         <canvas id="pie"></canvas>
       </div>
-      <div class="hint">👆 คลิกที่ส่วนของกราฟเพื่อดูรายละเอียด</div>
+      <div class="hint">คลิกที่ส่วนของกราฟเพื่อดูรายละเอียด</div>
     </div>
     <div class="card detail" id="detail">
       <div class="detail-empty">เลือกหัวข้อจากกราฟด้านซ้ายเพื่อดูสิ่งที่ลูกค้าชอบและปัญหาที่เจอ</div>
@@ -203,7 +235,7 @@
   </div>
 
   <div class="card actions">
-    <h2 style="margin-top:0;font-size:20px;">Action Items</h2>
+    <h2>Action Items</h2>
     <div class="action-item"><span class="badge p0">P0</span><span>แก้/ปรับ texture สำหรับ race pace — ลดความหนืดให้กลืนเร็วโดยไม่ต้องใช้น้ำตาม หรือทำ SKU "Race format" ที่เหลวกว่า</span></div>
     <div class="action-item"><span class="badge p0">P0</span><span>แยก positioning ตามตลาด — สื่อสาร "Long run / Trail / Ultra" vs "Speed/Race" ให้ตรง use case</span></div>
     <div class="action-item"><span class="badge p1">P1</span><span>Education ผ่าน packaging — บอก timing (กินก่อนพลังงานหมด) + texture (แนะนำดื่มน้ำตาม)</span></div>
@@ -220,7 +252,7 @@ const themes = [
   {
     name: "รสชาติ",
     value: 12,
-    color: "#a78bfa",
+    color: "#7c6bbf",
     desc: "ผู้ทดสอบ 12/16 ให้ feedback เรื่องรสชาติ — ส่วนใหญ่ชอบและบอกว่าลงตัว",
     positives: [
       { t: "Keng", q: "รสชาติลงตัวขึ้น เค็มดีขึ้น แดกง่าย ไม่แสบคอ" },
@@ -240,7 +272,7 @@ const themes = [
   {
     name: "เนื้อสัมผัส (Texture)",
     value: 12,
-    color: "#f87171",
+    color: "#d94f4f",
     desc: "ประเด็นที่ถูกพูดถึงมากที่สุดในเชิงลบ — 12/16 คนพูดถึงความหนืด/เหนียว/ติดคอ",
     positives: [
       { t: "Jarupong", q: "แอบหนืดคอจริง ต้องกินน้ำตาม แต่ผมไม่ติด มันได้น้ำได้เนื้อดี ไม่เหมือน amino ที่เหลวๆ" },
@@ -263,7 +295,7 @@ const themes = [
   {
     name: "พลังงาน (Energy)",
     value: 13,
-    color: "#4ade80",
+    color: "#2d9d5e",
     desc: "จุดแข็งที่สุดของผลิตภัณฑ์ — 13/16 คนบอกว่าพลังงานนิ่ง เสถียร ไม่ดีดแรง ไม่วูบ",
     positives: [
       { t: "Aaron", q: "ดีเลย Energy นิ่ง ไม่ overshoot บางอันมีกาแฟแม่งดีดจัด" },
@@ -286,7 +318,7 @@ const themes = [
   {
     name: "Use case / Timing",
     value: 7,
-    color: "#fbbf24",
+    color: "#c9952c",
     desc: "เหมาะกับ long run / trail / Ultra — มีข้อจำกัดในเรซระยะสั้น + ต้อง education timing",
     positives: [
       { t: "Narumol", q: "วิ่งขึ้นเขาสบายเลย (กิน 2 ซอง)" },
@@ -305,7 +337,7 @@ const themes = [
   {
     name: "GI / ทางเดินอาหาร",
     value: 2,
-    color: "#fb923c",
+    color: "#d97a3e",
     desc: "มีเคส GI 2 ราย — ครูใหม่มีอาการรุนแรง (ปวดท้อง/คลื่นไส้/อ้วก) ส่วน Kitti รู้สึกอิ่มแน่น",
     positives: [
       { t: "Tum Kanapon 🆕", q: "ไม่แสบท้อง" },
@@ -319,7 +351,7 @@ const themes = [
   {
     name: "ความตั้งใจซื้อ",
     value: 3,
-    color: "#22d3ee",
+    color: "#2a8fa4",
     desc: "มี demand จริง — หลายคนถามตรงว่าขายเมื่อไหร่ พร้อมซื้อทันที",
     positives: [
       { t: "Minkz", q: "ทำออกขายเมื่อไรครับพี่ ผมกินละชอบนะพี่" },
@@ -342,25 +374,32 @@ const chart = new Chart(ctx, {
     datasets: [{
       data: themes.map(t => t.value),
       backgroundColor: themes.map(t => t.color),
-      borderColor: 'rgba(15, 23, 42, 0.6)',
+      borderColor: '#fff',
       borderWidth: 3,
-      hoverOffset: 16,
+      hoverOffset: 12,
     }],
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    cutout: '55%',
     plugins: {
       legend: {
         position: 'bottom',
         labels: {
-          color: '#e2e8f0',
-          font: { family: 'Noto Sans Thai', size: 13 },
-          padding: 12,
+          color: '#5a5a6a',
+          font: { family: 'Noto Sans Thai', size: 13, weight: '500' },
+          padding: 14,
           usePointStyle: true,
+          pointStyleWidth: 10,
         },
       },
       tooltip: {
+        backgroundColor: '#1a1a2e',
+        titleColor: '#fff',
+        bodyColor: '#e0e0e0',
+        cornerRadius: 8,
+        padding: 10,
         callbacks: {
           label: (ctx) => ` ${ctx.label}: ${ctx.parsed} คน`,
         },
@@ -384,10 +423,10 @@ function showDetail(i) {
   detail.style.setProperty('--accent', t.color);
   const positiveHTML = t.positives.length
     ? t.positives.map(p => `<div class="quote" style="border-left-color:${t.color}"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
-    : '<div style="color:#64748b;font-size:14px">— ไม่มี —</div>';
+    : '<div style="color:#b0b0ba;font-size:14px">— ไม่มี —</div>';
   const problemHTML = t.problems.length
-    ? t.problems.map(p => `<div class="quote" style="border-left-color:#f87171"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
-    : '<div style="color:#64748b;font-size:14px">— ไม่มี —</div>';
+    ? t.problems.map(p => `<div class="quote" style="border-left-color:#d94f4f"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
+    : '<div style="color:#b0b0ba;font-size:14px">— ไม่มี —</div>';
 
   detail.innerHTML = `
     <h2 style="color:${t.color}">${t.name}</h2>
@@ -399,8 +438,7 @@ function showDetail(i) {
   `;
 }
 
-// Show first theme by default after a beat
-setTimeout(() => showDetail(1), 300);  // start on Texture (the most important issue)
+setTimeout(() => showDetail(1), 300);
 </script>
 </body>
 </html>
