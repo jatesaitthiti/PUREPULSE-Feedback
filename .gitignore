@@ -1,0 +1,33 @@
+# ไฟล์ feedback ดิบ (มีข้อมูลส่วนตัวของผู้ทดสอบ — อย่า commit ขึ้น GitHub)
+Feedback/*.jpg
+Feedback/*.jpeg
+Feedback/*.png
+Feedback/*.m4a
+Feedback/*.mp3
+Feedback/*.wav
+Feedback/*.mp4
+Feedback/*.mov
+Feedback/*Screenshot*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code (เก็บ commands ไว้ใน repo ได้)
+# .claude/
+
+# Node (ถ้ามี)
+node_modules/
+
+# Python (ถ้ามี)
+__pycache__/
+*.pyc
+.venv/
