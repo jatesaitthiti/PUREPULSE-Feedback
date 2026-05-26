@@ -212,7 +212,7 @@
   </header>
 
   <div class="alert-banner">
-    ⚠️ <strong>GI Alert — ครูใหม่:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก หลังวิ่ง 8 km (กินเจลก่อนวิ่ง &lt;10 นาที) — ปกติกิน Amino vital ไม่เป็น ไม่ใช่อาการแพ้ คาดว่า timing + ย่อยยาก → รอทดลองรอบ 2 กินก่อน 20 นาที
+    ⚠️ <strong>GI Alert — K.Mai:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก หลังวิ่ง 8 km (กินเจลก่อนวิ่ง &lt;10 นาที) — ปกติกิน Amino vital ไม่เป็น ไม่ใช่อาการแพ้ คาดว่า timing + ย่อยยาก → รอทดลองรอบ 2 กินก่อน 20 นาที
   </div>
 
   <div class="stats">
@@ -242,7 +242,7 @@
     <div class="action-item"><span class="badge p1">P1</span><span>ระบุรสบนซองให้ชัด — "ผลไม้รวม" กัน confusion</span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>เร่ง อย. — มี demand รออยู่อย่างน้อย 3 คนพร้อมซื้อ</span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>เทสต์เพิ่มกับนักวิ่ง race pace + เทส Ultra format</span></div>
-    <div class="action-item"><span class="badge p1">P1</span><span>ติดตาม GI case ครูใหม่ — ทดลองรอบ 2 กินก่อน 20 นาที / ตรวจสอบ timing vs ingredient <span class="badge new">NEW</span></span></div>
+    <div class="action-item"><span class="badge p1">P1</span><span>ติดตาม GI case K.Mai — ทดลองรอบ 2 กินก่อน 20 นาที / ตรวจสอบ timing vs ingredient <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>ปรับปรุง packaging — ซองแกะด้านข้างกินยาก (Tum) <span class="badge new">NEW</span></span></div>
   </div>
 </div>
@@ -309,7 +309,7 @@ const themes = [
       { t: "Narumol", q: "กินไป 2 ซอง มีแรงวิ่งขึ้นเขาสบายเลย" },
       { t: "Up 🆕", q: "ไม่กินเกลือแร่เลย ฟีลดีอยู่ ปกติต้องจิบ แต่รอบนี้ยังสดชื่น" },
       { t: "Tum Kanapon 🆕", q: "รู้สึก energy ok" },
-      { t: "ครูใหม่ 🆕", q: "แรงวิ่งรู้สึกยังปกติ — แต่พอปวดท้อง วิ่งไม่ค่อยถนัด" },
+      { t: "K.Mai 🆕", q: "แรงวิ่งรู้สึกยังปกติ — แต่พอปวดท้อง วิ่งไม่ค่อยถนัด" },
     ],
     problems: [
       { t: "UGRID รอบ 2", q: "พลังงานตกไม่แน่ใจ มันโฟกัสทางจนไม่ได้สนใจ — รอบหน้าต้องกินไวขึ้น (เจลออกฤทธิ์ค่อยๆ ต้อง education timing)" },
@@ -331,20 +331,20 @@ const themes = [
       { t: "Tye Jerush", q: "ตอน speed กลืนยาก แต่ก่อนวิ่งโอเค" },
       { t: "UGRID รอบ 2", q: "timing — ต้องกินไวขึ้น เพราะเจลออกฤทธิ์ค่อยๆ" },
       { t: "Kitti", q: "อากาศร้อนหิวน้ำเพิ่ม" },
-      { t: "ครูใหม่ 🆕", q: "กินเจลก่อนวิ่ง <10 นาที → ท้องไม่ทัน process → ต้อง education กินก่อน 15-20 นาที" },
+      { t: "K.Mai 🆕", q: "กินเจลก่อนวิ่ง <10 นาที → ท้องไม่ทัน process → ต้อง education กินก่อน 15-20 นาที" },
     ],
   },
   {
     name: "GI / ทางเดินอาหาร",
     value: 2,
     color: "#d97a3e",
-    desc: "มีเคส GI 2 ราย — ครูใหม่มีอาการรุนแรง (ปวดท้อง/คลื่นไส้/อ้วก) ส่วน Kitti รู้สึกอิ่มแน่น",
+    desc: "มีเคส GI 2 ราย — K.Maiมีอาการรุนแรง (ปวดท้อง/คลื่นไส้/อ้วก) ส่วน Kitti รู้สึกอิ่มแน่น",
     positives: [
       { t: "Tum Kanapon 🆕", q: "ไม่แสบท้อง" },
-      { t: "ครูใหม่ 🆕", q: "ไม่ใช่อาการแพ้ (ไม่มีผื่น/บวม) — อยากลองอีกรอบ กินก่อน 20 นาที" },
+      { t: "K.Mai 🆕", q: "ไม่ใช่อาการแพ้ (ไม่มีผื่น/บวม) — อยากลองอีกรอบ กินก่อน 20 นาที" },
     ],
     problems: [
-      { t: "ครูใหม่ (รีเลย์โดย LiTTLE JoiCe) 🆕", q: "กินก่อนวิ่ง <10 นาที → โล 2 ลมในท้อง/เรอ → โล 3 ปวดท้องมวน → จบ 8k อ้วก คลื่นไส้ — ปกติกิน Amino vital ไม่เป็น" },
+      { t: "K.Mai (รีเลย์โดย LiTTLE JoiCe) 🆕", q: "กินก่อนวิ่ง <10 นาที → โล 2 ลมในท้อง/เรอ → โล 3 ปวดท้องมวน → จบ 8k อ้วก คลื่นไส้ — ปกติกิน Amino vital ไม่เป็น" },
       { t: "Kitti", q: "รู้สึกอิ่มแน่นหลังกิน หิวน้ำนิดๆ" },
     ],
   },
