@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>PUREPULSE Gel — Feedback Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans Thai', 'Inter', system-ui, sans-serif;
+    margin: 0;
+    padding: 32px 20px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  header { margin-bottom: 28px; }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    background: linear-gradient(90deg, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 420px;
+  }
+  .hint {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .detail-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #64748b;
+    font-size: 15px;
+    text-align: center;
+  }
+  .detail h2 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .detail .meta {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-title .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .section-title.positive .dot { background: #4ade80; }
+  .section-title.problem  .dot { background: #f87171; }
+  .section-title.positive { color: #4ade80; }
+  .section-title.problem  { color: #f87171; }
+  .quote {
+    background: rgba(15, 23, 42, 0.5);
+    border-left: 3px solid var(--accent, #a78bfa);
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .quote .tester {
+    font-weight: 600;
+    color: #c4b5fd;
+    margin-right: 6px;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat .label {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 4px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .badge.p0 { background: rgba(248,113,113,0.2); color: #fca5a5; }
+  .badge.p1 { background: rgba(251,146,60,0.2); color: #fdba74; }
+  .badge.p2 { background: rgba(74,222,128,0.2); color: #86efac; }
+  .actions {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(148, 163, 184, 0.15);
+  }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>PUREPULSE Energy Gel — สรุป Feedback</h1>
+    <div class="subtitle">12 ผู้ทดสอบ · แชท 22 รูป + เสียง Peerawit · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="num">12</div><div class="label">ผู้ทดสอบ</div></div>
+    <div class="stat"><div class="num">3</div><div class="label">ถามว่าขายเมื่อไหร่</div></div>
+    <div class="stat"><div class="num" style="color:#f87171">9</div><div class="label">พูดถึง texture หนืด</div></div>
+    <div class="stat"><div class="num" style="color:#4ade80">10</div><div class="label">พลังงานเสถียร</div></div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="chart-wrap">
+        <canvas id="pie"></canvas>
+      </div>
+      <div class="hint">👆 คลิกที่ส่วนของกราฟเพื่อดูรายละเอียด</div>
+    </div>
+    <div class="card detail" id="detail">
+      <div class="detail-empty">เลือกหัวข้อจากกราฟด้านซ้ายเพื่อดูสิ่งที่ลูกค้าชอบและปัญหาที่เจอ</div>
+    </div>
+  </div>
+
+  <div class="card actions">
+    <h2 style="margin-top:0;font-size:20px;">Action Items</h2>
+    <div class="action-item"><span class="badge p0">P0</span><span>แก้/ปรับ texture สำหรับ race pace — ลดความหนืดให้กลืนเร็วโดยไม่ต้องใช้น้ำตาม หรือทำ SKU "Race format" ที่เหลวกว่า</span></div>
+    <div class="action-item"><span class="badge p0">P0</span><span>แยก positioning ตามตลาด — สื่อสาร "Long run / Trail / Ultra" vs "Speed/Race" ให้ตรง use case</span></div>
+    <div class="action-item"><span class="badge p1">P1</span><span>Education ผ่าน packaging — บอก timing (กินก่อนพลังงานหมด) + texture (แนะนำดื่มน้ำตาม)</span></div>
+    <div class="action-item"><span class="badge p1">P1</span><span>ระบุรสบนซองให้ชัด — "ผลไม้รวม" กัน confusion</span></div>
+    <div class="action-item"><span class="badge p2">P2</span><span>เร่ง อย. — มี demand รออยู่อย่างน้อย 3 คนพร้อมซื้อ</span></div>
+    <div class="action-item"><span class="badge p2">P2</span><span>เทสต์เพิ่มกับนักวิ่ง race pace + เทส Ultra format</span></div>
+  </div>
+</div>
+
+<script>
+const themes = [
+  {
+    name: "รสชาติ",
+    value: 10,
+    color: "#a78bfa",
+    desc: "ผู้ทดสอบ 10/12 ให้ feedback เรื่องรสชาติ — ส่วนใหญ่ชอบและบอกว่าลงตัวขึ้นจากรอบก่อน",
+    positives: [
+      { t: "Keng", q: "รสชาติลงตัวขึ้น เค็มดีขึ้น แดกง่าย ไม่แสบคอ" },
+      { t: "Pae Duckkie", q: "รสนัวๆ ขึ้นจากครั้งที่แล้วเยอะ ไม่หวานแหลม ไม่เค็มโดด" },
+      { t: "Jarupong + แนน", q: "อร่อยมากพี่ ผมกับแนนชอบมาก รสชาติดีเลย" },
+      { t: "Narumol (กบ)", q: "เป็นเจลที่อร่อยจากที่เคยกินมาเลย รสชาติอร่อย กินง่าย" },
+      { t: "Minkz", q: "รสข้าวโพดเหรอพี่ 55 ผมขอบอร่อย" },
+      { t: "Peerawit", q: "กินก่อน race ไม่มีปัญหา รสชาติดี โอเคแบบที่เคย" },
+    ],
+    problems: [
+      { t: "Zoo / Kitti / ปุ๋น", q: "รสคล้ายแยมผลไม้/สตรอเบอรี่/ไส้ขนมปัง — ฟีลทางอาหารมากกว่าเจล" },
+      { t: "Minkz / ปุ๋น", q: "เข้าใจผิดว่าเป็นข้าวโพด/ข้าว ทั้งที่จริงเป็นผลไม้รวม → ต้องระบุบนซองให้ชัด" },
+    ],
+  },
+  {
+    name: "เนื้อสัมผัส (Texture)",
+    value: 9,
+    color: "#f87171",
+    desc: "ประเด็นที่ถูกพูดถึงมากที่สุดในเชิงลบ — หนืด/เหนียว/ติดคอ โดยเฉพาะตอน race pace",
+    positives: [
+      { t: "Jarupong", q: "แอบหนืดคอจริง ต้องกินน้ำตาม แต่ผมไม่ติด มันได้น้ำได้เนื้อดี ไม่เหมือน amino ที่เหลวๆ" },
+      { t: "Peerawit", q: "Shape ของซองแกะง่าย ไม่มีปัญหา" },
+    ],
+    problems: [
+      { t: "Peerawit", q: "เจลติดคอ กลืนไม่ลง ตอนหายใจหนัก โซน 4-5 ใกล้ VO2 Max — พอติดคอ หายใจลำบาก เสียจังหวะวิ่ง" },
+      { t: "Tye Jerush", q: "กลืนยากนะคับ สำหรับจังหวะที่วิ่งตอน speed — แต่ก่อนวิ่งกินโอเคเลย" },
+      { t: "Zoo", q: "เนื้อสัมผัสยังเหนียว ใช้เวลาในการกิน ทานยาก รสชาติเหมือนไส้ขนมปัง" },
+      { t: "UGRID", q: "เหนียวกว่าที่ใช้อยู่ ต้องกินน้ำตาม / บิวติดเรื่องความหนืด" },
+      { t: "Kitti", q: "รู้สึกอิ่มแน่นหลังกิน หิวน้ำนิดๆ" },
+      { t: "Narumol", q: "ไปหนืดเลยค่ะ" },
+      { t: "ปุ๋น (รีเลย์โดย LiTTLE JoiCe)", q: "ตกใจ texture เพราะไม่เคยกินแบบนี้ — เคยรู้สึกแบบนี้ตอนกิน MAURTEN ครั้งแรก" },
+      { t: "Peerawit", q: "ต้องใช้น้ำช่วยกินด้วย — เป็นปัญหาในสนามที่จุดน้ำไม่ตรงจังหวะที่อยากกินเจล" },
+    ],
+  },
+  {
+    name: "พลังงาน (Energy)",
+    value: 10,
+    color: "#4ade80",
+    desc: "จุดแข็งที่สุดของผลิตภัณฑ์ — เกือบทุกคนบอกว่าพลังงานนิ่ง เสถียร ไม่ดีดแรง ไม่วูบ",
+    positives: [
+      { t: "Aaron", q: "ดีเลย Energy นิ่ง ไม่ overshoot บางอันมีกาแฟแม่งดีดจัด" },
+      { t: "Keng", q: "พลังงานมาไว ไม่หิวน้ำ" },
+      { t: "Zoo", q: "บูสพลังงานเสถียรมาก 45 นาทียังคุมเพซได้ แรงไม่ตก ลากยาวถึง CD แรงยังมี ไม่ล้า" },
+      { t: "UGRID", q: "ไม่รู้สึกวูบ ดันเนินเสร็จจ๊อกต่อได้" },
+      { t: "Pae Duckkie", q: "ไม่หิวน้ำ กินง่าย พลังงานไม่ดีดมาก" },
+      { t: "Minkz", q: "พลังงานมาเรื่อยๆฮะ" },
+      { t: "Jarupong", q: "พลังงานค่อยๆ มาแล้วอยู่เรื่อยๆ — ดีกว่า amino ที่ต้องเติมบ่อย" },
+      { t: "ปุ๋น (รีเลย์)", q: "วิ่ง threshold 10 km บนลู่ พลังงานดี แรงไม่ตกตลอด 10 กิโล" },
+      { t: "Narumol", q: "กินไป 2 ซอง มีแรงวิ่งขึ้นเขาสบายเลย" },
+    ],
+    problems: [
+      { t: "UGRID รอบ 2", q: "พลังงานตกไม่แน่ใจ มันโฟกัสทางจนไม่ได้สนใจ — รอบหน้าต้องกินไวขึ้น (เจลออกฤทธิ์ค่อยๆ ต้อง education timing)" },
+    ],
+  },
+  {
+    name: "Use case / Timing",
+    value: 6,
+    color: "#fbbf24",
+    desc: "เหมาะกับ long run / trail / Ultra — มีข้อจำกัดในเรซระยะสั้น race pace สูง",
+    positives: [
+      { t: "Narumol", q: "วิ่งขึ้นเขาสบายเลย (กิน 2 ซอง)" },
+      { t: "UGRID", q: "trail gain 290–673 m ใช้ได้ดี" },
+      { t: "ปุ๋น (รีเลย์)", q: "Threshold sustained pace บนลู่ — เวิร์ก" },
+      { t: "Peerawit", q: "กินก่อน race (15 นาทีก่อนปล่อยตัว) ไม่มีปัญหา / Ultra ที่กินช้าๆ น่าจะเหมาะ" },
+    ],
+    problems: [
+      { t: "Peerawit", q: "เรซระยะสั้น 10K race pace สูง (โซน 4-5) → ใช้เวลากินนาน เสียจังหวะ ติดคอ" },
+      { t: "Tye Jerush", q: "ตอน speed กลืนยาก แต่ก่อนวิ่งโอเค" },
+      { t: "UGRID รอบ 2", q: "timing — ต้องกินไวขึ้น เพราะเจลออกฤทธิ์ค่อยๆ" },
+      { t: "Kitti", q: "อากาศร้อนหิวน้ำเพิ่ม" },
+    ],
+  },
+  {
+    name: "ความตั้งใจซื้อ",
+    value: 3,
+    color: "#22d3ee",
+    desc: "มี demand จริง — หลายคนถามตรงว่าขายเมื่อไหร่ พร้อมซื้อทันที",
+    positives: [
+      { t: "Minkz", q: "ทำออกขายเมื่อไรครับพี่ ผมกินละชอบนะพี่" },
+      { t: "Narumol (กบ)", q: "เริ่มขายเมื่อไหร่ กบเตรียมกดซื้อเลย — ปังแน่นอนพี่จ๊อย" },
+      { t: "Jarupong", q: "รออุดหนุนซื้อตุนเลยครับ ขอบงดึครับพี่" },
+    ],
+    problems: [
+      { t: "สถานะปัจจุบัน", q: "รอ อย. รับรอง ประมาณ 2-3 เดือน — ควรเร่งเพื่อไม่ให้พลาด momentum" },
+    ],
+  },
+];
+
+const ctx = document.getElementById('pie');
+const detail = document.getElementById('detail');
+
+const chart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: themes.map(t => t.name),
+    datasets: [{
+      data: themes.map(t => t.value),
+      backgroundColor: themes.map(t => t.color),
+      borderColor: 'rgba(15, 23, 42, 0.6)',
+      borderWidth: 3,
+      hoverOffset: 16,
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          color: '#e2e8f0',
+          font: { family: 'Noto Sans Thai', size: 13 },
+          padding: 12,
+          usePointStyle: true,
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` ${ctx.label}: ${ctx.parsed} คน`,
+        },
+        bodyFont: { family: 'Noto Sans Thai' },
+        titleFont: { family: 'Noto Sans Thai' },
+      },
+    },
+    onClick: (evt, els) => {
+      if (!els.length) return;
+      const idx = els[0].index;
+      showDetail(idx);
+    },
+    onHover: (evt, els) => {
+      evt.native.target.style.cursor = els.length ? 'pointer' : 'default';
+    },
+  },
+});
+
+function showDetail(i) {
+  const t = themes[i];
+  detail.style.setProperty('--accent', t.color);
+  const positiveHTML = t.positives.length
+    ? t.positives.map(p => `<div class="quote" style="border-left-color:${t.color}"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
+    : '<div style="color:#64748b;font-size:14px">— ไม่มี —</div>';
+  const problemHTML = t.problems.length
+    ? t.problems.map(p => `<div class="quote" style="border-left-color:#f87171"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
+    : '<div style="color:#64748b;font-size:14px">— ไม่มี —</div>';
+
+  detail.innerHTML = `
+    <h2 style="color:${t.color}">${t.name}</h2>
+    <div class="meta">${t.desc}</div>
+    <div class="section-title positive"><span class="dot"></span>สิ่งที่ชอบ / จุดแข็ง</div>
+    ${positiveHTML}
+    <div class="section-title problem"><span class="dot"></span>ปัญหา / ข้อกังวล</div>
+    ${problemHTML}
+  `;
+}
+
+// Show first theme by default after a beat
+setTimeout(() => showDetail(1), 300);  // start on Texture (the most important issue)
+</script>
+</body>
+</html>
