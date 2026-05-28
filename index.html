@@ -208,7 +208,7 @@
 <div class="container">
   <header>
     <h1>PUREPULSE Energy Gel — สรุป Feedback</h1>
-    <div class="subtitle">16 ผู้ทดสอบ · แชท 30 รูป + เสียง · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา</div>
+    <div class="subtitle">17 ผู้ทดสอบ · แชท 34 รูป + เสียง · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา</div>
   </header>
 
   <div class="alert-banner">
@@ -216,7 +216,7 @@
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="num">16</div><div class="label">ผู้ทดสอบ</div></div>
+    <div class="stat"><div class="num">17</div><div class="label">ผู้ทดสอบ</div></div>
     <div class="stat"><div class="num">3</div><div class="label">ถามว่าขายเมื่อไหร่</div></div>
     <div class="stat"><div class="num negative">12</div><div class="label">พูดถึง texture หนืด</div></div>
     <div class="stat"><div class="num positive">13</div><div class="label">พลังงานเสถียร</div></div>
@@ -244,6 +244,7 @@
     <div class="action-item"><span class="badge p2">P2</span><span>เทสต์เพิ่มกับนักวิ่ง race pace + เทส Ultra format</span></div>
     <div class="action-item"><span class="badge p1">P1</span><span>ติดตาม GI case K.Mai — ทดลองรอบ 2 กินก่อน 20 นาที / ตรวจสอบ timing vs ingredient <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>ปรับปรุง packaging — ซองแกะด้านข้างกินยาก (Tum) <span class="badge new">NEW</span></span></div>
+    <div class="action-item"><span class="badge p2">P2</span><span>Cycling — เริ่มเทสกับนักปั่น (O Tachapol) — packaging มุมมนใช้ได้กับเสื้อปั่น แต่ฉีกซองตอนปั่นยากกว่าวิ่ง ต้องเทสยาวเรื่อง energy duration <span class="badge new">NEW</span></span></div>
   </div>
 </div>
 
@@ -251,9 +252,9 @@
 const themes = [
   {
     name: "รสชาติ",
-    value: 12,
+    value: 13,
     color: "#7c6bbf",
-    desc: "ผู้ทดสอบ 12/16 ให้ feedback เรื่องรสชาติ — ส่วนใหญ่ชอบและบอกว่าลงตัว",
+    desc: "ผู้ทดสอบ 13/17 ให้ feedback เรื่องรสชาติ — ส่วนใหญ่ชอบและบอกว่าลงตัว",
     positives: [
       { t: "Keng", q: "รสชาติลงตัวขึ้น เค็มดีขึ้น แดกง่าย ไม่แสบคอ" },
       { t: "Pae Duckkie", q: "รสนัวๆ ขึ้นจากครั้งที่แล้วเยอะ ไม่หวานแหลม ไม่เค็มโดด" },
@@ -263,6 +264,7 @@ const themes = [
       { t: "Peerawit", q: "กินก่อน race ไม่มีปัญหา รสชาติดี โอเคแบบที่เคย" },
       { t: "Up 🆕", q: "รสชาติอร่อย เหมือนสตอเบอรี่ชีสเค้ก" },
       { t: "Tum Kanapon 🆕", q: "รสชาติดีนะ ให้กลิ่นธรรมชาติ ข้าวๆ ไม่หวานปรี๊ด ชอบ" },
+      { t: "O Tachapol 🆕", q: "ชอบรสชาติเลย — ฟีลเนื้อๆ หนึบๆ ข้าว ชอบ (cyclist)" },
     ],
     problems: [
       { t: "Zoo / Kitti / Poon", q: "รสคล้ายแยมผลไม้/สตรอเบอรี่/ไส้ขนมปัง — ฟีลทางอาหารมากกว่าเจล" },
@@ -271,12 +273,14 @@ const themes = [
   },
   {
     name: "เนื้อสัมผัส (Texture)",
-    value: 12,
+    value: 13,
     color: "#d94f4f",
-    desc: "ประเด็นที่ถูกพูดถึงมากที่สุดในเชิงลบ — 12/16 คนพูดถึงความหนืด/เหนียว/ติดคอ",
+    desc: "ประเด็นที่ถูกพูดถึงมากที่สุดในเชิงลบ — 12/17 คนพูดถึงความหนืด/เหนียว/ติดคอ (มี O Tachapol นักปั่นบอกชอบความหนึบเป็นข้อยกเว้น)",
     positives: [
       { t: "Jarupong", q: "แอบหนืดคอจริง ต้องกินน้ำตาม แต่ผมไม่ติด มันได้น้ำได้เนื้อดี ไม่เหมือน amino ที่เหลวๆ" },
       { t: "Peerawit", q: "Shape ของซองแกะง่าย ไม่มีปัญหา" },
+      { t: "O Tachapol 🆕", q: "ชอบความเนื้อๆ หนึบๆ แบบข้าว — เป็น positive case rare ของ texture (cyclist)" },
+      { t: "O Tachapol 🆕 (packaging)", q: "มุมซอง PUREPULSE มนๆ ไม่คม — ใส่เสื้อปั่นจักรยานดึงออกได้ OK (บางแบรนมุมคม ติดเสื้อปั่น ดึงออกยาก)" },
     ],
     problems: [
       { t: "Peerawit", q: "เจลติดคอ กลืนไม่ลง ตอนหายใจหนัก โซน 4-5 ใกล้ VO2 Max — พอติดคอ หายใจลำบาก เสียจังหวะวิ่ง" },
@@ -290,13 +294,14 @@ const themes = [
       { t: "Up 🆕", q: "เท็กเจอร์หนืดคอนิดนึง กินเสร็จต้องกินน้ำตาม" },
       { t: "Tum Kanapon 🆕", q: "มีคอแห้งเล็กน้อยหลังกิน / ซองแกะด้านข้างกินยากนิดนึง" },
       { t: "Amp 🆕", q: "ติดตรงที่หนืดคอเรื่องเดียวเลย นอกนั้นเริ่ดเลยแหละ" },
+      { t: "O Tachapol 🆕 (packaging — cyclist)", q: "จักรยานฉีกซองยากกว่าวิ่ง ต้องใช้สองมือ + ต้องดูดให้หมดหลอด/ม้วนตูดซองเหมือนยาสีฟัน ถึงจะไม่เลอะ — คนคุ้นเคยจะรู้เทคนิค คนไม่คุ้นอาจสับสน" },
     ],
   },
   {
     name: "พลังงาน (Energy)",
     value: 13,
     color: "#2d9d5e",
-    desc: "จุดแข็งที่สุดของผลิตภัณฑ์ — 13/16 คนบอกว่าพลังงานนิ่ง เสถียร ไม่ดีดแรง ไม่วูบ",
+    desc: "จุดแข็งที่สุดของผลิตภัณฑ์ — 13/17 คนบอกว่าพลังงานนิ่ง เสถียร ไม่ดีดแรง ไม่วูบ",
     positives: [
       { t: "Aaron", q: "ดีเลย Energy นิ่ง ไม่ overshoot บางอันมีกาแฟแม่งดีดจัด" },
       { t: "Keng", q: "พลังงานมาไว ไม่หิวน้ำ" },
@@ -313,18 +318,20 @@ const themes = [
     ],
     problems: [
       { t: "UGRID รอบ 2", q: "พลังงานตกไม่แน่ใจ มันโฟกัสทางจนไม่ได้สนใจ — รอบหน้าต้องกินไวขึ้น (เจลออกฤทธิ์ค่อยๆ ต้อง education timing)" },
+      { t: "O Tachapol 🆕", q: "วันนี้ปั่นหนักสั้นๆ ยังไม่มั่นใจเรื่อง energy duration ต้องเทสยาวๆ ดูอีกที (pending)" },
     ],
   },
   {
     name: "Use case / Timing",
-    value: 7,
+    value: 8,
     color: "#c9952c",
-    desc: "เหมาะกับ long run / trail / Ultra — มีข้อจำกัดในเรซระยะสั้น + ต้อง education timing",
+    desc: "เหมาะกับ long run / trail / Ultra / cycling — มีข้อจำกัดในเรซระยะสั้น + ต้อง education timing + packaging เฉพาะ cycling",
     positives: [
       { t: "Narumol", q: "วิ่งขึ้นเขาสบายเลย (กิน 2 ซอง)" },
       { t: "UGRID", q: "trail gain 290–673 m ใช้ได้ดี" },
       { t: "Poon (รีเลย์)", q: "Threshold sustained pace บนลู่ — เวิร์ก" },
       { t: "Peerawit", q: "กินก่อน race (15 นาทีก่อนปล่อยตัว) ไม่มีปัญหา / Ultra ที่กินช้าๆ น่าจะเหมาะ" },
+      { t: "O Tachapol 🆕", q: "Use case ใหม่ — Cycling — รสชาติ + texture ฟีลดี packaging มุมมนของ PUREPULSE OK สำหรับเสื้อปั่น" },
     ],
     problems: [
       { t: "Peerawit", q: "เรซระยะสั้น 10K race pace สูง (โซน 4-5) → ใช้เวลากินนาน เสียจังหวะ ติดคอ" },
@@ -332,6 +339,7 @@ const themes = [
       { t: "UGRID รอบ 2", q: "timing — ต้องกินไวขึ้น เพราะเจลออกฤทธิ์ค่อยๆ" },
       { t: "Kitti", q: "อากาศร้อนหิวน้ำเพิ่ม" },
       { t: "K.Mai 🆕", q: "กินเจลก่อนวิ่ง <10 นาที → ท้องไม่ทัน process → ต้อง education กินก่อน 15-20 นาที" },
+      { t: "O Tachapol 🆕 (cycling)", q: "ปั่นจักรยานฉีกซองยากกว่าวิ่ง — ต้องใช้สองมือ ทำให้เสียจังหวะ + ต้องม้วนตูดซองเหมือนยาสีฟันถึงจะไม่เลอะ" },
     ],
   },
   {
