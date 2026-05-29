@@ -100,27 +100,57 @@
     font-size: 15px;
     text-align: center;
   }
+  .card.detail {
+    display: flex;
+    flex-direction: column;
+    max-height: 482px;
+    overflow: hidden;
+  }
+  .detail-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    margin: 0 -8px;
+    padding: 0 8px;
+  }
+  .detail-scroll::-webkit-scrollbar { width: 6px; }
+  .detail-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+  .detail-scroll::-webkit-scrollbar-thumb:hover { background: #bbb; }
   .detail h2 {
     margin: 0 0 4px;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
   }
   .detail .meta {
     color: #8c8c9a;
     font-size: 13px;
-    margin-bottom: 22px;
+    margin-bottom: 14px;
     line-height: 1.5;
   }
   .section-title {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 24px;
-    margin-bottom: 10px;
-    font-size: 12px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.8px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 4px 0;
+    z-index: 1;
+  }
+  .section-title:first-child { margin-top: 0; }
+  .section-title .count {
+    color: #b0b0ba;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-left: auto;
   }
   .section-title .dot {
     display: inline-block;
@@ -135,11 +165,11 @@
   .quote {
     background: #f7f7f9;
     border-left: 3px solid var(--accent, #999);
-    padding: 10px 14px;
-    margin-bottom: 8px;
+    padding: 7px 11px;
+    margin-bottom: 6px;
     border-radius: 4px;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.5;
     color: #3a3a4a;
   }
   .quote .tester {
@@ -196,9 +226,10 @@
     .stat { padding: 12px; }
     .stat .num { font-size: 22px; }
     .card { padding: 16px; border-radius: 10px; }
+    .card.detail { max-height: none; }
     .chart-wrap { height: 260px; }
     .detail h2 { font-size: 17px; }
-    .quote { padding: 8px 10px; font-size: 13px; }
+    .quote { padding: 7px 10px; font-size: 13px; }
     .alert-banner { padding: 10px 12px; font-size: 13px; }
     .action-item { font-size: 13px; }
   }
@@ -431,18 +462,20 @@ function showDetail(i) {
   detail.style.setProperty('--accent', t.color);
   const positiveHTML = t.positives.length
     ? t.positives.map(p => `<div class="quote" style="border-left-color:${t.color}"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
-    : '<div style="color:#b0b0ba;font-size:14px">— ไม่มี —</div>';
+    : '<div style="color:#b0b0ba;font-size:13px">— ไม่มี —</div>';
   const problemHTML = t.problems.length
     ? t.problems.map(p => `<div class="quote" style="border-left-color:#d94f4f"><span class="tester">${p.t}:</span>${p.q}</div>`).join('')
-    : '<div style="color:#b0b0ba;font-size:14px">— ไม่มี —</div>';
+    : '<div style="color:#b0b0ba;font-size:13px">— ไม่มี —</div>';
 
   detail.innerHTML = `
     <h2 style="color:${t.color}">${t.name}</h2>
     <div class="meta">${t.desc}</div>
-    <div class="section-title positive"><span class="dot"></span>สิ่งที่ชอบ / จุดแข็ง</div>
-    ${positiveHTML}
-    <div class="section-title problem"><span class="dot"></span>ปัญหา / ข้อกังวล</div>
-    ${problemHTML}
+    <div class="detail-scroll">
+      <div class="section-title positive"><span class="dot"></span>สิ่งที่ชอบ / จุดแข็ง<span class="count">${t.positives.length}</span></div>
+      ${positiveHTML}
+      <div class="section-title problem"><span class="dot"></span>ปัญหา / ข้อกังวล<span class="count">${t.problems.length}</span></div>
+      ${problemHTML}
+    </div>
   `;
 }
 
