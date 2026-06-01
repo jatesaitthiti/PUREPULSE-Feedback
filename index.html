@@ -215,6 +215,42 @@
   .badge.p2 { background: #e8f5ec; color: #2d7a4a; }
   .badge.new { background: #e8f0fe; color: #3565b0; margin-left: 6px; }
 
+  .card.testers-card { margin-top: 20px; }
+  .testers-card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .testers-card .sub {
+    color: #8c8c9a;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .tester-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tester-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    background: #f4f4f7;
+    border: 1px solid #e8e8ee;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2a2a3a;
+  }
+  .tester-chip .tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: #9a9aa8;
+  }
+  .tester-chip.new { background: #e8f0fe; border-color: #d2e0fb; color: #2f5aa8; }
+  .tester-chip.new .tag { color: #6f8fce; }
+
   @media (max-width: 860px) {
     .layout { grid-template-columns: 1fr; }
   }
@@ -280,6 +316,12 @@
     <div class="action-item"><span class="badge p2">P2</span><span>Packaging ทิศฉีก — Jack Mitzuno: ต้องฉีกแนวขวาง แนวตั้งฉีกยาก → ระบุทิศฉีก/notch บนซองให้ชัด <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>รสชาติเชิงการตลาด — Yada (Hyrox): performance เท่ากันคนจะเลือกแบรนด์ที่อร่อยกว่า → พิจารณาปรับรสให้ "ฟิลกินขนม" + ทำ texture เจลลี่ๆ (ตอนนี้หนากว่าไซรัป) <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>Use case ใหม่ — Hyrox / functional fitness (Yada): พลังงานต่อเนื่องตลอดคลาส 50 นาที → ขยาย positioning ไปกลุ่ม Hyrox/CrossFit <span class="badge new">NEW</span></span></div>
+  </div>
+
+  <div class="card testers-card">
+    <h2>ผู้ทดสอบทั้งหมด</h2>
+    <div class="sub" id="testerCount"></div>
+    <div class="tester-chips" id="testerChips"></div>
   </div>
 </div>
 
@@ -423,6 +465,30 @@ const themes = [
   },
 ];
 
+const testers = [
+  { name: "Aaron" },
+  { name: "Keng" },
+  { name: "Zoo" },
+  { name: "UGRID", tag: "trail" },
+  { name: "Pae Duckkie" },
+  { name: "Minkz" },
+  { name: "Jarupong", tag: "+ แนน" },
+  { name: "Poon" },
+  { name: "Narumol", tag: "กบ" },
+  { name: "Peerawit", tag: "race" },
+  { name: "Tye Jerush" },
+  { name: "Kitti" },
+  { name: "K.Mai", tag: "GI case" },
+  { name: "Up", new: true },
+  { name: "Tum Kanapon", new: true },
+  { name: "Amp", new: true },
+  { name: "O Tachapol", tag: "cyclist", new: true },
+  { name: "Chak", tag: "Frank RC", new: true },
+  { name: "Pare", tag: "Frank RC", new: true },
+  { name: "Jack Mitzuno", tag: "21K", new: true },
+  { name: "Yada", tag: "Hyrox", new: true },
+];
+
 const ctx = document.getElementById('pie');
 const detail = document.getElementById('detail');
 
@@ -498,6 +564,15 @@ function showDetail(i) {
     </div>
   `;
 }
+
+function renderTesters() {
+  document.getElementById('testerCount').textContent = `${testers.length} คน · 🆕 = เพิ่มล่าสุด`;
+  document.getElementById('testerChips').innerHTML = testers.map(p => {
+    const tag = p.tag ? `<span class="tag">${p.tag}</span>` : '';
+    return `<span class="tester-chip${p.new ? ' new' : ''}">${p.new ? '🆕 ' : ''}${p.name}${tag}</span>`;
+  }).join('');
+}
+renderTesters();
 
 setTimeout(() => showDetail(1), 300);
 </script>
