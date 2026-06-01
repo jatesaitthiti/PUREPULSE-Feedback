@@ -242,7 +242,11 @@
     font-size: 13px;
     font-weight: 600;
     color: #2a2a3a;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, transform 0.06s;
   }
+  .tester-chip:hover { border-color: #c4c4d0; }
+  .tester-chip:active { transform: translateY(1px); }
   .tester-chip .tag {
     font-size: 11px;
     font-weight: 500;
@@ -250,6 +254,50 @@
   }
   .tester-chip.new { background: #e8f0fe; border-color: #d2e0fb; color: #2f5aa8; }
   .tester-chip.new .tag { color: #6f8fce; }
+  .tester-chip.selected { background: #1a1a2e; border-color: #1a1a2e; color: #fff; }
+  .tester-chip.selected .tag { color: #b8b8c8; }
+
+  .tester-detail {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #f0f0f3;
+    display: none;
+  }
+  .tester-detail.open { display: block; }
+  .td-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+  }
+  .td-head .td-tag { font-size: 12px; font-weight: 500; color: #9a9aa8; }
+  .td-quote {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    background: #f7f7f9;
+    border-left: 3px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 11px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #3a3a4a;
+  }
+  .td-quote .td-theme {
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .td-sign { font-weight: 700; flex-shrink: 0; }
+  .td-sign.pos { color: #2d9d5e; }
+  .td-sign.neg { color: #d94f4f; }
+  .td-empty { color: #b0b0ba; font-size: 13px; }
 
   @media (max-width: 860px) {
     .layout { grid-template-columns: 1fr; }
@@ -307,21 +355,22 @@
     <div class="action-item"><span class="badge p0">P0</span><span>แยก positioning ตามตลาด — สื่อสาร "Long run / Trail / Ultra" vs "Speed/Race" ให้ตรง use case</span></div>
     <div class="action-item"><span class="badge p1">P1</span><span>Education ผ่าน packaging — บอก timing (กินก่อนพลังงานหมด) + texture (แนะนำดื่มน้ำตาม)</span></div>
     <div class="action-item"><span class="badge p1">P1</span><span>ระบุรสบนซองให้ชัด — "ผลไม้รวม" กัน confusion</span></div>
+    <div class="action-item"><span class="badge p1">P1</span><span>ติดตาม GI case K.Mai — ทดลองรอบ 2 กินก่อน 20 นาที / ตรวจสอบ timing vs ingredient <span class="badge new">NEW</span></span></div>
+    <div class="action-item"><span class="badge p1">P1</span><span>Performance / สูตร — Jack Mitzuno (วิ่ง 21K) บอกพลังงาน "ประคองได้แต่ไม่ดีด" เพซเท่าเดิม → เสนอลดปริมาณ ~20% เพิ่มแคลอรี่/โซเดียม พิจารณาสูตรสำหรับ race performance <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>เร่ง อย. — มี demand รออยู่อย่างน้อย 3 คนพร้อมซื้อ</span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>เทสต์เพิ่มกับนักวิ่ง race pace + เทส Ultra format</span></div>
-    <div class="action-item"><span class="badge p1">P1</span><span>ติดตาม GI case K.Mai — ทดลองรอบ 2 กินก่อน 20 นาที / ตรวจสอบ timing vs ingredient <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>ปรับปรุง packaging — ซองแกะด้านข้างกินยาก (Tum) <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>Cycling — เริ่มเทสกับนักปั่น (O Tachapol) — packaging มุมมนใช้ได้กับเสื้อปั่น แต่ฉีกซองตอนปั่นยากกว่าวิ่ง ต้องเทสยาวเรื่อง energy duration <span class="badge new">NEW</span></span></div>
-    <div class="action-item"><span class="badge p1">P1</span><span>Performance / สูตร — Jack Mitzuno (วิ่ง 21K) บอกพลังงาน "ประคองได้แต่ไม่ดีด" เพซเท่าเดิม → เสนอลดปริมาณ ~20% เพิ่มแคลอรี่/โซเดียม พิจารณาสูตรสำหรับ race performance <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>Packaging ทิศฉีก — Jack Mitzuno: ต้องฉีกแนวขวาง แนวตั้งฉีกยาก → ระบุทิศฉีก/notch บนซองให้ชัด <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>รสชาติเชิงการตลาด — Yada (Hyrox): performance เท่ากันคนจะเลือกแบรนด์ที่อร่อยกว่า → พิจารณาปรับรสให้ "ฟิลกินขนม" + ทำ texture เจลลี่ๆ (ตอนนี้หนากว่าไซรัป) <span class="badge new">NEW</span></span></div>
     <div class="action-item"><span class="badge p2">P2</span><span>Use case ใหม่ — Hyrox / functional fitness (Yada): พลังงานต่อเนื่องตลอดคลาส 50 นาที → ขยาย positioning ไปกลุ่ม Hyrox/CrossFit <span class="badge new">NEW</span></span></div>
   </div>
 
   <div class="card testers-card">
-    <h2>ผู้ทดสอบทั้งหมด</h2>
+    <h2>Athletes</h2>
     <div class="sub" id="testerCount"></div>
     <div class="tester-chips" id="testerChips"></div>
+    <div class="tester-detail" id="testerDetail"></div>
   </div>
 </div>
 
@@ -565,11 +614,55 @@ function showDetail(i) {
   `;
 }
 
+const testerDetail = document.getElementById('testerDetail');
+let selectedTester = null;
+
+// รวบรวม quote ของแต่ละคนจาก themes (match จากชื่อใน field t)
+function feedbackFor(name) {
+  const out = [];
+  themes.forEach(theme => {
+    theme.positives.forEach(p => { if (p.t.includes(name)) out.push({ theme: theme.name, color: theme.color, type: 'pos', label: p.t, q: p.q }); });
+    theme.problems.forEach(p => { if (p.t.includes(name)) out.push({ theme: theme.name, color: theme.color, type: 'neg', label: p.t, q: p.q }); });
+  });
+  return out;
+}
+
+function showTester(idx) {
+  const chips = document.querySelectorAll('.tester-chip');
+  // คลิกซ้ำที่คนเดิม → ปิด
+  if (selectedTester === idx) {
+    selectedTester = null;
+    chips.forEach(c => c.classList.remove('selected'));
+    testerDetail.classList.remove('open');
+    return;
+  }
+  selectedTester = idx;
+  chips.forEach((c, i) => c.classList.toggle('selected', i === idx));
+
+  const p = testers[idx];
+  const items = feedbackFor(p.name);
+  const tag = p.tag ? `<span class="td-tag">${p.tag}</span>` : '';
+  const body = items.length
+    ? items.map(it => `
+        <div class="td-quote" style="border-left-color:${it.color}">
+          <span class="td-theme" style="color:${it.color}">${it.theme}</span>
+          <span class="td-sign ${it.type}">${it.type === 'pos' ? '＋' : '－'}</span>
+          <span>${it.q}</span>
+        </div>`).join('')
+    : '<div class="td-empty">— ยังไม่มี feedback ที่บันทึก —</div>';
+
+  testerDetail.innerHTML = `
+    <div class="td-head">${p.new ? '🆕 ' : ''}${p.name}${tag}<span class="td-tag">· ${items.length} ความเห็น</span></div>
+    ${body}
+  `;
+  testerDetail.classList.add('open');
+}
+
 function renderTesters() {
-  document.getElementById('testerCount').textContent = `${testers.length} คน · 🆕 = เพิ่มล่าสุด`;
-  document.getElementById('testerChips').innerHTML = testers.map(p => {
+  document.getElementById('testerCount').textContent = `${testers.length} คน · คลิกชื่อเพื่อดู feedback · 🆕 = เพิ่มล่าสุด`;
+  document.getElementById('testerChips').innerHTML = testers.map((p, i) => {
     const tag = p.tag ? `<span class="tag">${p.tag}</span>` : '';
-    return `<span class="tester-chip${p.new ? ' new' : ''}">${p.new ? '🆕 ' : ''}${p.name}${tag}</span>`;
+    return `<span class="tester-chip${p.new ? ' new' : ''}" onclick="showTester(${i})">${p.new ? '🆕 ' : ''}${p.name}${tag}</span>`;
   }).join('');
 }
 renderTesters();
