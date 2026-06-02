@@ -11,19 +11,23 @@ import { Badge } from "@/components/ui/badge"
 import { actionItems, testers, themes, type ActionItem } from "@/data"
 import { cn } from "@/lib/utils"
 
-const PROBLEM_COLOR = "#d94f4f"
+// accent ปรับให้สว่างพออ่านบนพื้นเข้ม (dark theme)
+const POSITIVE_COLOR = "#34d399"
+const PROBLEM_COLOR = "#f87171"
+const RADAR_COLOR = "#a78bfa"
+const TICK_MUTED = "#a1a1aa"
+const GRID_STROKE = "rgba(255,255,255,0.12)"
 
 const chartConfig = Object.fromEntries(
   themes.map((t) => [t.name, { label: t.name, color: t.color }]),
 ) satisfies ChartConfig
 
 const radarData = themes.map((t) => ({ name: t.name, value: t.value }))
-const RADAR_COLOR = "#7c6bbf"
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
-  p0: "bg-red-100 text-red-700",
-  p1: "bg-amber-100 text-amber-700",
-  p2: "bg-emerald-100 text-emerald-700",
+  p0: "bg-red-500/15 text-red-300",
+  p1: "bg-amber-500/15 text-amber-300",
+  p2: "bg-emerald-500/15 text-emerald-300",
 }
 
 // รวบรวม quote ของแต่ละคนจาก themes (match จากชื่อใน field t — เหมือน logic เดิม)
@@ -45,9 +49,9 @@ function StatCard({ num, label, tone }: { num: number; label: string; tone?: "ne
     <Card className="items-center gap-1.5 px-4 py-4 text-center">
       <div
         className={cn(
-          "text-3xl font-bold leading-none",
-          tone === "neg" && "text-[#d94f4f]",
-          tone === "pos" && "text-[#2d9d5e]",
+          "text-3xl font-bold leading-none text-foreground",
+          tone === "neg" && "text-[#f87171]",
+          tone === "pos" && "text-[#34d399]",
         )}
       >
         {num}
@@ -60,10 +64,10 @@ function StatCard({ num, label, tone }: { num: number; label: string; tone?: "ne
 function Quote({ tester, text, color }: { tester: string; text: string; color: string }) {
   return (
     <div
-      className="mb-1.5 rounded border-l-[3px] bg-[#f7f7f9] px-3 py-[7px] text-[13px] leading-relaxed text-[#3a3a4a]"
+      className="mb-1.5 rounded border-l-[3px] bg-muted px-3 py-[7px] text-[13px] leading-relaxed text-foreground/80"
       style={{ borderLeftColor: color }}
     >
-      <span className="mr-1.5 font-semibold text-[#1a1a2e]">{tester}:</span>
+      <span className="mr-1.5 font-semibold text-foreground">{tester}:</span>
       {text}
     </div>
   )
@@ -78,7 +82,7 @@ function SectionTitle({
   count: number
   children: React.ReactNode
 }) {
-  const color = tone === "pos" ? "#2d9d5e" : "#d94f4f"
+  const color = tone === "pos" ? POSITIVE_COLOR : PROBLEM_COLOR
   return (
     <div
       className="sticky top-0 z-[1] mt-4 mb-2 flex items-center gap-2 bg-card py-1 text-[11px] font-semibold tracking-wider uppercase first:mt-0"
@@ -86,7 +90,7 @@ function SectionTitle({
     >
       <span className="inline-block h-[7px] w-[7px] rounded-full" style={{ background: color }} />
       {children}
-      <span className="ml-auto text-[11px] font-medium tracking-normal text-[#b0b0ba] normal-case">
+      <span className="ml-auto text-[11px] font-medium tracking-normal text-muted-foreground normal-case">
         {count}
       </span>
     </div>
@@ -109,7 +113,7 @@ function AngleTick(props: any) {
       dominantBaseline="central"
       onClick={() => onSelect(index)}
       className="cursor-pointer select-none"
-      fill={isSel ? themes[index].color : "#5a5a6a"}
+      fill={isSel ? themes[index].color : TICK_MUTED}
       fontSize={12}
       fontWeight={isSel ? 700 : 500}
     >
@@ -133,7 +137,7 @@ function DetailPanel({ index }: { index: number }) {
         {t.positives.length ? (
           t.positives.map((p, i) => <Quote key={i} tester={p.t} text={p.q} color={t.color} />)
         ) : (
-          <div className="text-[13px] text-[#b0b0ba]">— ไม่มี —</div>
+          <div className="text-[13px] text-muted-foreground">— ไม่มี —</div>
         )}
         <SectionTitle tone="neg" count={t.problems.length}>
           ปัญหา / ข้อกังวล
@@ -141,7 +145,7 @@ function DetailPanel({ index }: { index: number }) {
         {t.problems.length ? (
           t.problems.map((p, i) => <Quote key={i} tester={p.t} text={p.q} color={PROBLEM_COLOR} />)
         ) : (
-          <div className="text-[13px] text-[#b0b0ba]">— ไม่มี —</div>
+          <div className="text-[13px] text-muted-foreground">— ไม่มี —</div>
         )}
       </div>
     </Card>
@@ -156,7 +160,7 @@ export default function App() {
   const testerItems = tester ? feedbackFor(tester.name) : []
 
   return (
-    <div className="mx-auto min-h-screen max-w-[1100px] px-6 py-12 text-[#1a1a2e]">
+    <div className="mx-auto min-h-screen max-w-[1100px] px-6 py-12">
       <header className="mb-9">
         <h1 className="mb-1.5 text-[26px] font-bold tracking-tight">
           PUREPULSE Energy Gel — Feedback Summary
@@ -166,10 +170,10 @@ export default function App() {
         </div>
       </header>
 
-      <div className="mb-6 rounded-[10px] border border-[#f0c8a0] bg-white px-[18px] py-3.5 text-sm leading-relaxed text-[#7a5c30]">
-        ⚠️ <strong>GI Alert — K.Mai:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก หลังวิ่ง 8 km (กินเจลก่อนวิ่ง
-        &lt;10 นาที) — ปกติกิน Amino vital ไม่เป็น ไม่ใช่อาการแพ้ คาดว่า timing + ย่อยยาก → รอทดลองรอบ
-        2 กินก่อน 20 นาที
+      <div className="mb-6 rounded-[10px] border border-amber-500/25 bg-amber-500/10 px-[18px] py-3.5 text-sm leading-relaxed text-amber-200/90">
+        ⚠️ <strong className="text-amber-200">GI Alert — K.Mai:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก
+        หลังวิ่ง 8 km (กินเจลก่อนวิ่ง &lt;10 นาที) — ปกติกิน Amino vital ไม่เป็น ไม่ใช่อาการแพ้ คาดว่า
+        timing + ย่อยยาก → รอทดลองรอบ 2 กินก่อน 20 นาที
       </div>
 
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -189,7 +193,7 @@ export default function App() {
               <ChartTooltip
                 content={<ChartTooltipContent nameKey="name" formatter={(value) => `${value} คน`} />}
               />
-              <PolarGrid stroke="#e5e4e7" />
+              <PolarGrid stroke={GRID_STROKE} />
               <PolarAngleAxis
                 dataKey="name"
                 tick={(props) => (
@@ -200,7 +204,7 @@ export default function App() {
                 dataKey="value"
                 stroke={RADAR_COLOR}
                 fill={RADAR_COLOR}
-                fillOpacity={0.35}
+                fillOpacity={0.3}
                 strokeWidth={2}
                 dot={{ r: 4, fill: RADAR_COLOR, fillOpacity: 1, strokeWidth: 0 }}
                 isAnimationActive={false}
@@ -214,7 +218,7 @@ export default function App() {
                 onClick={() => setSelected(i)}
                 className={cn(
                   "flex items-center gap-1.5 text-[13px] font-medium transition-opacity",
-                  i === selected ? "opacity-100" : "opacity-55 hover:opacity-100",
+                  i === selected ? "text-foreground opacity-100" : "text-foreground opacity-50 hover:opacity-100",
                 )}
               >
                 <span
@@ -235,7 +239,7 @@ export default function App() {
         {actionItems.map((item, i) => (
           <div
             key={i}
-            className="flex items-start gap-2.5 border-b border-[#f0f0f3] py-2.5 text-sm leading-relaxed text-[#3a3a4a] last:border-b-0"
+            className="flex items-start gap-2.5 border-b border-border py-2.5 text-sm leading-relaxed text-foreground/85 last:border-b-0"
           >
             <Badge
               className={cn(
@@ -248,7 +252,7 @@ export default function App() {
             <span>
               {item.text}
               {item.isNew && (
-                <Badge className="ml-1.5 rounded bg-[#e8f0fe] px-2 py-0.5 text-[11px] font-semibold text-[#3565b0]">
+                <Badge className="ml-1.5 rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-semibold text-blue-300">
                   NEW
                 </Badge>
               )}
@@ -272,10 +276,10 @@ export default function App() {
                 className={cn(
                   "inline-flex items-baseline gap-1.5 rounded-full border px-3.5 py-1.5 text-[13px] font-semibold transition-colors",
                   isSel
-                    ? "border-[#1a1a2e] bg-[#1a1a2e] text-white"
+                    ? "border-primary bg-primary text-primary-foreground"
                     : p.new
-                      ? "border-[#d2e0fb] bg-[#e8f0fe] text-[#2f5aa8] hover:border-[#c4c4d0]"
-                      : "border-[#e8e8ee] bg-[#f4f4f7] text-[#2a2a3a] hover:border-[#c4c4d0]",
+                      ? "border-blue-500/30 bg-blue-500/10 text-blue-300 hover:border-blue-400/50"
+                      : "border-border bg-muted text-foreground hover:border-muted-foreground/40",
                 )}
               >
                 {p.new ? "🆕 " : ""}
@@ -284,7 +288,11 @@ export default function App() {
                   <span
                     className={cn(
                       "text-[11px] font-medium",
-                      isSel ? "text-[#b8b8c8]" : p.new ? "text-[#6f8fce]" : "text-[#9a9aa8]",
+                      isSel
+                        ? "text-primary-foreground/70"
+                        : p.new
+                          ? "text-blue-300/70"
+                          : "text-muted-foreground",
                     )}
                   >
                     {p.tag}
@@ -296,12 +304,14 @@ export default function App() {
         </div>
 
         {tester && (
-          <div className="mt-[18px] border-t border-[#f0f0f3] pt-[18px]">
-            <div className="mb-3 flex items-baseline gap-2 text-base font-bold text-[#1a1a2e]">
+          <div className="mt-[18px] border-t border-border pt-[18px]">
+            <div className="mb-3 flex items-baseline gap-2 text-base font-bold text-foreground">
               {tester.new ? "🆕 " : ""}
               {tester.name}
-              {tester.tag && <span className="text-xs font-medium text-[#9a9aa8]">{tester.tag}</span>}
-              <span className="text-xs font-medium text-[#9a9aa8]">
+              {tester.tag && (
+                <span className="text-xs font-medium text-muted-foreground">{tester.tag}</span>
+              )}
+              <span className="text-xs font-medium text-muted-foreground">
                 · {testerItems.length} ความเห็น
               </span>
             </div>
@@ -309,7 +319,7 @@ export default function App() {
               testerItems.map((it, i) => (
                 <div
                   key={i}
-                  className="mb-1.5 flex items-start gap-2.5 rounded border-l-[3px] bg-[#f7f7f9] px-3 py-2 text-[13px] leading-normal text-[#3a3a4a]"
+                  className="mb-1.5 flex items-start gap-2.5 rounded border-l-[3px] bg-muted px-3 py-2 text-[13px] leading-normal text-foreground/85"
                   style={{ borderLeftColor: it.color }}
                 >
                   <span
@@ -321,7 +331,7 @@ export default function App() {
                   <span
                     className={cn(
                       "shrink-0 font-bold",
-                      it.type === "pos" ? "text-[#2d9d5e]" : "text-[#d94f4f]",
+                      it.type === "pos" ? "text-[#34d399]" : "text-[#f87171]",
                     )}
                   >
                     {it.type === "pos" ? "＋" : "－"}
@@ -330,7 +340,7 @@ export default function App() {
                 </div>
               ))
             ) : (
-              <div className="text-[13px] text-[#b0b0ba]">— ยังไม่มี feedback ที่บันทึก —</div>
+              <div className="text-[13px] text-muted-foreground">— ยังไม่มี feedback ที่บันทึก —</div>
             )}
           </div>
         )}
