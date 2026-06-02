@@ -2,6 +2,8 @@ import { useState } from "react"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -14,15 +16,20 @@ import { cn } from "@/lib/utils"
 // accent ปรับให้สว่างพออ่านบนพื้นเข้ม (dark theme)
 const POSITIVE_COLOR = "#34d399"
 const PROBLEM_COLOR = "#f87171"
-const RADAR_COLOR = "#a78bfa"
 const TICK_MUTED = "#a1a1aa"
 const GRID_STROKE = "rgba(255,255,255,0.12)"
 
-const chartConfig = Object.fromEntries(
-  themes.map((t) => [t.name, { label: t.name, color: t.color }]),
-) satisfies ChartConfig
+// radar 2 series: ชอบ/จุดแข็ง vs ปัญหา/จุดอ่อน นับจากจำนวน quote ต่อหมวด
+const chartConfig = {
+  positives: { label: "ชอบ / จุดแข็ง", color: POSITIVE_COLOR },
+  problems: { label: "ปัญหา / จุดอ่อน", color: PROBLEM_COLOR },
+} satisfies ChartConfig
 
-const radarData = themes.map((t) => ({ name: t.name, value: t.value }))
+const radarData = themes.map((t) => ({
+  name: t.name,
+  positives: t.positives.length,
+  problems: t.problems.length,
+}))
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
   p0: "bg-red-500/15 text-red-300",
@@ -189,9 +196,14 @@ export default function App() {
             config={chartConfig}
             className="mx-auto aspect-square h-[400px] max-h-[50vh] w-full"
           >
-            <RadarChart data={radarData} outerRadius="70%">
+            <RadarChart data={radarData} outerRadius="68%">
               <ChartTooltip
-                content={<ChartTooltipContent nameKey="name" formatter={(value) => `${value} คน`} />}
+                content={<ChartTooltipContent formatter={(value, name) => (
+                  <span className="flex w-full items-center justify-between gap-3">
+                    <span className="text-muted-foreground">{chartConfig[name as keyof typeof chartConfig].label}</span>
+                    <span className="font-mono font-medium tabular-nums text-foreground">{value} คน</span>
+                  </span>
+                )} />}
               />
               <PolarGrid stroke={GRID_STROKE} />
               <PolarAngleAxis
@@ -201,33 +213,28 @@ export default function App() {
                 )}
               />
               <Radar
-                dataKey="value"
-                stroke={RADAR_COLOR}
-                fill={RADAR_COLOR}
-                fillOpacity={0.3}
+                dataKey="positives"
+                stroke={POSITIVE_COLOR}
+                fill={POSITIVE_COLOR}
+                fillOpacity={0.18}
                 strokeWidth={2}
-                dot={{ r: 4, fill: RADAR_COLOR, fillOpacity: 1, strokeWidth: 0 }}
+                dot={{ r: 3, fill: POSITIVE_COLOR, fillOpacity: 1, strokeWidth: 0 }}
                 isAnimationActive={false}
               />
+              <Radar
+                dataKey="problems"
+                stroke={PROBLEM_COLOR}
+                fill={PROBLEM_COLOR}
+                fillOpacity={0.18}
+                strokeWidth={2}
+                dot={{ r: 3, fill: PROBLEM_COLOR, fillOpacity: 1, strokeWidth: 0 }}
+                isAnimationActive={false}
+              />
+              <ChartLegend content={<ChartLegendContent />} />
             </RadarChart>
           </ChartContainer>
-          <div className="mt-3.5 flex flex-wrap justify-center gap-x-4 gap-y-2">
-            {themes.map((t, i) => (
-              <button
-                key={t.name}
-                onClick={() => setSelected(i)}
-                className={cn(
-                  "flex items-center gap-1.5 text-[13px] font-medium transition-opacity",
-                  i === selected ? "text-foreground opacity-100" : "text-foreground opacity-50 hover:opacity-100",
-                )}
-              >
-                <span
-                  className="inline-block h-2.5 w-2.5 rounded-full"
-                  style={{ background: t.color }}
-                />
-                {t.name}
-              </button>
-            ))}
+          <div className="mt-1 text-center text-[12px] text-muted-foreground">
+            คลิกชื่อหมวดรอบกราฟเพื่อดูรายละเอียดด้านขวา
           </div>
         </Card>
 
