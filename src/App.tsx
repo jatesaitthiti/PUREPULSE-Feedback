@@ -367,6 +367,21 @@ export default function App() {
             ) : (
               <div className="text-[13px] text-muted-foreground">— ยังไม่มี feedback ที่บันทึก —</div>
             )}
+
+            {tester.originalFeedback && (
+              <div className="mt-5">
+                <div className="mb-2 flex items-baseline gap-2 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
+                  <span className="inline-block h-[7px] w-[7px] rounded-full bg-muted-foreground/60" />
+                  Original Feedback
+                </div>
+                {tester.originalSource && (
+                  <div className="mb-2 text-[12px] text-muted-foreground">{tester.originalSource}</div>
+                )}
+                <div className="rounded border border-border bg-muted/40 px-4 py-3 text-[13px] leading-relaxed whitespace-pre-line text-foreground/80">
+                  {tester.originalFeedback}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Card>
