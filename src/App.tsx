@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Cell, Pie, PieChart } from "recharts"
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
 import {
   ChartContainer,
   ChartTooltip,
@@ -17,7 +17,8 @@ const chartConfig = Object.fromEntries(
   themes.map((t) => [t.name, { label: t.name, color: t.color }]),
 ) satisfies ChartConfig
 
-const pieData = themes.map((t) => ({ name: t.name, value: t.value, fill: t.color }))
+const radarData = themes.map((t) => ({ name: t.name, value: t.value }))
+const RADAR_COLOR = "#7c6bbf"
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
   p0: "bg-red-100 text-red-700",
@@ -92,6 +93,31 @@ function SectionTitle({
   )
 }
 
+// label รอบ radar — คลิกเลือก theme + ไฮไลต์ตัวที่เลือกด้วยสีของ theme นั้น
+// (props จาก recharts render prop เป็น any — รับ selected/onSelect เพิ่มเอง)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function AngleTick(props: any) {
+  const { x, y, textAnchor, index, payload } = props
+  const selected = props.selected as number
+  const onSelect = props.onSelect as (i: number) => void
+  const isSel = index === selected
+  return (
+    <text
+      x={x}
+      y={y}
+      textAnchor={textAnchor}
+      dominantBaseline="central"
+      onClick={() => onSelect(index)}
+      className="cursor-pointer select-none"
+      fill={isSel ? themes[index].color : "#5a5a6a"}
+      fontSize={12}
+      fontWeight={isSel ? 700 : 500}
+    >
+      {payload.value}
+    </text>
+  )
+}
+
 function DetailPanel({ index }: { index: number }) {
   const t = themes[index]
   return (
@@ -155,32 +181,31 @@ export default function App() {
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <Card className="p-6">
-          <ChartContainer config={chartConfig} className="h-[400px] max-h-[50vh] w-full">
-            <PieChart>
+          <ChartContainer
+            config={chartConfig}
+            className="mx-auto aspect-square h-[400px] max-h-[50vh] w-full"
+          >
+            <RadarChart data={radarData} outerRadius="70%">
               <ChartTooltip
                 content={<ChartTooltipContent nameKey="name" formatter={(value) => `${value} คน`} />}
               />
-              <Pie
-                data={pieData}
+              <PolarGrid stroke="#e5e4e7" />
+              <PolarAngleAxis
+                dataKey="name"
+                tick={(props) => (
+                  <AngleTick {...props} selected={selected} onSelect={setSelected} />
+                )}
+              />
+              <Radar
                 dataKey="value"
-                nameKey="name"
-                innerRadius="55%"
-                paddingAngle={2}
-                strokeWidth={3}
-                stroke="#fff"
-                onClick={(_, index) => setSelected(index)}
-                className="cursor-pointer focus:outline-none"
-              >
-                {pieData.map((entry, i) => (
-                  <Cell
-                    key={entry.name}
-                    fill={entry.fill}
-                    opacity={i === selected ? 1 : 0.82}
-                    className="cursor-pointer focus:outline-none"
-                  />
-                ))}
-              </Pie>
-            </PieChart>
+                stroke={RADAR_COLOR}
+                fill={RADAR_COLOR}
+                fillOpacity={0.35}
+                strokeWidth={2}
+                dot={{ r: 4, fill: RADAR_COLOR, fillOpacity: 1, strokeWidth: 0 }}
+                isAnimationActive={false}
+              />
+            </RadarChart>
           </ChartContainer>
           <div className="mt-3.5 flex flex-wrap justify-center gap-x-4 gap-y-2">
             {themes.map((t, i) => (
