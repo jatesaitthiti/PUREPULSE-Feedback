@@ -26,6 +26,8 @@ Feedback/*Screenshot*
 
 # Node (ถ้ามี)
 node_modules/
+dist/
+*.local
 
 # Python (ถ้ามี)
 __pycache__/
