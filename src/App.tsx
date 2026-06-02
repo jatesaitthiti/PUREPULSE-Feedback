@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart } from "recharts"
 import {
   ChartContainer,
   ChartLegend,
@@ -25,11 +25,22 @@ const chartConfig = {
   problems: { label: "ปัญหา / จุดอ่อน", color: PROBLEM_COLOR },
 } satisfies ChartConfig
 
-const radarData = themes.map((t) => ({
+// แกน radar = เฉพาะ driver (ตัด "ความตั้งใจซื้อ" ที่เป็น outcome ออก)
+const drivers = themes.filter((t) => t.onRadar !== false)
+
+// ค่าบนแกน = จำนวนคนที่พูดถึงเชิงบวก / เชิงลบ ในแต่ละหมวด (ผูกกับ count ตรง ๆ)
+const radarData = drivers.map((t) => ({
   name: t.name,
   positives: t.positives.length,
   problems: t.problems.length,
 }))
+const radarMax = Math.max(...radarData.flatMap((d) => [d.positives, d.problems]))
+
+// stat cards ผูกกับ count จริงจาก data เพื่อให้ตรงกับสเกล radar
+const byName = (s: string) => themes.find((t) => t.name.includes(s))!
+const textureTheme = byName("Texture")
+const energyTheme = byName("Energy")
+const intentTheme = byName("ความตั้งใจซื้อ")
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
   p0: "bg-red-500/15 text-red-300",
@@ -120,7 +131,7 @@ function AngleTick(props: any) {
       dominantBaseline="central"
       onClick={() => onSelect(index)}
       className="cursor-pointer select-none"
-      fill={isSel ? themes[index].color : TICK_MUTED}
+      fill={isSel ? drivers[index].color : TICK_MUTED}
       fontSize={12}
       fontWeight={isSel ? 700 : 500}
     >
@@ -130,7 +141,7 @@ function AngleTick(props: any) {
 }
 
 function DetailPanel({ index }: { index: number }) {
-  const t = themes[index]
+  const t = drivers[index]
   return (
     <Card className="flex max-h-[482px] flex-col gap-0 overflow-hidden p-6">
       <h2 className="mb-1 text-[19px] font-bold" style={{ color: t.color }}>
@@ -173,7 +184,7 @@ export default function App() {
           PUREPULSE Energy Gel — Feedback Summary
         </h1>
         <div className="text-sm text-muted-foreground">
-          21 ผู้ทดสอบ · แชท 38 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา
+          22 ผู้ทดสอบ · แชท 38 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา
         </div>
       </header>
 
@@ -184,10 +195,10 @@ export default function App() {
       </div>
 
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard num={21} label="ผู้ทดสอบ" />
-        <StatCard num={3} label="ถามว่าขายเมื่อไหร่" />
-        <StatCard num={14} label="พูดถึง texture หนืด" tone="neg" />
-        <StatCard num={15} label="พลังงานเสถียร" tone="pos" />
+        <StatCard num={testers.length} label="ผู้ทดสอบ" />
+        <StatCard num={intentTheme.positives.length} label="ถามว่าขายเมื่อไหร่" />
+        <StatCard num={textureTheme.problems.length} label="พูดถึงปัญหา texture/หนืด" tone="neg" />
+        <StatCard num={energyTheme.positives.length} label="พูดถึงพลังงานเชิงบวก" tone="pos" />
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -212,6 +223,13 @@ export default function App() {
                   <AngleTick {...props} selected={selected} onSelect={setSelected} />
                 )}
               />
+              <PolarRadiusAxis
+                domain={[0, radarMax]}
+                tickCount={4}
+                tick={{ fill: TICK_MUTED, fontSize: 10 }}
+                tickLine={false}
+                axisLine={false}
+              />
               <Radar
                 dataKey="positives"
                 stroke={POSITIVE_COLOR}
@@ -234,7 +252,7 @@ export default function App() {
             </RadarChart>
           </ChartContainer>
           <div className="mt-1 text-center text-[12px] text-muted-foreground">
-            คลิกชื่อหมวดรอบกราฟเพื่อดูรายละเอียดด้านขวา
+            ค่าบนแกน = จำนวนคนที่พูดถึงในหมวดนั้น (เชิงบวก / เชิงลบ) · คลิกชื่อหมวดเพื่อดูรายละเอียด
           </div>
         </Card>
 
