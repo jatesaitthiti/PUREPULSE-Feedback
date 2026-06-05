@@ -184,7 +184,7 @@ export default function App() {
           PUREPULSE Energy Gel — Feedback Summary
         </h1>
         <div className="text-sm text-muted-foreground">
-          22 ผู้ทดสอบ · แชท 38 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา
+          24 ผู้ทดสอบ · แชท 41 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา
         </div>
       </header>
 
