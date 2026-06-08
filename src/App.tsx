@@ -38,9 +38,9 @@ const radarMax = Math.max(...radarData.flatMap((d) => [d.positives, d.problems])
 
 // stat cards ผูกกับ count จริงจาก data เพื่อให้ตรงกับสเกล radar
 const byName = (s: string) => themes.find((t) => t.name.includes(s))!
+const tasteTheme = byName("รสชาติ")
 const textureTheme = byName("Texture")
 const energyTheme = byName("Energy")
-const intentTheme = byName("ความตั้งใจซื้อ")
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
   p0: "bg-red-500/15 text-red-300",
@@ -75,6 +75,20 @@ function StatCard({ num, label, tone }: { num: number; label: string; tone?: "ne
         {num}
       </div>
       <div className="text-xs text-muted-foreground">{label}</div>
+    </Card>
+  )
+}
+
+function SplitStatCard({ label, pos, neg }: { label: string; pos: number; neg: number }) {
+  return (
+    <Card className="items-center gap-1.5 px-4 py-4 text-center">
+      <div className="flex items-baseline justify-center gap-1.5 leading-none">
+        <span className="text-3xl font-bold text-[#34d399]">{pos}</span>
+        <span className="text-lg text-muted-foreground/60">/</span>
+        <span className="text-3xl font-bold text-[#f87171]">{neg}</span>
+      </div>
+      <div className="text-xs text-muted-foreground">{label}</div>
+      <div className="text-[10px] text-muted-foreground/60">บวก / ลบ</div>
     </Card>
   )
 }
@@ -196,9 +210,9 @@ export default function App() {
 
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard num={testers.length} label="ผู้ทดสอบ" />
-        <StatCard num={intentTheme.positives.length} label="ถามว่าขายเมื่อไหร่" />
-        <StatCard num={textureTheme.problems.length} label="พูดถึงปัญหา texture/หนืด" tone="neg" />
-        <StatCard num={energyTheme.positives.length} label="พูดถึงพลังงานเชิงบวก" tone="pos" />
+        <SplitStatCard label="รสชาติ" pos={tasteTheme.positives.length} neg={tasteTheme.problems.length} />
+        <SplitStatCard label="ความหนืด" pos={textureTheme.positives.length} neg={textureTheme.problems.length} />
+        <SplitStatCard label="พลังงาน" pos={energyTheme.positives.length} neg={energyTheme.problems.length} />
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
