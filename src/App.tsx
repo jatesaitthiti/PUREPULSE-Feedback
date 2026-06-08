@@ -66,9 +66,25 @@ function feedbackFor(name: string) {
   return out
 }
 
-function StatCard({ num, label, tone }: { num: number; label: string; tone?: "neg" | "pos" }) {
+function StatCard({
+  num,
+  label,
+  tone,
+  onClick,
+}: {
+  num: number
+  label: string
+  tone?: "neg" | "pos"
+  onClick?: () => void
+}) {
   return (
-    <Card className="items-center gap-1.5 px-4 py-4 text-center">
+    <Card
+      onClick={onClick}
+      className={cn(
+        "items-center gap-1.5 px-4 py-4 text-center",
+        onClick && "cursor-pointer transition-colors hover:bg-accent/40",
+      )}
+    >
       <div
         className={cn(
           "text-3xl font-bold leading-none text-foreground",
@@ -164,6 +180,9 @@ function AngleTick(props: any) {
   const selected = props.selected as number
   const onSelect = props.onSelect as (i: number) => void
   const isSel = index === selected
+  // ชื่อหมวดยาว (มีวงเล็บอังกฤษ) → แยกเป็น 2 บรรทัด ไทย / (English) กันล้นแกน radar
+  const [thai, ...rest] = String(payload.value).split(" (")
+  const eng = rest.length ? `(${rest.join(" (")}` : null
   return (
     <text
       x={x}
@@ -176,7 +195,18 @@ function AngleTick(props: any) {
       fontSize={12}
       fontWeight={isSel ? 700 : 500}
     >
-      {payload.value}
+      {eng ? (
+        <>
+          <tspan x={x} dy="-0.35em">
+            {thai}
+          </tspan>
+          <tspan x={x} dy="1.15em">
+            {eng}
+          </tspan>
+        </>
+      ) : (
+        payload.value
+      )}
     </text>
   )
 }
@@ -236,9 +266,15 @@ export default function App() {
       </div>
 
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard num={testers.length} label="ผู้ทดสอบ" />
+        <StatCard
+          num={testers.length}
+          label="ผู้ทดสอบ (Athletes)"
+          onClick={() =>
+            document.getElementById("athletes")?.scrollIntoView({ behavior: "smooth" })
+          }
+        />
         <SplitStatCard
-          label="รสชาติ"
+          label={tasteTheme.name}
           pos={tasteTheme.positives.length}
           neg={tasteTheme.problems.length}
           color={tasteTheme.color}
@@ -246,7 +282,7 @@ export default function App() {
           onClick={() => setSelected(tasteIdx)}
         />
         <SplitStatCard
-          label="ความหนืด"
+          label={textureTheme.name}
           pos={textureTheme.positives.length}
           neg={textureTheme.problems.length}
           color={textureTheme.color}
@@ -254,7 +290,7 @@ export default function App() {
           onClick={() => setSelected(textureIdx)}
         />
         <SplitStatCard
-          label="พลังงาน"
+          label={energyTheme.name}
           pos={energyTheme.positives.length}
           neg={energyTheme.problems.length}
           color={energyTheme.color}
@@ -348,7 +384,7 @@ export default function App() {
         ))}
       </Card>
 
-      <Card className="mt-5 gap-0 p-6">
+      <Card id="athletes" className="mt-5 scroll-mt-6 gap-0 p-6">
         <h2 className="mb-1 text-lg font-bold">Athletes</h2>
         <div className="mb-3.5 text-[13px] text-muted-foreground">
           {testers.length} คน · คลิกชื่อเพื่อดู feedback · 🆕 = เพิ่มล่าสุด
