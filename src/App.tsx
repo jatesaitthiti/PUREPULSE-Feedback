@@ -41,6 +41,10 @@ const byName = (s: string) => themes.find((t) => t.name.includes(s))!
 const tasteTheme = byName("รสชาติ")
 const textureTheme = byName("Texture")
 const energyTheme = byName("Energy")
+// index ใน drivers — ใช้ตอนคลิกการ์ดสถิติให้เลือก theme เหมือนคลิกกราฟ
+const tasteIdx = drivers.indexOf(tasteTheme)
+const textureIdx = drivers.indexOf(textureTheme)
+const energyIdx = drivers.indexOf(energyTheme)
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
   p0: "bg-red-500/15 text-red-300",
@@ -79,15 +83,38 @@ function StatCard({ num, label, tone }: { num: number; label: string; tone?: "ne
   )
 }
 
-function SplitStatCard({ label, pos, neg }: { label: string; pos: number; neg: number }) {
+function SplitStatCard({
+  label,
+  pos,
+  neg,
+  color,
+  selected,
+  onClick,
+}: {
+  label: string
+  pos: number
+  neg: number
+  color: string
+  selected?: boolean
+  onClick?: () => void
+}) {
   return (
-    <Card className="items-center gap-1.5 px-4 py-4 text-center">
+    <Card
+      onClick={onClick}
+      style={selected ? { borderColor: color, boxShadow: `0 0 0 1px ${color}` } : undefined}
+      className="cursor-pointer items-center gap-1.5 px-4 py-4 text-center transition-colors hover:bg-accent/40"
+    >
       <div className="flex items-baseline justify-center gap-1.5 leading-none">
         <span className="text-3xl font-bold text-[#34d399]">{pos}</span>
         <span className="text-lg text-muted-foreground/60">/</span>
         <span className="text-3xl font-bold text-[#f87171]">{neg}</span>
       </div>
-      <div className="text-xs text-muted-foreground">{label}</div>
+      <div
+        className="text-xs font-medium text-muted-foreground"
+        style={selected ? { color } : undefined}
+      >
+        {label}
+      </div>
       <div className="text-[10px] text-muted-foreground/60">บวก / ลบ</div>
     </Card>
   )
@@ -210,9 +237,30 @@ export default function App() {
 
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard num={testers.length} label="ผู้ทดสอบ" />
-        <SplitStatCard label="รสชาติ" pos={tasteTheme.positives.length} neg={tasteTheme.problems.length} />
-        <SplitStatCard label="ความหนืด" pos={textureTheme.positives.length} neg={textureTheme.problems.length} />
-        <SplitStatCard label="พลังงาน" pos={energyTheme.positives.length} neg={energyTheme.problems.length} />
+        <SplitStatCard
+          label="รสชาติ"
+          pos={tasteTheme.positives.length}
+          neg={tasteTheme.problems.length}
+          color={tasteTheme.color}
+          selected={selected === tasteIdx}
+          onClick={() => setSelected(tasteIdx)}
+        />
+        <SplitStatCard
+          label="ความหนืด"
+          pos={textureTheme.positives.length}
+          neg={textureTheme.problems.length}
+          color={textureTheme.color}
+          selected={selected === textureIdx}
+          onClick={() => setSelected(textureIdx)}
+        />
+        <SplitStatCard
+          label="พลังงาน"
+          pos={energyTheme.positives.length}
+          neg={energyTheme.problems.length}
+          color={energyTheme.color}
+          selected={selected === energyIdx}
+          onClick={() => setSelected(energyIdx)}
+        />
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
