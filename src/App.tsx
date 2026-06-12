@@ -13,11 +13,11 @@ import { Badge } from "@/components/ui/badge"
 import { actionItems, testers, themes, type ActionItem } from "@/data"
 import { cn } from "@/lib/utils"
 
-// accent ปรับให้สว่างพออ่านบนพื้นเข้ม (dark theme)
-const POSITIVE_COLOR = "#34d399"
-const PROBLEM_COLOR = "#f87171"
-const TICK_MUTED = "#a1a1aa"
-const GRID_STROKE = "rgba(255,255,255,0.12)"
+// accent ปรับให้คอนทราสต์พออ่านบนพื้นสว่าง (light theme)
+const POSITIVE_COLOR = "#10b981"
+const PROBLEM_COLOR = "#ef4444"
+const TICK_MUTED = "#71717a"
+const GRID_STROKE = "rgba(0,0,0,0.10)"
 
 // radar 2 series: ชอบ/จุดแข็ง vs ปัญหา/จุดอ่อน นับจากจำนวน quote ต่อหมวด
 const chartConfig = {
@@ -47,9 +47,9 @@ const textureIdx = drivers.indexOf(textureTheme)
 const energyIdx = drivers.indexOf(energyTheme)
 
 const priorityStyles: Record<ActionItem["priority"], string> = {
-  p0: "bg-red-500/15 text-red-300",
-  p1: "bg-amber-500/15 text-amber-300",
-  p2: "bg-emerald-500/15 text-emerald-300",
+  p0: "bg-red-500/15 text-red-700",
+  p1: "bg-amber-500/15 text-amber-700",
+  p2: "bg-emerald-500/15 text-emerald-700",
 }
 
 // รวบรวม quote ของแต่ละคนจาก themes (match จากชื่อใน field t — เหมือน logic เดิม)
@@ -88,8 +88,8 @@ function StatCard({
       <div
         className={cn(
           "text-3xl font-bold leading-none text-foreground",
-          tone === "neg" && "text-[#f87171]",
-          tone === "pos" && "text-[#34d399]",
+          tone === "neg" && "text-[#ef4444]",
+          tone === "pos" && "text-[#10b981]",
         )}
       >
         {num}
@@ -121,9 +121,9 @@ function SplitStatCard({
       className="cursor-pointer items-center gap-1.5 px-4 py-4 text-center transition-colors hover:bg-accent/40"
     >
       <div className="flex items-baseline justify-center gap-1.5 leading-none">
-        <span className="text-3xl font-bold text-[#34d399]">{pos}</span>
+        <span className="text-3xl font-bold text-[#10b981]">{pos}</span>
         <span className="text-lg text-muted-foreground/60">/</span>
-        <span className="text-3xl font-bold text-[#f87171]">{neg}</span>
+        <span className="text-3xl font-bold text-[#ef4444]">{neg}</span>
       </div>
       <div
         className="text-xs font-medium text-muted-foreground"
@@ -259,8 +259,8 @@ export default function App() {
         </div>
       </header>
 
-      <div className="mb-6 rounded-[10px] border border-amber-500/25 bg-amber-500/10 px-[18px] py-3.5 text-sm leading-relaxed text-amber-200/90">
-        ⚠️ <strong className="text-amber-200">GI Alert — K.Mai:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก
+      <div className="mb-6 rounded-[10px] border border-amber-500/40 bg-amber-500/10 px-[18px] py-3.5 text-sm leading-relaxed text-amber-900/90">
+        ⚠️ <strong className="text-amber-900">GI Alert — K.Mai:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก
         หลังวิ่ง 8 km (กินเจลก่อนวิ่ง &lt;10 นาที) — ปกติกิน Amino vital ไม่เป็น ไม่ใช่อาการแพ้ คาดว่า
         timing + ย่อยยาก → รอทดลองรอบ 2 กินก่อน 20 นาที
       </div>
@@ -375,7 +375,7 @@ export default function App() {
             <span>
               {item.text}
               {item.isNew && (
-                <Badge className="ml-1.5 rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-semibold text-blue-300">
+                <Badge className="ml-1.5 rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-semibold text-blue-700">
                   NEW
                 </Badge>
               )}
@@ -401,7 +401,7 @@ export default function App() {
                   isSel
                     ? "border-primary bg-primary text-primary-foreground"
                     : p.new
-                      ? "border-blue-500/30 bg-blue-500/10 text-blue-300 hover:border-blue-400/50"
+                      ? "border-blue-500/40 bg-blue-500/10 text-blue-700 hover:border-blue-500/60"
                       : "border-border bg-muted text-foreground hover:border-muted-foreground/40",
                 )}
               >
@@ -414,7 +414,7 @@ export default function App() {
                       isSel
                         ? "text-primary-foreground/70"
                         : p.new
-                          ? "text-blue-300/70"
+                          ? "text-blue-700/70"
                           : "text-muted-foreground",
                     )}
                   >
@@ -454,7 +454,7 @@ export default function App() {
                   <span
                     className={cn(
                       "shrink-0 font-bold",
-                      it.type === "pos" ? "text-[#34d399]" : "text-[#f87171]",
+                      it.type === "pos" ? "text-[#10b981]" : "text-[#ef4444]",
                     )}
                   >
                     {it.type === "pos" ? "＋" : "－"}
