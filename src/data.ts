@@ -155,6 +155,7 @@ export const themes: Theme[] = [
     name: "Use case / Timing",
     value: 26,
     color: "#c9952c",
+    onRadar: false, // แสดงเฉพาะ 3 หมวดหลักบนกราฟ (รสชาติ/Texture/พลังงาน)
     desc: "เหมาะกับ long run / trail / Ultra / cycling / Hyrox (functional fitness) — มีข้อจำกัดในเรซระยะสั้น + ต้อง education timing + packaging เฉพาะ cycling / มี Kae ที่ใช้ใน race จริง (Supersport) แล้วเร่งเพซได้ — เริ่มมีหลักฐานฝั่ง race / Noom + Game ยืนยันฝั่งเทรล-เนิน ลากเนินยาวต่อเนื่องได้ · Bank long run 18k ลื่นไหล แต่ 10k race รู้สึกพลังงานมาช้า ต้อง pre-load · Bluejeans (10k) ปรับมากินช่วงใกล้หมดแรงแทน รักษาเพซได้ดี มองว่าเหมาะลงแข่งเพราะมีน้ำเป็นจุดๆ · Issara (เทรล 20k · ไตรกีฬา) downhill เวิร์ก รอบหน้าจะลองวิ่งถนน + ปั่น · Bank Wasan ซ้อม 15k แบ่งกิน split-dose (ครึ่งโล 4.5 + ครึ่งโล 10) pre-load · Benz Panupong ลงคอร์ด 5,000m เพซ 4 (speed/track) — เจอหนืดติดคอชัดตอนเพซเร็ว ตอกย้ำข้อจำกัด texture ที่ race pace (เหมือน Peerawit/Tye) · Grylls (Frank RC) long run — รส/หนืดทานง่าย พลังงานเอาอยู่ · Tum (Frank RC) เหลืออีกซอง อาทิตย์หน้าจะลองตอนแข่งเทรล (pending สนามจริง)",
     positives: [
       { t: "Narumol", q: "วิ่งขึ้นเขาสบายเลย (กิน 2 ซอง)" },
@@ -195,6 +196,7 @@ export const themes: Theme[] = [
     name: "GI / ทางเดินอาหาร",
     value: 4,
     color: "#d97a3e",
+    onRadar: false, // แสดงเฉพาะ 3 หมวดหลักบนกราฟ (รสชาติ/Texture/พลังงาน)
     desc: "มีเคส GI 4 ราย — K.Mai รุนแรง (ปวดท้อง/คลื่นไส้/อ้วก) · Addy + Nu อาการเบา (พะอืดพะอม/มึนมวนท้อง/มีลม/ย่อยช้า) · Kitti รู้สึกอิ่มแน่น",
     positives: [
       { t: "Tum Kanapon 🆕", q: "ไม่แสบท้อง" },
@@ -211,6 +213,7 @@ export const themes: Theme[] = [
     name: "Packaging / Usability",
     value: 6,
     color: "#4f9bd9",
+    onRadar: false, // แสดงเฉพาะ 3 หมวดหลักบนกราฟ (รสชาติ/Texture/พลังงาน)
     desc: "การใช้งานซอง — มุมมนใส่เสื้อปั่นได้ดี + ฉีกแนวขวางแล้วกินง่าย แต่ทิศการฉีกไม่ชัด (แนวตั้งฉีกยาก) และฉีกตอนปั่นจักรยานยากต้องสองมือ → ควรระบุ notch/ทิศฉีกบนซองให้ชัด",
     positives: [
       { t: "Peerawit", q: "Shape ของซองแกะง่าย ไม่มีปัญหา" },

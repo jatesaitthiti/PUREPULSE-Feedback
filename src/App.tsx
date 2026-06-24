@@ -25,7 +25,7 @@ const chartConfig = {
   problems: { label: "ปัญหา / จุดอ่อน", color: PROBLEM_COLOR },
 } satisfies ChartConfig
 
-// แกน radar = เฉพาะ driver (ตัด "ความตั้งใจซื้อ" ที่เป็น outcome ออก)
+// แกน radar = เฉพาะ 3 หมวดหลัก (รสชาติ / Texture / พลังงาน) — หมวดอื่นเซ็ต onRadar:false ใน data
 const drivers = themes.filter((t) => t.onRadar !== false)
 
 // ค่าบนแกน = จำนวนคนที่พูดถึงเชิงบวก / เชิงลบ ในแต่ละหมวด (ผูกกับ count ตรง ๆ)
