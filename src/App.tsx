@@ -244,6 +244,7 @@ function DetailPanel({ index }: { index: number }) {
 export default function App() {
   const [selected, setSelected] = useState(1) // เริ่มที่ Texture เหมือนเดิม
   const [selectedTester, setSelectedTester] = useState<number | null>(null)
+  const [tab, setTab] = useState(0) // 0 = การทดสอบครั้งที่ 1 · 1 = ครั้งที่ 2 (รอ feedback รอบใหม่)
 
   const tester = selectedTester !== null ? testers[selectedTester] : null
   const testerItems = tester ? feedbackFor(tester.name) : []
@@ -259,12 +260,31 @@ export default function App() {
         </div>
       </header>
 
-      <div className="mb-6 rounded-[10px] border border-amber-500/40 bg-amber-500/10 px-[18px] py-3.5 text-sm leading-relaxed text-amber-900/90">
-        ⚠️ <strong className="text-amber-900">GI Alert — K.Mai:</strong> ปวดท้องมวน/คลื่นไส้/อ้วก
-        หลังวิ่ง 8 km (กินเจลก่อนวิ่ง &lt;10 นาที) — ปกติกิน Amino vital ไม่เป็น ไม่ใช่อาการแพ้ คาดว่า
-        timing + ย่อยยาก → รอทดลองรอบ 2 กินก่อน 20 นาที
+      {/* Tabs — สลับรอบการทดสอบ (ข้อมูลปัจจุบัน = ครั้งที่ 1) */}
+      <div className="mb-7 flex gap-1 border-b border-border">
+        {["การทดสอบครั้งที่ 1", "การทดสอบครั้งที่ 2"].map((label, i) => (
+          <button
+            key={label}
+            onClick={() => setTab(i)}
+            className={cn(
+              "relative -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors",
+              tab === i
+                ? "border-primary text-foreground"
+                : "border-transparent text-muted-foreground hover:text-foreground",
+            )}
+          >
+            {label}
+            {i === 1 && (
+              <span className="ml-1.5 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                เร็วๆ นี้
+              </span>
+            )}
+          </button>
+        ))}
       </div>
 
+      {tab === 0 ? (
+        <>
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard
           num={testers.length}
@@ -483,6 +503,17 @@ export default function App() {
           </div>
         )}
       </Card>
+        </>
+      ) : (
+        <Card className="mt-2 flex flex-col items-center gap-2.5 px-6 py-16 text-center">
+          <div className="text-4xl">🧪</div>
+          <h2 className="text-lg font-bold">การทดสอบครั้งที่ 2</h2>
+          <div className="max-w-md text-sm leading-relaxed text-muted-foreground">
+            ยังไม่มีข้อมูล — กำลังปรับสูตร (ลดความหนืด / ให้ลื่นคอขึ้น) แล้วส่งให้ผู้ทดสอบรอบใหม่
+            feedback รอบที่ 2 จะมาแสดงที่นี่
+          </div>
+        </Card>
+      )}
     </div>
   )
 }
