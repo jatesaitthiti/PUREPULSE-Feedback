@@ -41,6 +41,11 @@ const priorityStyles: Record<ActionItem["priority"], string> = {
   p2: "bg-emerald-500/15 text-emerald-700",
 }
 
+// เรียง action items เป็น P0 → P1 → P2 เสมอ (stable — คงลำดับเดิมภายใน priority เดียวกัน)
+const priorityOrder: Record<ActionItem["priority"], number> = { p0: 0, p1: 1, p2: 2 }
+const sortByPriority = (items: ActionItem[]) =>
+  [...items].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+
 // รวบรวม quote ของแต่ละคนจาก themes (match จากชื่อใน field t — เหมือน logic เดิม)
 function feedbackFor(themeList: Theme[], name: string) {
   const out: { theme: string; color: string; type: "pos" | "neg"; q: string }[] = []
@@ -361,7 +366,7 @@ function Dashboard({
 
       <Card className="mt-5 gap-0 p-6">
         <h2 className="mb-2 text-lg font-bold">Action Items</h2>
-        {actionList.map((item, i) => (
+        {sortByPriority(actionList).map((item, i) => (
           <div
             key={i}
             className="flex items-start gap-2.5 border-b border-border py-2.5 text-sm leading-relaxed text-foreground/85 last:border-b-0"
