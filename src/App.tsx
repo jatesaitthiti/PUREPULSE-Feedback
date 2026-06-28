@@ -10,7 +10,17 @@ import {
 } from "@/components/ui/chart"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { actionItems, testers, themes, type ActionItem } from "@/data"
+import {
+  actionItems,
+  actionItems2,
+  testers,
+  testers2,
+  themes,
+  themes2,
+  type ActionItem,
+  type Theme,
+  type Tester,
+} from "@/data"
 import { cn } from "@/lib/utils"
 
 // accent ปรับให้คอนทราสต์พออ่านบนพื้นสว่าง (light theme)
@@ -25,27 +35,6 @@ const chartConfig = {
   problems: { label: "ปัญหา / จุดอ่อน", color: PROBLEM_COLOR },
 } satisfies ChartConfig
 
-// แกน radar = เฉพาะ 3 หมวดหลัก (รสชาติ / Texture / พลังงาน) — หมวดอื่นเซ็ต onRadar:false ใน data
-const drivers = themes.filter((t) => t.onRadar !== false)
-
-// ค่าบนแกน = จำนวนคนที่พูดถึงเชิงบวก / เชิงลบ ในแต่ละหมวด (ผูกกับ count ตรง ๆ)
-const radarData = drivers.map((t) => ({
-  name: t.name,
-  positives: t.positives.length,
-  problems: t.problems.length,
-}))
-const radarMax = Math.max(...radarData.flatMap((d) => [d.positives, d.problems]))
-
-// stat cards ผูกกับ count จริงจาก data เพื่อให้ตรงกับสเกล radar
-const byName = (s: string) => themes.find((t) => t.name.includes(s))!
-const tasteTheme = byName("รสชาติ")
-const textureTheme = byName("Texture")
-const energyTheme = byName("Energy")
-// index ใน drivers — ใช้ตอนคลิกการ์ดสถิติให้เลือก theme เหมือนคลิกกราฟ
-const tasteIdx = drivers.indexOf(tasteTheme)
-const textureIdx = drivers.indexOf(textureTheme)
-const energyIdx = drivers.indexOf(energyTheme)
-
 const priorityStyles: Record<ActionItem["priority"], string> = {
   p0: "bg-red-500/15 text-red-700",
   p1: "bg-amber-500/15 text-amber-700",
@@ -53,9 +42,9 @@ const priorityStyles: Record<ActionItem["priority"], string> = {
 }
 
 // รวบรวม quote ของแต่ละคนจาก themes (match จากชื่อใน field t — เหมือน logic เดิม)
-function feedbackFor(name: string) {
+function feedbackFor(themeList: Theme[], name: string) {
   const out: { theme: string; color: string; type: "pos" | "neg"; q: string }[] = []
-  themes.forEach((theme) => {
+  themeList.forEach((theme) => {
     theme.positives.forEach((p) => {
       if (p.t.includes(name)) out.push({ theme: theme.name, color: theme.color, type: "pos", q: p.q })
     })
@@ -173,12 +162,13 @@ function SectionTitle({
 }
 
 // label รอบ radar — คลิกเลือก theme + ไฮไลต์ตัวที่เลือกด้วยสีของ theme นั้น
-// (props จาก recharts render prop เป็น any — รับ selected/onSelect เพิ่มเอง)
+// (props จาก recharts render prop เป็น any — รับ selected/onSelect/drivers เพิ่มเอง)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AngleTick(props: any) {
   const { x, y, textAnchor, index, payload } = props
   const selected = props.selected as number
   const onSelect = props.onSelect as (i: number) => void
+  const drivers = props.drivers as Theme[]
   const isSel = index === selected
   // ชื่อหมวดยาว (มีวงเล็บอังกฤษ) → แยกเป็น 2 บรรทัด ไทย / (English) กันล้นแกน radar
   const [thai, ...rest] = String(payload.value).split(" (")
@@ -211,7 +201,7 @@ function AngleTick(props: any) {
   )
 }
 
-function DetailPanel({ index }: { index: number }) {
+function DetailPanel({ drivers, index }: { drivers: Theme[]; index: number }) {
   const t = drivers[index]
   return (
     <Card className="flex max-h-[482px] flex-col gap-0 overflow-hidden p-6">
@@ -241,53 +231,45 @@ function DetailPanel({ index }: { index: number }) {
   )
 }
 
-export default function App() {
-  const [selected, setSelected] = useState(1) // เริ่มที่ Texture เหมือนเดิม
-  const [selectedTester, setSelectedTester] = useState<number | null>(null)
-  const [tab, setTab] = useState(0) // 0 = การทดสอบครั้งที่ 1 · 1 = ครั้งที่ 2 (รอ feedback รอบใหม่)
+// Dashboard เต็มของหนึ่งรอบการทดสอบ — รับชุดข้อมูล (themes/testers/actionItems) ของรอบนั้น
+function Dashboard({
+  themes: themeList,
+  testers: testerList,
+  actionItems: actionList,
+}: {
+  themes: Theme[]
+  testers: Tester[]
+  actionItems: ActionItem[]
+}) {
+  // แกน radar = เฉพาะ 3 หมวดหลัก (รสชาติ / Texture / พลังงาน) — หมวดอื่นเซ็ต onRadar:false ใน data
+  const drivers = themeList.filter((t) => t.onRadar !== false)
+  // ค่าบนแกน = จำนวนคนที่พูดถึงเชิงบวก / เชิงลบ ในแต่ละหมวด (ผูกกับ count ตรง ๆ)
+  const radarData = drivers.map((t) => ({
+    name: t.name,
+    positives: t.positives.length,
+    problems: t.problems.length,
+  }))
+  const radarMax = Math.max(1, ...radarData.flatMap((d) => [d.positives, d.problems]))
 
-  const tester = selectedTester !== null ? testers[selectedTester] : null
-  const testerItems = tester ? feedbackFor(tester.name) : []
+  const byName = (s: string) => drivers.find((t) => t.name.includes(s))!
+  const tasteTheme = byName("รสชาติ")
+  const textureTheme = byName("Texture")
+  const energyTheme = byName("Energy")
+  const tasteIdx = drivers.indexOf(tasteTheme)
+  const textureIdx = drivers.indexOf(textureTheme)
+  const energyIdx = drivers.indexOf(energyTheme)
+
+  const [selected, setSelected] = useState(textureIdx >= 0 ? textureIdx : 0)
+  const [selectedTester, setSelectedTester] = useState<number | null>(null)
+
+  const tester = selectedTester !== null ? testerList[selectedTester] : null
+  const testerItems = tester ? feedbackFor(themeList, tester.name) : []
 
   return (
-    <div className="mx-auto min-h-screen max-w-[1100px] px-6 py-12">
-      <header className="mb-9">
-        <h1 className="mb-1.5 text-[26px] font-bold tracking-tight">
-          PUREPULSE Energy Gel — Feedback Summary
-        </h1>
-        <div className="text-sm text-muted-foreground">
-          38 ผู้ทดสอบ · แชท 64 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา
-        </div>
-      </header>
-
-      {/* Tabs — สลับรอบการทดสอบ (ข้อมูลปัจจุบัน = ครั้งที่ 1) */}
-      <div className="mb-7 flex gap-1 border-b border-border">
-        {["การทดสอบครั้งที่ 1", "การทดสอบครั้งที่ 2"].map((label, i) => (
-          <button
-            key={label}
-            onClick={() => setTab(i)}
-            className={cn(
-              "relative -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors",
-              tab === i
-                ? "border-primary text-foreground"
-                : "border-transparent text-muted-foreground hover:text-foreground",
-            )}
-          >
-            {label}
-            {i === 1 && (
-              <span className="ml-1.5 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                เร็วๆ นี้
-              </span>
-            )}
-          </button>
-        ))}
-      </div>
-
-      {tab === 0 ? (
-        <>
+    <>
       <div className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard
-          num={testers.length}
+          num={testerList.length}
           label="ผู้ทดสอบ (Athletes)"
           onClick={() =>
             document.getElementById("athletes")?.scrollIntoView({ behavior: "smooth" })
@@ -338,7 +320,7 @@ export default function App() {
               <PolarAngleAxis
                 dataKey="name"
                 tick={(props) => (
-                  <AngleTick {...props} selected={selected} onSelect={setSelected} />
+                  <AngleTick {...props} selected={selected} onSelect={setSelected} drivers={drivers} />
                 )}
               />
               <PolarRadiusAxis
@@ -374,12 +356,12 @@ export default function App() {
           </div>
         </Card>
 
-        <DetailPanel index={selected} />
+        <DetailPanel drivers={drivers} index={selected} />
       </div>
 
       <Card className="mt-5 gap-0 p-6">
         <h2 className="mb-2 text-lg font-bold">Action Items</h2>
-        {actionItems.map((item, i) => (
+        {actionList.map((item, i) => (
           <div
             key={i}
             className="flex items-start gap-2.5 border-b border-border py-2.5 text-sm leading-relaxed text-foreground/85 last:border-b-0"
@@ -407,10 +389,10 @@ export default function App() {
       <Card id="athletes" className="mt-5 scroll-mt-6 gap-0 p-6">
         <h2 className="mb-1 text-lg font-bold">Athletes</h2>
         <div className="mb-3.5 text-[13px] text-muted-foreground">
-          {testers.length} คน · คลิกชื่อเพื่อดู feedback · 🆕 = เพิ่มล่าสุด
+          {testerList.length} คน · คลิกชื่อเพื่อดู feedback · 🆕 = เพิ่มล่าสุด
         </div>
         <div className="flex flex-wrap gap-2">
-          {testers.map((p, i) => {
+          {testerList.map((p, i) => {
             const isSel = selectedTester === i
             return (
               <button
@@ -503,16 +485,53 @@ export default function App() {
           </div>
         )}
       </Card>
-        </>
+    </>
+  )
+}
+
+export default function App() {
+  const [tab, setTab] = useState(0) // 0 = การทดสอบครั้งที่ 1 · 1 = ครั้งที่ 2 (รอบปรับสูตรใหม่)
+
+  return (
+    <div className="mx-auto min-h-screen max-w-[1100px] px-6 py-12">
+      <header className="mb-9">
+        <h1 className="mb-1.5 text-[26px] font-bold tracking-tight">
+          PUREPULSE Energy Gel — Feedback Summary
+        </h1>
+        <div className="text-sm text-muted-foreground">
+          {tab === 0
+            ? "38 ผู้ทดสอบ · แชท 64 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา"
+            : `รอบปรับสูตรใหม่ (ลดความหนืด / ให้ลื่นคอขึ้น) · ${testers2.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`}
+        </div>
+      </header>
+
+      {/* Tabs — สลับรอบการทดสอบ */}
+      <div className="mb-7 flex gap-1 border-b border-border">
+        {["การทดสอบครั้งที่ 1", "การทดสอบครั้งที่ 2"].map((label, i) => (
+          <button
+            key={label}
+            onClick={() => setTab(i)}
+            className={cn(
+              "relative -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors",
+              tab === i
+                ? "border-primary text-foreground"
+                : "border-transparent text-muted-foreground hover:text-foreground",
+            )}
+          >
+            {label}
+            {i === 1 && (
+              <span className="ml-1.5 rounded-full bg-blue-500/15 px-1.5 py-0.5 text-[10px] font-semibold text-blue-700">
+                {testers2.length}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {tab === 0 ? (
+        <Dashboard themes={themes} testers={testers} actionItems={actionItems} />
       ) : (
-        <Card className="mt-2 flex flex-col items-center gap-2.5 px-6 py-16 text-center">
-          <div className="text-4xl">🧪</div>
-          <h2 className="text-lg font-bold">การทดสอบครั้งที่ 2</h2>
-          <div className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            ยังไม่มีข้อมูล — กำลังปรับสูตร (ลดความหนืด / ให้ลื่นคอขึ้น) แล้วส่งให้ผู้ทดสอบรอบใหม่
-            feedback รอบที่ 2 จะมาแสดงที่นี่
-          </div>
-        </Card>
+        <Dashboard themes={themes2} testers={testers2} actionItems={actionItems2} />
       )}
     </div>
   )
