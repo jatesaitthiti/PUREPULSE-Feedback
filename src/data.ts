@@ -526,9 +526,9 @@ export const actionItems: ActionItem[] = [
 export const themes2: Theme[] = [
   {
     name: "รสชาติ (Taste)",
-    value: 16,
+    value: 20,
     color: "#7c6bbf",
-    desc: "รอบปรับสูตรใหม่ (14 ชอบ / 2 ติง) · 🆕 กลุ่มใหม่ Gong Teerachai (เพื่อนลองชิม): รสคล้ายขนมไทย มีความมะพร้าว ซองที่ 2 อร่อยกว่าซองแรก — descriptor ใหม่ 'มะพร้าว/ขนมไทย' · Kit + Sompon (Pracheniwet Running Track): รสดี โอเค · Took (Pracheniwet Running Track): เดารสไม่ออก 'เหมือนโคล่า' → ตอกย้ำต้องระบุรสบนซอง (เหมือน Keng Sakyai/Garfield/Mc) — Pat: กลิ่นหอมสตรอเบอรี่/เบอร์รี่ + นวลคล้ายโปรตีน รสเข้มข้นหวานอมเปรี้ยว ไม่แสบคอ · Noo (รอบ 2): รส 'นัวขึ้น salt ชัดขึ้น' คราวก่อนหวานเปรี้ยวนำ · Mc: ไม่หวานบาดคอ บอกเหมือนซอสมะเขือเทศ (ชอบ) · Pare/Chak (Frank RC): สังเกตเกลือเข้ามานิดๆ ไม่เค็มมาก รสโดยรวมโอเค · Aaron (รอบ 2): 'อร่อยด้วย' + สังเกตรสเค็ม 'ที่เค็มๆ ใช่มะ' · Kitti (รอบ 2): 'ติดเค็มๆ นิดนึง แต่ผมชอบครับ' — เสียงสังเกตเกลือรายที่ 5 · Garfield: รสเหมือนข้าวโพด (เดิมกิน Muarten ที่น้ำตาลล้วนไม่มีรส) → salt ชัดขึ้นมี 6 เสียงสังเกตตรงกัน (Noo/Pare/Chak/Aaron/Kitti/Minkz) · Benz Panupong (รอบ 2): 'ส่วนรสชาติดีแล้วครับ' — before/after: รอบ 1 หวานกำลังดี รอบนี้ยังดี · Keng Sakyai (50k race): อร่อยแต่ 'นึกรสไม่ออก' → ตอกย้ำต้องระบุรสบนซอง (เหมือน Garfield/Mc) · Zoo (รอบ 2 · trail): รสยังคงเดิม ส่วนตัวติงรสนิดหน่อย (personal) · Minkz Boonvivat Jitniyom (รอบ 2 · ex-รสข้าวโพด): สูตรใหม่ 'ชอบกว่ารอบที่แล้ว เค็มนำ ดีกว่าหวาน' → salt voice ที่ 6 (before/after: รอบ 1 รสข้าวโพด)",
+    desc: "รอบปรับสูตรใหม่ (17 ชอบ / 3 ติง) · 🆕 กลุ่ม Pracheniwet Running Track เพิ่ม 8 คน (ส่งผ่าน Marit): Sim/Frame รสดี ชอบ กินง่าย · Nat รสกลมกล่อมเหมือน Amino Saurus (สีขาว) แต่มองว่า 'แปลก' สำหรับคนใหม่ ต้องปรับตัว + ถ้ามีเรื่องราคาอาจทำใจซื้อยาก (barrier) → ตอกย้ำต้อง educate/ระบุรส · Gong Teerachai (เพื่อนลองชิม): รสคล้ายขนมไทย มีความมะพร้าว ซองที่ 2 อร่อยกว่าซองแรก — descriptor ใหม่ 'มะพร้าว/ขนมไทย' · Kit + Sompon (Pracheniwet Running Track): รสดี โอเค · Took (Pracheniwet Running Track): เดารสไม่ออก 'เหมือนโคล่า' → ตอกย้ำต้องระบุรสบนซอง (เหมือน Keng Sakyai/Garfield/Mc) — Pat: กลิ่นหอมสตรอเบอรี่/เบอร์รี่ + นวลคล้ายโปรตีน รสเข้มข้นหวานอมเปรี้ยว ไม่แสบคอ · Noo (รอบ 2): รส 'นัวขึ้น salt ชัดขึ้น' คราวก่อนหวานเปรี้ยวนำ · Mc: ไม่หวานบาดคอ บอกเหมือนซอสมะเขือเทศ (ชอบ) · Pare/Chak (Frank RC): สังเกตเกลือเข้ามานิดๆ ไม่เค็มมาก รสโดยรวมโอเค · Aaron (รอบ 2): 'อร่อยด้วย' + สังเกตรสเค็ม 'ที่เค็มๆ ใช่มะ' · Kitti (รอบ 2): 'ติดเค็มๆ นิดนึง แต่ผมชอบครับ' — เสียงสังเกตเกลือรายที่ 5 · Garfield: รสเหมือนข้าวโพด (เดิมกิน Muarten ที่น้ำตาลล้วนไม่มีรส) → salt ชัดขึ้นมี 6 เสียงสังเกตตรงกัน (Noo/Pare/Chak/Aaron/Kitti/Minkz) · Benz Panupong (รอบ 2): 'ส่วนรสชาติดีแล้วครับ' — before/after: รอบ 1 หวานกำลังดี รอบนี้ยังดี · Keng Sakyai (50k race): อร่อยแต่ 'นึกรสไม่ออก' → ตอกย้ำต้องระบุรสบนซอง (เหมือน Garfield/Mc) · Zoo (รอบ 2 · trail): รสยังคงเดิม ส่วนตัวติงรสนิดหน่อย (personal) · Minkz Boonvivat Jitniyom (รอบ 2 · ex-รสข้าวโพด): สูตรใหม่ 'ชอบกว่ารอบที่แล้ว เค็มนำ ดีกว่าหวาน' → salt voice ที่ 6 (before/after: รอบ 1 รสข้าวโพด)",
     positives: [
       {
         t: "Pat (Hyrox)",
@@ -575,16 +575,28 @@ export const themes2: Theme[] = [
         q: "สูตรใหม่ผมชอบกว่ารอบที่แล้วนะพี่ — เค็มนำ ดีกว่าหวาน 55 → สังเกตรสเกลือ/salt ชัดขึ้น (salt voice ที่ 6 ต่อจาก Noo/Pare/Chak/Aaron/Kitti · ชอบทิศทางไม่หวานดีด) · before/after: รอบ 1 บอกรสข้าวโพด",
       },
       {
-        t: "Gong Teerachai 🆕 (เพื่อนลองชิม)",
+        t: "Gong Teerachai (เพื่อนลองชิม)",
         q: "เพื่อนลองชิมบอกอร่อยดี รสชาติคล้ายขนมไทย มีความมะพร้าว — ตอนกินซองที่ 2 รู้สึกอร่อยกว่าซองแรก 😂 · แจกให้เพื่อนหลายคน feedback คล้ายกัน ทุกคนบอกรสอร่อย (descriptor ใหม่: มะพร้าว/ขนมไทย)",
       },
       {
-        t: "Kit 🆕 (Pracheniwet Running Track)",
+        t: "Kit (Pracheniwet Running Track)",
         q: "รสชาติดี โอเค กินได้ — บอกว่ากินง่ายกว่า active peak รุ่นเก่า (นักวิ่งเพซเร็ว base pace ~4:30-4:00)",
       },
       {
-        t: "Sompon 🆕 (Pracheniwet Running Track · โค้ช)",
+        t: "Sompon (Pracheniwet Running Track · โค้ช)",
         q: "รสชาติดี — โค้ชนักวิ่งระยะสั้น กินหลังวิ่ง long run 3 กิโล ('long' สำหรับเค้า)",
+      },
+      {
+        t: "Sim 🆕 (Pracheniwet Running Track)",
+        q: "รสชาติดี กินแล้วสดชื่น — ปกติกินแต่ Maurten ยี่ห้อเดียว (long run 20k)",
+      },
+      {
+        t: "Frame 🆕 (Pracheniwet Running Track)",
+        q: "รสชาติดีเลย ชอบ — เพิ่งลองครั้งแรกตอนซ้อม Speed (ให้ลอง 1 ซอง)",
+      },
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "รสชาติกลมกล่อมดี เหมือน Amino Saurus (ตัวสีขาว) — descriptor ใหม่ · กินแล้วสบายท้อง (ใช้ long run)",
       },
     ],
     problems: [
@@ -593,16 +605,20 @@ export const themes2: Theme[] = [
         q: "รสชาติยังคงเดิม — ยอมรับตามตรงว่าส่วนตัวอาจจะมีปัญหากับรสนิดหน่อย (personal preference · before/after: รอบ 1 บอกรสเหมือนไส้ขนมปัง)",
       },
       {
-        t: "Took 🆕 (Pracheniwet Running Track)",
+        t: "Took (Pracheniwet Running Track)",
         q: "บอกไม่ถูกว่ารสชาติเหมือนอะไร รู้สึกเหมือนจะเป็นโคล่า (ออกตัวว่าอาจเป็นความเห็นส่วนตัว) → เดารสไม่ออก ตอกย้ำต้องระบุรสบนซอง (เหมือน Keng Sakyai/Garfield/Mc)",
+      },
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "รสกลมกล่อมแต่รู้สึก 'แปลก' — อาจแปลกสำหรับคนที่เพิ่งเคยลอง ต้องปรับตัว โดยเฉพาะถ้ามีเรื่องราคาเข้ามาเกี่ยวข้อง อาจทำใจควักเงินซื้อยาก → price/รสแปลก เป็น barrier ความตั้งใจซื้อ (ควร educate รส)",
       },
     ],
   },
   {
     name: "เนื้อสัมผัสและความหนืด (Texture & Viscosity)",
-    value: 16,
+    value: 24,
     color: "#d94f4f",
-    desc: "ประเด็นหลักที่ปรับสูตรรอบนี้ — สูตรใหม่เวิร์ก (13 เสียงบวก, before/after ชัดมาก) แต่ยังมีเสียงติดหนืด/แป้ง 3 ราย: 🆕 Gong Teerachai (เพื่อนลองชิม) rare texture-positive — 'แน่นๆ คล้าย solid food แต่กลืนง่ายกว่า GU ไม่หนืดคอ' · Kit (Pracheniwet) 'หนืดน้อยกว่า GU กินง่ายกว่า active peak รุ่นเก่า' (rare texture-positive) ⚠️ แต่ Took (Pracheniwet · long run 12k) ยัง 'หนืดไป ต้องกินน้ำตาม' + Sompon (Pracheniwet · โค้ช) 'แป้งไปหน่อย อยากให้เป็นเจลมากกว่านี้' → texture ยังไม่ 100% สำหรับบางคน (ขึ้นกับ baseline/บุคคล เหมือน Garfield) — Pat ความข้นหนืด 'กำลังดี' ไม่ติดคอ · Noo (รอบ 2 · เคยติงหนืด/เนื้อหนักรอบ 1) 'หนืดน้อยลง หยุ่นขึ้น' · Pare (Frank RC) 'ความหนืดน้อยลง' · Chak (Frank RC) 'เนื้อเจลดีขึ้นกว่ารอบแรก เหนียวน้อยลง ไม่หนืด กินง่าย ไม่บาดคอ' · Aaron (รอบ 2) รับสูตรใหม่บอก 'ดีเลย' · Bluejeans (รอบ 2) เทียบลอตเก่า/ใหม่ในรันเดียว 'ไม่ค่อยหนืดแล้ว กินไปวิ่งไปได้' (รอบ 1 ต้องชะลอเดินเคี้ยว) + ไม่ค่อยหิวน้ำ · Benz Panupong (รอบ 2 · รอบ 1 หนืดติดคอตอนวิ่งเพซ 4) 'ทานง่ายขึ้น เนื้อเป็นเจลกว่ารอบแรก' — before/after ชัดจากเคสเพซเร็วที่เคยติง texture หนักสุด · Kitti (รอบ 2 · รอบ 1 อิ่มแน่นหลังกิน) 'กินง่ายขึ้น' → 8 คนที่เคยลองรอบ 1 (Noo/Pare/Chak/Bluejeans/Zoo/Benz Panupong/Kitti/Ugrid) ยืนยันตรงกันว่าหนืดน้อยลงจริง · Zoo (รอบ 2 · รอบ 1 เคยบอก 'เนื้อเหนียว ทานยาก') เที่ยวนี้ 'สัมผัสดีขึ้น สมูด ลื่น ไม่เหนียว' · Keng Sakyai (50K race) rare texture-positive 'หนืดดี ชอบเลย' ⚠️ แต่ Garfield (สูตรใหม่ · long run) เป็นเสียง texture-ลบเดียวของรอบ 2: หนืดน้อยลงจริงแต่ตอนวิ่ง/เติมระหว่างวิ่งยัง 'กลืนยากไปนิด ต้องกินน้ำตาม' — โดยเขาเทียบกับ Muarten ที่เดิมกินอยู่เจ้าเดียว (น้ำตาลล้วน เหลว ไม่มีเนื้อ = ฐานกลืนง่ายสุด) เลยรู้สึกของเรากลืนยากกว่า → ตอกย้ำว่ายังไม่ลื่นเท่าเจลน้ำตาลล้วนที่ running/race pace (สอดคล้อง Peerawit รอบ 1) · หมายเหตุ split ที่ running pace: Bluejeans/Benz Panupong (สูตรใหม่) บอกลื่นขึ้น/กินไปวิ่งไปได้ แต่ Garfield ยังต้องตามน้ำ → ขึ้นกับ baseline เจลเดิม/บุคคล · Ugrid (Bew · รอบ 2 · race): ปรับความหนืดแล้ว 'โอเคหมด' — before/after: รอบ 1 (trail) เหนียวกว่าที่ใช้อยู่ ต้องกินน้ำตาม → สูตรใหม่แก้ได้ (คนที่ 8 ที่เคยลองรอบ 1)",
+    desc: "ประเด็นหลักที่ปรับสูตรรอบนี้ — สูตรใหม่เวิร์ก (16 เสียงบวก, before/after ชัดมาก) แต่ยังมีเสียงติดหนืด/แป้ง 8 ราย (ส่วนใหญ่คือกลุ่มใหม่ที่ baseline เป็นเจลเหลว): 🆕 กลุ่ม Pracheniwet Running Track — Toey/Sim/Tum/Beer/Kob บอกหนืดไป ต้องกินน้ำตาม/รีดไม่ได้ (baseline Maurten/GU/X Real/Mileage ล้วนเป็นเจลน้ำตาลเหลว) ⚠️ แต่คนกลุ่มเดียวกันสวนทางชัด: Kae Prachaniwet (รอบ 2 · before/after) 'กินง่ายขึ้น ไม่ติดคอ' · Frame มอง 'หนืด = คุณสมบัติ ไม่ต้องปรับ เหมาะ long run/full marathon' · Nat 'ไม่หนืดเหมือนคนอื่น อยู่กลางๆ' (rare texture-positive) → ตอกย้ำว่าความรู้สึกหนืดขึ้นกับ baseline เจลเดิม/บุคคลอย่างมาก · Gong Teerachai (เพื่อนลองชิม) rare texture-positive — 'แน่นๆ คล้าย solid food แต่กลืนง่ายกว่า GU ไม่หนืดคอ' · Kit (Pracheniwet) 'หนืดน้อยกว่า GU กินง่ายกว่า active peak รุ่นเก่า' (rare texture-positive) ⚠️ แต่ Took (Pracheniwet · long run 12k) ยัง 'หนืดไป ต้องกินน้ำตาม' + Sompon (Pracheniwet · โค้ช) 'แป้งไปหน่อย อยากให้เป็นเจลมากกว่านี้' → texture ยังไม่ 100% สำหรับบางคน (ขึ้นกับ baseline/บุคคล เหมือน Garfield) — Pat ความข้นหนืด 'กำลังดี' ไม่ติดคอ · Noo (รอบ 2 · เคยติงหนืด/เนื้อหนักรอบ 1) 'หนืดน้อยลง หยุ่นขึ้น' · Pare (Frank RC) 'ความหนืดน้อยลง' · Chak (Frank RC) 'เนื้อเจลดีขึ้นกว่ารอบแรก เหนียวน้อยลง ไม่หนืด กินง่าย ไม่บาดคอ' · Aaron (รอบ 2) รับสูตรใหม่บอก 'ดีเลย' · Bluejeans (รอบ 2) เทียบลอตเก่า/ใหม่ในรันเดียว 'ไม่ค่อยหนืดแล้ว กินไปวิ่งไปได้' (รอบ 1 ต้องชะลอเดินเคี้ยว) + ไม่ค่อยหิวน้ำ · Benz Panupong (รอบ 2 · รอบ 1 หนืดติดคอตอนวิ่งเพซ 4) 'ทานง่ายขึ้น เนื้อเป็นเจลกว่ารอบแรก' — before/after ชัดจากเคสเพซเร็วที่เคยติง texture หนักสุด · Kitti (รอบ 2 · รอบ 1 อิ่มแน่นหลังกิน) 'กินง่ายขึ้น' → 8 คนที่เคยลองรอบ 1 (Noo/Pare/Chak/Bluejeans/Zoo/Benz Panupong/Kitti/Ugrid) ยืนยันตรงกันว่าหนืดน้อยลงจริง · Zoo (รอบ 2 · รอบ 1 เคยบอก 'เนื้อเหนียว ทานยาก') เที่ยวนี้ 'สัมผัสดีขึ้น สมูด ลื่น ไม่เหนียว' · Keng Sakyai (50K race) rare texture-positive 'หนืดดี ชอบเลย' ⚠️ แต่ Garfield (สูตรใหม่ · long run) เป็นเสียง texture-ลบเดียวของรอบ 2: หนืดน้อยลงจริงแต่ตอนวิ่ง/เติมระหว่างวิ่งยัง 'กลืนยากไปนิด ต้องกินน้ำตาม' — โดยเขาเทียบกับ Muarten ที่เดิมกินอยู่เจ้าเดียว (น้ำตาลล้วน เหลว ไม่มีเนื้อ = ฐานกลืนง่ายสุด) เลยรู้สึกของเรากลืนยากกว่า → ตอกย้ำว่ายังไม่ลื่นเท่าเจลน้ำตาลล้วนที่ running/race pace (สอดคล้อง Peerawit รอบ 1) · หมายเหตุ split ที่ running pace: Bluejeans/Benz Panupong (สูตรใหม่) บอกลื่นขึ้น/กินไปวิ่งไปได้ แต่ Garfield ยังต้องตามน้ำ → ขึ้นกับ baseline เจลเดิม/บุคคล · Ugrid (Bew · รอบ 2 · race): ปรับความหนืดแล้ว 'โอเคหมด' — before/after: รอบ 1 (trail) เหนียวกว่าที่ใช้อยู่ ต้องกินน้ำตาม → สูตรใหม่แก้ได้ (คนที่ 8 ที่เคยลองรอบ 1)",
     positives: [
       {
         t: "Pat (Hyrox)",
@@ -649,12 +665,24 @@ export const themes2: Theme[] = [
         q: "ปรับความหนืดไปแล้ว 'โอเคหมด' ครับ — before/after ชัด: รอบ 1 (trail) บอกเหนียวกว่าที่ใช้อยู่ ต้องกินน้ำตาม → สูตรใหม่แก้ได้ (คนที่ 8 ที่เคยลองรอบ 1 ยืนยันหนืดน้อยลง)",
       },
       {
-        t: "Gong Teerachai 🆕 (เพื่อนลองชิม)",
+        t: "Gong Teerachai (เพื่อนลองชิม)",
         q: "เนื้อเจลแน่นๆ หน่อย เป็นฟิลลิ่งที่ดี คล้ายได้กิน solid food — ตอนแรกจับซองคิดว่าจะหนืดเหมือน GU แต่พอกินกลับรู้สึกกลืนง่ายกว่า ไม่หนืดคอ → rare texture-positive (เทียบ GU · กินตอนวิ่ง)",
       },
       {
-        t: "Kit 🆕 (Pracheniwet Running Track)",
+        t: "Kit (Pracheniwet Running Track)",
         q: "หนืดน้อยกว่า GU · กินง่ายกว่า active peak รุ่นเก่า — rare texture-positive (แต่มองว่าเจลน้ำเหลวๆ แบบ Dever ยังกินง่ายกว่า)",
+      },
+      {
+        t: "Kae Prachaniwet 🆕 (Pracheniwet Running Track · รอบ 2)",
+        q: "ตัวนี้กินง่ายขึ้น ไม่ติดคอ — before/after: รอบ 1 (Supersport race) ไม่ติดหนืด/ไม่ติดคออยู่แล้ว · สูตรใหม่ยิ่งกินง่ายขึ้น (rare texture-positive ต่อเนื่อง)",
+      },
+      {
+        t: "Frame 🆕 (Pracheniwet Running Track)",
+        q: "หนืด — แต่มองว่าไม่ใช่ข้อเสีย เป็น 'คุณสมบัติ' ไม่จำเป็นต้องปรับ เหมาะกับ longrun/full marathon ที่มีเวลากิน → rare 'หนืด = feature' (แต่มองว่าไม่เหมาะวิ่งเร็ว)",
+      },
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "ไม่มีปัญหาความหนืดเหมือนที่คนอื่นเป็น — ไม่เหลว ไม่หนืด อยู่กลางๆ หนืดกว่า Amino สีแดงนิดหน่อย (rare texture-positive · เทียบ baseline Amino)",
       },
     ],
     problems: [
@@ -663,20 +691,40 @@ export const themes2: Theme[] = [
         q: "เนื้อเคี้ยวง่าย แต่แอบกลืนยากไปนิด — เวลาเหนื่อยต้องหยุดวิ่งเพื่อกิน พอเติมระหว่างวิ่งเลยกลืนยากไปหน่อย ต้องกินน้ำตามไปด้วย → ⚠️ กรอบเทียบสำคัญ: Garfield เดิมกินแต่ Muarten (เจลน้ำตาลล้วน เหลว ไม่มีเนื้อ = baseline กลืนง่ายที่สุด) เลยรู้สึกว่าของเรากลืนยากกว่า — ไม่ใช่ว่าสูตรใหม่แย่ แต่เพราะวัดเทียบกับฐานที่ง่ายสุด · สูตรใหม่หนืดน้อยลงจริง แต่ยังไม่ลื่นเท่า Muarten ตอนวิ่ง/เพซเร็ว (สอดคล้อง Peerawit/Benz Panupong รอบ 1)",
       },
       {
-        t: "Took 🆕 (Pracheniwet Running Track)",
+        t: "Took (Pracheniwet Running Track)",
         q: "หนืดไป ต้องกินน้ำตาม (กินตอน long run 12 กิโล) — เหมือน P.Boy/Ugrid/Tum รอบ 1 ที่ต้องเผื่อน้ำ",
       },
       {
-        t: "Sompon 🆕 (Pracheniwet Running Track · โค้ช)",
+        t: "Sompon (Pracheniwet Running Track · โค้ช)",
         q: "อยากให้มันมีความเป็นเจลมากกว่านี้ รู้สึกว่ามันแป้งไปหน่อย → descriptor 'แป้ง' (อยากได้เนื้อเจลลี่ขึ้น เหมือน Yada รอบ 1)",
+      },
+      {
+        t: "Toey 🆕 (Pracheniwet Running Track · speed work)",
+        q: "หนืดไป — ปกติกินแค่ Maurten กับ GU บอกว่า GU ถึงจะหนืดแต่ยังรีด(ดูด)ได้ แต่ของเรารีดไม่ได้ (baseline เจลน้ำตาลล้วนเหลว → มองว่าหนืด เหมือน Garfield/Beer)",
+      },
+      {
+        t: "Sim 🆕 (Pracheniwet Running Track · long run 20k)",
+        q: "หนืดเกินไปต้องกินน้ำตาม — ปกติกินแต่ Maurten (baseline เหลว · long run 20k)",
+      },
+      {
+        t: "Tum 🆕 (Pracheniwet Running Track · long run 25k)",
+        q: "หนืดไป — พอพูดถึง energy gel คาดหวังว่าเนื้อจะเป็น 'เจล' มากกว่านี้ (ก่อนหน้ากิน Maurten · เหมือน Sompon 'อยากให้เป็นเจลมากกว่านี้')",
+      },
+      {
+        t: "Beer 🆕 (Pracheniwet Running Track · speed)",
+        q: "หนืดไป รู้สึกติดอยู่ที่ปาก ต้องกินน้ำสองรอบถึงจะรู้สึกว่าหาย — ปกติกิน X Real (ข้อดีไม่ต้องกินน้ำตาม)/Mileage → baseline เจลเหลว ตอกย้ำ texture ที่ speed pace",
+      },
+      {
+        t: "Kob 🆕 (Pracheniwet Running Track · long run 21k)",
+        q: "หนืดไปต้องกินน้ำตาม (long run 21k กินโลที่ 15) — เหมือน P.Boy/Ugrid/Took ที่ต้องเผื่อน้ำ",
       },
     ],
   },
   {
     name: "พลังงาน (Energy)",
-    value: 13,
+    value: 18,
     color: "#2d9d5e",
-    desc: "จุดแข็งต่อเนื่องในรอบ 2 (11 บวก / 2 ติง) · 🆕 Took (Pracheniwet · interval + long run 12k): แรงไม่หมด แต่ไม่ดีด = ประคอง (เหมือน Jack/Addy) ⚠️ Kit (Pracheniwet · base pace ~4:30-4:00) พลังงานมาแป๊บเดียว — เดาว่าเพราะเพซเร็ว + ไม่กินอะไร/ไม่วอร์มก่อน พลังงานหมดก่อน palatinose ปล่อยน้ำตาล → ตอกย้ำเจลออกฤทธิ์ช้า ต้อง pre-load ที่เพซเร็ว (เหมือน Peerawit/Bank NSC) · Gong (เพื่อนลองชิม) พลังงานยังรู้สึกไม่ชัดว่าต่างกับเจลอื่น (pending) — Pat: กินก่อนเซสชัน ให้พลังงาน 'ดีโคตรๆ' HIIT 50 นาทีไม่หวิว เล่นเวทต่อได้ · Noo (รอบ 2): วิ่ง 12k ไม่ค่อยเหนื่อย น่าจะวิ่งต่อได้อีก ยังไม่ล้า · Mc: long run 30k พลังงานเหลือ ต่อได้อีก ~2 โล (ปกติกิน Amino Vital) · Chak (Frank RC): กินแล้วสดชื่นขึ้นเหมือนเดิม โดยรวมโอเค · Garfield: long run 14k ให้พลังงานเร็ว+สม่ำเสมอ กินเสร็จกลับมาเฟรช (ปกติกิน Muarten) · Bluejeans (รอบ 2): พลังงานไม่ลดลง เสถียรเหมือนเดิม ได้แรงพอทำ New PB 10 โล → หลักฐาน performance/PB ฝั่งบวกในรอบ 2 · Zoo (รอบ 2 · trail): บูสพลังงานเห็นผลชัด แต่ onset มาช้าหน่อยตอนดันเนินยาว (สอดคล้อง Bank NSC รอบ 1 เจลออกฤทธิ์ช้า) · Ugrid (รอบ 2 · race): กินในเรซแล้ว 'ยิงยาวได้เลย' — race-positive (before/after: รอบ 1 พลังงานตกตอนโฟกัสทาง/timing) · K.Mai (รอบ 2 · trail 15k ชันมาก): เจล 1 ซอง แรง 100% ถึงเกือบครบโล 8 · จบ 4:24 hr ด้วย 2 ซอง จบยังเหลือแรงปกติ สปริ้น 700-800m สุดท้ายเข้าได้ · Minkz Boonvivat Jitniyom (รอบ 2): 1 ซองได้ ~7 โล แล้วเริ่มต้องเติม (data point ระยะ/ซอง)",
+    desc: "จุดแข็งต่อเนื่องในรอบ 2 (16 บวก / 2 ติง) · 🆕 กลุ่ม Pracheniwet Running Track เพิ่ม: Kae Prachaniwet (รอบ 2) long run 19k เร่งเพซช่วงท้ายได้ (ต่อเนื่อง race-positive จากรอบ 1) · Tum (long run 25k) / Beer (speed) / Kob (long run 21k) พลังงานโอเค · Nat พลังงานค่อยๆ มา (pending) · Took (Pracheniwet · interval + long run 12k): แรงไม่หมด แต่ไม่ดีด = ประคอง (เหมือน Jack/Addy) ⚠️ Kit (Pracheniwet · base pace ~4:30-4:00) พลังงานมาแป๊บเดียว — เดาว่าเพราะเพซเร็ว + ไม่กินอะไร/ไม่วอร์มก่อน พลังงานหมดก่อน palatinose ปล่อยน้ำตาล → ตอกย้ำเจลออกฤทธิ์ช้า ต้อง pre-load ที่เพซเร็ว (เหมือน Peerawit/Bank NSC) · Gong (เพื่อนลองชิม) พลังงานยังรู้สึกไม่ชัดว่าต่างกับเจลอื่น (pending) — Pat: กินก่อนเซสชัน ให้พลังงาน 'ดีโคตรๆ' HIIT 50 นาทีไม่หวิว เล่นเวทต่อได้ · Noo (รอบ 2): วิ่ง 12k ไม่ค่อยเหนื่อย น่าจะวิ่งต่อได้อีก ยังไม่ล้า · Mc: long run 30k พลังงานเหลือ ต่อได้อีก ~2 โล (ปกติกิน Amino Vital) · Chak (Frank RC): กินแล้วสดชื่นขึ้นเหมือนเดิม โดยรวมโอเค · Garfield: long run 14k ให้พลังงานเร็ว+สม่ำเสมอ กินเสร็จกลับมาเฟรช (ปกติกิน Muarten) · Bluejeans (รอบ 2): พลังงานไม่ลดลง เสถียรเหมือนเดิม ได้แรงพอทำ New PB 10 โล → หลักฐาน performance/PB ฝั่งบวกในรอบ 2 · Zoo (รอบ 2 · trail): บูสพลังงานเห็นผลชัด แต่ onset มาช้าหน่อยตอนดันเนินยาว (สอดคล้อง Bank NSC รอบ 1 เจลออกฤทธิ์ช้า) · Ugrid (รอบ 2 · race): กินในเรซแล้ว 'ยิงยาวได้เลย' — race-positive (before/after: รอบ 1 พลังงานตกตอนโฟกัสทาง/timing) · K.Mai (รอบ 2 · trail 15k ชันมาก): เจล 1 ซอง แรง 100% ถึงเกือบครบโล 8 · จบ 4:24 hr ด้วย 2 ซอง จบยังเหลือแรงปกติ สปริ้น 700-800m สุดท้ายเข้าได้ · Minkz Boonvivat Jitniyom (รอบ 2): 1 ซองได้ ~7 โล แล้วเริ่มต้องเติม (data point ระยะ/ซอง)",
     positives: [
       {
         t: "Pat (Hyrox)",
@@ -719,27 +767,47 @@ export const themes2: Theme[] = [
         q: "ผมซองนึงได้ 7 โล นะพี่ ละเริ่มต้องเติม — พลังงานอยู่ราว 7 กม./ซอง (data point ระยะต่อซอง · สอดคล้องแนวทางเติมเป็นช่วงๆ / pre-load)",
       },
       {
-        t: "Took 🆕 (Pracheniwet Running Track)",
+        t: "Took (Pracheniwet Running Track)",
         q: "กินเจลก่อนวิ่ง interval รู้สึกแรงไม่หมด แต่ก็ไม่ได้รู้สึกดีด — พลังงานแบบประคอง (เหมือน Jack/Addy/Bank Wasan รอบ 1 · กินตอน long run 12k ด้วย)",
+      },
+      {
+        t: "Kae Prachaniwet 🆕 (Pracheniwet Running Track · รอบ 2)",
+        q: "long run 19k เพซ 6:00 กินเจลโลที่ 8 วิ่งต่อได้จนจบ 1-2 กม.สุดท้ายเร่งขึ้นเพซ 5 ปลายๆ ได้ → race-positive/เร่งเพซ ต่อเนื่องจากรอบ 1 (Supersport เร่ง 5:40→5:00) = หลักฐานฝั่ง 'ช่วยเร่งเพซ'",
+      },
+      {
+        t: "Tum 🆕 (Pracheniwet Running Track · long run 25k)",
+        q: "พลังงานโอเค มองว่าใช้เป็นพลังงานได้ (long run 25k กินตอนวิ่งมาแล้ว ~1 ชม.)",
+      },
+      {
+        t: "Beer 🆕 (Pracheniwet Running Track · speed)",
+        q: "ซ้อม Speed พลังงานโอเค เพราะกินแล้ววิ่งเลย — intensity สูงไม่มีปัญหา (pre-load แบบกินแล้ววิ่งทันที)",
+      },
+      {
+        t: "Kob 🆕 (Pracheniwet Running Track · long run 21k)",
+        q: "พลังงานโอเค — long run 21k กินโลที่ 15 (ติดแค่หนืดต้องกินน้ำตาม)",
+      },
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "พลังงานค่อยๆ มาจริง แต่ยังบอกไม่ได้ชัดว่าได้ผลแค่ไหน (ใช้ long run · pending — ขอเพิ่มอีก 3 ซองไปเทสต่อ)",
       },
     ],
     problems: [
       {
-        t: "Kit 🆕 (Pracheniwet Running Track)",
+        t: "Kit (Pracheniwet Running Track)",
         q: "กินเจล 1 ซองก่อนวิ่ง 1 ชม. รู้สึกพลังงานมาแป๊บเดียว — เดาว่าเพราะ base pace ค่อนข้างสูง (~4:30-4:00) + ไม่ได้กินอะไร/ไม่ได้วอร์มมาก่อน พลังงานเลยอาจหมดก่อนที่น้ำตาลจาก palatinose จะถูกปล่อย → ตอกย้ำเจลออกฤทธิ์ค่อยๆ ไม่เหมาะเพซเร็วถ้าไม่ pre-load (สอดคล้อง Peerawit/Bank NSC รอบ 1) · เทียบ: Dever/GU (maltodextrin/fructose) ให้พลังงานเร็วกว่าแต่หมดเร็ว",
       },
       {
-        t: "Gong Teerachai 🆕 (เพื่อนลองชิม)",
+        t: "Gong Teerachai (เพื่อนลองชิม)",
         q: "เรื่องพลังงานเพื่อนที่ลองยังรู้สึกกันไม่ชัด ว่ามันต่างกับเจลอื่นไหม (ส่วนใหญ่โฟกัสที่รสชาติ · pending รอเก็บข้อมูลเพิ่ม)",
       },
     ],
   },
   {
     name: "Use case / Timing",
-    value: 15,
+    value: 23,
     color: "#c9952c",
     onRadar: false,
-    desc: "Hyrox / functional fitness + long run + trail + race (10k→50k ultra) + 🆕 กลุ่ม Pracheniwet Running Track (สนามวิ่ง): Took ซ้อม interval + long run 12k · Sompon (โค้ช) นักวิ่งระยะสั้น long run 3k · Kit เพซเร็ว base pace ~4:30-4:00 (⚠️ กินก่อน 1 ชม. พลังงานมาแป๊บเดียว → เพซเร็วต้อง pre-load) · Gong (เพื่อนลองชิม) กินตอนวิ่ง OK แต่ถ้ากินบนจักรยานอาจลำบากต้องรีดซอง → cycling packaging (เหมือน O Tachapol) — Pat: pre-workout HIIT 50 นาที + เวทต่อ ('เอาไปขายงาน Hyrox เลย') · Noo: ซ้อมวิ่ง 12k กินกิโล ~6/7 ตอน juice (timing เดิม) · Mc: long run 30k กิน 2 ซอง (45 นาที + ~ชม.1:40) · Garfield: long run 14k กินช่วงโล 5 + โล 10 (ก่อนวิ่งโหลดคาร์บ ~30g) · Kitti: ใช้ตอนซ้อม long run กินง่ายขึ้น (รอบ 2) · Aaron: race 10k หมด 2 ซองรวด — วันนั้นในสนามคนตะคริว/หมดแรงเยอะ Aaron ไหว + ถามหาโซเดียมในเจล → angle electrolyte กันตะคริวสำหรับ race · Bluejeans: วิ่ง 12k ใช้ method เทียบลอตเก่า/ใหม่ในรันเดียว (กินก่อนวิ่ง + ลอตใหม่โล 7) ได้ New PB 10 โล · แผนใช้จริง: กินก่อนวิ่ง + ระหว่างวิ่ง · Zoo (รอบ 2): เทรลดันเนินยาว บูสมาช้าแต่เห็นผลชัด · Keng Sakyai: race 50k (ultra) กินตอนท้ายเรซ (ร่างกายรวนแล้ว แยกพลังงานไม่ออก) เหลืออีก 1 ซองจะลองใหม่ (pending) · Ugrid (รอบ 2): race — กินระหว่างแข่ง 'กินแล้วยิงยาวได้เลย' โอเคหมด · K.Mai (รอบ 2): trail 15k ชันมาก (uphill แนวดิ่ง · downhill ลื่นชันสุดๆ) จบ 4:24 hr ด้วย 2 ซอง เจลเอาอยู่ · กินก่อนวิ่ง ตี 5:15 พร้อมอาหาร (แก้ GI จากรอบ 1) · คิดว่าถนน 10k ทานซองเดียวก่อนเริ่มพอ (รอบหน้าจะลองถนน 10k)",
+    desc: "Hyrox / functional fitness + long run + trail + race (10k→50k ultra) + 🆕 กลุ่ม Pracheniwet Running Track (สนามวิ่ง · เพิ่ม 8 คนรอบนี้): Kae Prachaniwet (รอบ 2) long run 19k เร่งเพซท้ายได้ · Toey/Beer สาย speed work · Frame (speed) มองว่าเหมาะ long run/full marathon มากกว่าวิ่งเร็ว (หนืด=มีเวลากิน) · Sim long run 20k · Tum long run 25k · Kob long run 21k · Nat long run (pending) · Took ซ้อม interval + long run 12k · Sompon (โค้ช) นักวิ่งระยะสั้น long run 3k · Kit เพซเร็ว base pace ~4:30-4:00 (⚠️ กินก่อน 1 ชม. พลังงานมาแป๊บเดียว → เพซเร็วต้อง pre-load) · Gong (เพื่อนลองชิม) กินตอนวิ่ง OK แต่ถ้ากินบนจักรยานอาจลำบากต้องรีดซอง → cycling packaging (เหมือน O Tachapol) — Pat: pre-workout HIIT 50 นาที + เวทต่อ ('เอาไปขายงาน Hyrox เลย') · Noo: ซ้อมวิ่ง 12k กินกิโล ~6/7 ตอน juice (timing เดิม) · Mc: long run 30k กิน 2 ซอง (45 นาที + ~ชม.1:40) · Garfield: long run 14k กินช่วงโล 5 + โล 10 (ก่อนวิ่งโหลดคาร์บ ~30g) · Kitti: ใช้ตอนซ้อม long run กินง่ายขึ้น (รอบ 2) · Aaron: race 10k หมด 2 ซองรวด — วันนั้นในสนามคนตะคริว/หมดแรงเยอะ Aaron ไหว + ถามหาโซเดียมในเจล → angle electrolyte กันตะคริวสำหรับ race · Bluejeans: วิ่ง 12k ใช้ method เทียบลอตเก่า/ใหม่ในรันเดียว (กินก่อนวิ่ง + ลอตใหม่โล 7) ได้ New PB 10 โล · แผนใช้จริง: กินก่อนวิ่ง + ระหว่างวิ่ง · Zoo (รอบ 2): เทรลดันเนินยาว บูสมาช้าแต่เห็นผลชัด · Keng Sakyai: race 50k (ultra) กินตอนท้ายเรซ (ร่างกายรวนแล้ว แยกพลังงานไม่ออก) เหลืออีก 1 ซองจะลองใหม่ (pending) · Ugrid (รอบ 2): race — กินระหว่างแข่ง 'กินแล้วยิงยาวได้เลย' โอเคหมด · K.Mai (รอบ 2): trail 15k ชันมาก (uphill แนวดิ่ง · downhill ลื่นชันสุดๆ) จบ 4:24 hr ด้วย 2 ซอง เจลเอาอยู่ · กินก่อนวิ่ง ตี 5:15 พร้อมอาหาร (แก้ GI จากรอบ 1) · คิดว่าถนน 10k ทานซองเดียวก่อนเริ่มพอ (รอบหน้าจะลองถนน 10k)",
     positives: [
       {
         t: "Pat (Hyrox)",
@@ -786,31 +854,63 @@ export const themes2: Theme[] = [
         q: "Trail 15k ชันมาก (uphill แนวดิ่ง · downhill ลื่นชันสุดๆ) จบ 4:24 hr — กินก่อนวิ่ง ตี 5:15 พร้อมกล้วยตาก+น้ำผึ้ง (แก้ timing/GI จากรอบ 1) เติมซอง 2 ก่อนดันเนิน · เจลเอาอยู่ · คิดว่าถนน 10k ทานซองเดียวก่อนเริ่มพอ (รอบหน้าจะลองถนน 10k) · ไม่ได้กินสลับยี่ห้ออื่นเลย จิบเกลือแร่ 1 ลิตรตลอดทาง",
       },
       {
-        t: "Took 🆕 (Pracheniwet Running Track)",
+        t: "Took (Pracheniwet Running Track)",
         q: "ซ้อม interval + long run 12k — กินเจลก่อนวิ่ง interval (แรงไม่หมด) และตอน long run โล 12 · use case ซ้อมความเร็ว/ระยะไกล",
       },
       {
-        t: "Sompon 🆕 (Pracheniwet Running Track · โค้ช)",
+        t: "Sompon (Pracheniwet Running Track · โค้ช)",
         q: "โค้ชนักวิ่งระยะสั้น — กินหลังวิ่ง long run 3 กิโล ('long' สำหรับเค้า) รสดี ไม่มีปัญหา GI (เคยกิน Amino Vital แล้วมีปัญหา)",
+      },
+      {
+        t: "Kae Prachaniwet 🆕 (Pracheniwet Running Track · รอบ 2)",
+        q: "Long run 19k เพซ 6:00 (สูตรใหม่) — กินโลที่ 8 เร่งเพซช่วงท้ายได้ · before/after: รอบ 1 Supersport race (เร่ง 5:40→5:00)",
+      },
+      {
+        t: "Toey 🆕 (Pracheniwet Running Track · speed work)",
+        q: "Speed work — กินไปเรื่อยๆ (baseline Maurten/GU · แยกผลพลังงานไม่ออกเพราะกินกล้วย+ขนมปังมาก่อน)",
+      },
+      {
+        t: "Sim 🆕 (Pracheniwet Running Track · long run 20k)",
+        q: "Long run 20k — ปกติกินแต่ Maurten (หนืดต้องตามน้ำ แต่รสดี/สบายท้อง)",
+      },
+      {
+        t: "Tum 🆕 (Pracheniwet Running Track · long run 25k)",
+        q: "Long run 25k — กินตอนวิ่งมาแล้ว ~1 ชม. (ก่อนหน้ากิน Maurten)",
+      },
+      {
+        t: "Beer 🆕 (Pracheniwet Running Track · speed)",
+        q: "Speed — กินแล้ววิ่งเลย พลังงาน/GI โอเคที่ intensity สูง (baseline X Real/Mileage)",
+      },
+      {
+        t: "Kob 🆕 (Pracheniwet Running Track · long run 21k)",
+        q: "Long run 21k — กินโลที่ 15 พลังงานโอเค (หนืดต้องตามน้ำ)",
+      },
+      {
+        t: "Frame 🆕 (Pracheniwet Running Track · speed)",
+        q: "Speed (ลอง 1 ซอง) — มองว่าเหมาะ longrun/full marathon มากกว่าวิ่งเร็ว เพราะหนืด/มีเวลากิน → ตอกย้ำ split use case (long เหมาะ / speed ไม่เหมาะ)",
+      },
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "Long run — พลังงานค่อยๆ มา รสกลมกล่อม texture อยู่กลางๆ (pending · ขอเพิ่ม 3 ซองไปเทสต่อ)",
       },
     ],
     problems: [
       {
-        t: "Gong Teerachai 🆕 (เพื่อนลองชิม · cycling)",
+        t: "Gong Teerachai (เพื่อนลองชิม · cycling)",
         q: "กินตอนวิ่งไม่มีปัญหาในตอนกิน แต่นึกไปว่าถ้าต้องกินบนจักรยานอาจจะลำบากหน่อย ถ้าต้องรีดซองกินให้หมด → cycling รีด/ฉีกยาก (สอดคล้อง O Tachapol รอบ 1 · ยังไม่มี format/notch สำหรับสายปั่น)",
       },
       {
-        t: "Kit 🆕 (Pracheniwet Running Track · เพซเร็ว)",
+        t: "Kit (Pracheniwet Running Track · เพซเร็ว)",
         q: "base pace เร็ว (~4:30-4:00) กินก่อนวิ่ง 1 ชม. → พลังงานมาแป๊บเดียว ตอกย้ำว่าเรซ/เพซเร็วต้อง pre-load ให้ทัน palatinose ปล่อยพลังงาน (เหมือน Peerawit/Bank NSC รอบ 1)",
       },
     ],
   },
   {
     name: "GI / ทางเดินอาหาร",
-    value: 4,
+    value: 7,
     color: "#d97a3e",
     onRadar: false,
-    desc: "ไม่มีเคส GI ใหม่ในรอบ 2 + ⭐ ปิดเคส GI รอบ 1 (K.Mai) + 🆕 Sompon (Pracheniwet · โค้ช) ไม่มีปัญหา GI ทั้งที่เคยกิน Amino Vital แล้วมีปัญหา (GI ดีกว่าคู่แข่ง) — K.Mai รอบ 1 เป็นเคสรุนแรง (กินเจลก่อนวิ่ง <10 นาที → ปวดท้อง/คลื่นไส้/อ้วก จบ 8k) · รอบ 2 กินก่อนวิ่ง (ตี 5:15 พร้อมกล้วยตาก+น้ำผึ้ง) วิ่งเทรล 15k จบ 4:24 hr 'ไม่มีปวดท้องใดๆ ไม่มีลม' = แก้ด้วย timing สำเร็จ (ยืนยันสมมติฐาน action item รอบ 1) · Pat อิ่มกำลังดี อยู่ท้อง ค่อนข้างอิ่มแต่ไม่แน่น เหมาะคนกลัวจุกตอนขยับตัว · Garfield: ไม่อืดท้อง (บางแบรนด์ที่เคยกินอืดท้อง) → GI ดีกว่าคู่แข่ง",
+    desc: "ไม่มีเคส GI ใหม่ในรอบ 2 + ⭐ ปิดเคส GI รอบ 1 (K.Mai) + 🆕 กลุ่ม Pracheniwet Running Track ไม่มีปัญหา GI เลย: Sompon (โค้ช) ไม่มีปัญหาทั้งที่เคยกิน Amino Vital แล้วมีปัญหา · Sim ปกติเป็นคนจุกง่ายแต่กินของเราแล้วสบายท้อง ไม่จุก · Beer ไม่มีปัญหา GI ที่ intensity สูง · Nat สบายท้อง → GI ดีกว่าคู่แข่ง — K.Mai รอบ 1 เป็นเคสรุนแรง (กินเจลก่อนวิ่ง <10 นาที → ปวดท้อง/คลื่นไส้/อ้วก จบ 8k) · รอบ 2 กินก่อนวิ่ง (ตี 5:15 พร้อมกล้วยตาก+น้ำผึ้ง) วิ่งเทรล 15k จบ 4:24 hr 'ไม่มีปวดท้องใดๆ ไม่มีลม' = แก้ด้วย timing สำเร็จ (ยืนยันสมมติฐาน action item รอบ 1) · Pat อิ่มกำลังดี อยู่ท้อง ค่อนข้างอิ่มแต่ไม่แน่น เหมาะคนกลัวจุกตอนขยับตัว · Garfield: ไม่อืดท้อง (บางแบรนด์ที่เคยกินอืดท้อง) → GI ดีกว่าคู่แข่ง",
     positives: [
       {
         t: "Pat (Hyrox)",
@@ -825,25 +925,42 @@ export const themes2: Theme[] = [
         q: "⭐ รอบนี้ไม่มีปวดท้องใดๆ สบาย ไม่มีลมด้วย โอเคมาก — before/after ชัดสุดของโปรเจกต์: รอบ 1 เคสรุนแรง (กินเจล <10 นาทีก่อนวิ่ง → โล 2 ลม/เรอ โล 3 ปวดท้องมวน จบ 8k อ้วก คลื่นไส้) · รอบ 2 กินก่อนวิ่ง (ตี 5:15 พร้อมอาหาร) เทรล 15k ไม่มี GI เลย = ยืนยันว่าแก้ด้วย timing (กินก่อน/พร้อมมื้อ) ได้จริง",
       },
       {
-        t: "Sompon 🆕 (Pracheniwet Running Track · โค้ช)",
+        t: "Sompon (Pracheniwet Running Track · โค้ช)",
         q: "กินแล้วไม่มีปัญหาเรื่อง GI — เพราะเคยกิน Amino Vital แล้วมีปัญหา → GI ดีกว่าคู่แข่ง (conversion จาก Amino Vital เหมือน Mc)",
+      },
+      {
+        t: "Sim 🆕 (Pracheniwet Running Track · long run 20k)",
+        q: "กินแล้วสบายท้อง — ปกติเป็นคนจุกง่าย แต่กินของเราไม่มีปัญหา → GI-positive ที่ชัด (เทียบ baseline ตัวเองที่จุกง่าย · long run 20k)",
+      },
+      {
+        t: "Beer 🆕 (Pracheniwet Running Track · speed)",
+        q: "ไม่มีปัญหาเรื่อง GI ในการวิ่งที่ intensity สูง (ซ้อม Speed · กินแล้ววิ่งเลย)",
+      },
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "กินแล้วสบายท้อง (ใช้ long run)",
       },
     ],
     problems: [],
   },
   {
     name: "ความตั้งใจซื้อ",
-    value: 1,
+    value: 2,
     color: "#2a8fa4",
     onRadar: false,
-    desc: "Pat endorsement แรง: 'ปังมากคุณน้า เอาไปขายงาน Hyrox เลย'",
+    desc: "Pat endorsement แรง: 'ปังมากคุณน้า เอาไปขายงาน Hyrox เลย' · 🆕 Nat (Pracheniwet) ตั้งข้อสังเกตฝั่งกำแพงซื้อ — รส 'แปลก' สำหรับคนใหม่ + ถ้ามีเรื่องราคาเข้ามา อาจทำใจควักเงินซื้อยาก → price/รสต้อง educate",
     positives: [
       {
         t: "Pat (Hyrox)",
         q: "'ปังมากคุณน้า เอาไปขายงาน Hyrox เลย' — endorsement เชิงบวกแรง พร้อมเชียร์ช่องทาง Hyrox",
       },
     ],
-    problems: [],
+    problems: [
+      {
+        t: "Nat 🆕 (Pracheniwet Running Track)",
+        q: "รสกลมกล่อมแต่ 'แปลก' สำหรับคนที่เพิ่งเคยลอง ต้องปรับตัว — โดยเฉพาะถ้ามีเรื่องราคาเข้ามาเกี่ยวข้อง อาจทำใจควักเงินซื้อยาก → barrier ความตั้งใจซื้อ (price sensitivity + รสต้อง educate)",
+      },
+    ],
   },
 ]
 
@@ -1081,7 +1198,6 @@ Bew: "โอเคหมดแล้วครับพี่เจต"
   {
     name: "Gong Teerachai",
     tag: "เพื่อนลองชิม · วิ่ง",
-    new: true,
     originalSource:
       "ฟีดแบ็กจากแชท (Messenger · Gong Teerachai) — Gong แจกเจลให้เพื่อนหลายคนลอง (ยังไม่ได้ลองเอง) · เพื่อนลองตอนวิ่ง · โน้ตเรื่อง cycling เพิ่ม",
     originalFeedback: `เพื่อนลองชิม แล้วบอกว่า อร่อยดี รสชาติคล้ายๆขนมไทย มีความมะพร้าว กับตอนกินซองที่ 2 รู้สึกอร่อยกว่าซองแรก ไม่รู้ทำไมเหมือนกัน 😂
@@ -1096,7 +1212,6 @@ Bew: "โอเคหมดแล้วครับพี่เจต"
   {
     name: "Kit",
     tag: "Pracheniwet Running Track · เพซเร็ว",
-    new: true,
     originalSource:
       "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri — 'คุณกิต' นักวิ่งเพซเร็ว (base pace ~4:30-4:00) ที่สนามวิ่ง Pracheniwet Running Track · กินเจล 1 ซองก่อนวิ่ง 1 ชม.",
     originalFeedback: `คุณ กิต — กิน 1 เจลก่อนวิ่ง เป็นระยะเวลา 1 ชม ไม่ได้บอกว่ากี่กิโล รู้สึกว่าพลังงานมาแป๊บเดียว (อาจจะเป็นเพราะ base pace ค่อนข้างสูงคือประมาณ 4:30-4:00) และบางทีเค้าก็ไม่ได้กินอะไรมาก่อน รวมถึงไม่ได้วอร์ม อาจจะเป็นเพราะพลังงานหมดก่อนที่น้ำตาลจาก palatinose จะถูกปล่อย
@@ -1110,7 +1225,6 @@ Bew: "โอเคหมดแล้วครับพี่เจต"
   {
     name: "Took",
     tag: "Pracheniwet Running Track · long run 12k",
-    new: true,
     originalSource:
       "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri — 'คุณตุ๊ก' ที่สนามวิ่ง Pracheniwet Running Track · กินก่อนวิ่ง interval + ตอน long run 12k",
     originalFeedback: `คุณ ตุ๊ก — กินเจลก่อนวิ่ง interval รู้สึกว่าแรงไม่หมด แต่ก็ไม่ได้รู้สึกดีด กินตอน long run 12 กิโล มีความรู้สึกว่าหนืดไป ต้องกินน้ำตาม
@@ -1120,7 +1234,6 @@ Bew: "โอเคหมดแล้วครับพี่เจต"
   {
     name: "Sompon",
     tag: "Pracheniwet Running Track · โค้ช/ระยะสั้น",
-    new: true,
     originalSource:
       "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri — 'โค้ชสมพร' นักวิ่งระยะสั้น ที่สนามวิ่ง Pracheniwet Running Track · กินหลังวิ่ง long run 3 กิโล · เคยกิน Amino Vital แล้วมีปัญหา GI",
     originalFeedback: `โค้ชสมพร — เป็นนักวิ่งระยะสั้น กินหลังจากวิ่ง long run 3 กิโล (เค้าบอกว่านี่คือ long แล้วสำหรับเค้า)
@@ -1128,6 +1241,85 @@ Bew: "โอเคหมดแล้วครับพี่เจต"
 รสชาติดี แต่อยากให้มันมีความเป็นเจลมากกว่านี้ รู้สึกว่ามันแป้งไปหน่อย
 
 กินแล้วไม่มีปัญหาเรื่อง GI เพราะเคยกิน Amino Vital แล้วมีปัญหา`,
+  },
+  {
+    name: "Kae Prachaniwet",
+    tag: "Pracheniwet Running Track · รอบ 2 · long run 19k",
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · คนเดียวกับ Kae Prachaniwet รอบ 1 (Supersport race) → before/after · long run 19k เพซ 6:00 กินโลที่ 8",
+    originalFeedback: `คุณ เก่ — ค่อนข้าง happy กับตัวเก่าอยู่แล้ว ตัวนี้บอกว่ากินง่ายขึ้น ไม่ติดคอ ใช้ตอนวิ่ง long run 19 กิโล ที่เพซ 6:00 โดยกินที่กิโลที่ 8 สามารถวิ่งต่อได้จนจบ ตอน 1-2 กิโลสุดท้ายสามารถเร่งขึ้นมาเพซ 5 ปลายๆ ได้
+
+(before/after รอบ 1: Kae Prachaniwet รอบ 1 ลองในงาน Supersport (race จริง ไม่เคยเทสก่อน) กินโลที่ 8 เร่งเพซ 5:40 → 5:00 ใน 2 กม.สุดท้าย · รอบนี้ (สูตรใหม่) long run 19k กินโลที่ 8 เหมือนเดิม เร่งเพซช่วงท้ายได้อีก + ยืนยันสูตรใหม่ 'กินง่ายขึ้น ไม่ติดคอ')`,
+  },
+  {
+    name: "Toey",
+    tag: "Pracheniwet Running Track · speed work",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณเตย' ใช้ตอนซ้อม speed work · ปกติกินแค่ Maurten กับ GU (baseline เจลเหลว)",
+    originalFeedback: `คุณ เตย — ใช้กินตอนซ้อม speed work โดยกินไปเรื่อยๆ ยังไม่มีข้อสังเกตช่วยเรื่องพลังงาน เพราะปกติก่อนวิ่งก็จะกินกล้วยกับขนมปังมาก่อน รู้สึกว่าเจลหนืดไป ปกติกินแค่ Maurten กับ GU ยังบอกอีกว่า GU ถึงจะหนืด แต่ก็ยังดูด(รีด)ได้ แต่ของเราดูดไม่ได้ ยังบอกอีกว่าจริงๆ ไม่รู้เหมือนกันว่า Maurten ดียังไง แค่รู้สึกว่ากินง่าย
+
+(baseline เจลน้ำตาลล้วนเหลว (Maurten/GU) → มองว่าของเราหนืด · แยกผลพลังงานไม่ออกเพราะกินกล้วย+ขนมปังมาก่อน)`,
+  },
+  {
+    name: "Sim",
+    tag: "Pracheniwet Running Track · long run 20k",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณสิม' (ชื่อรอ update) · long run 20k · ปกติกินแต่ Maurten · เป็นคนจุกง่ายแต่กินของเราไม่มีปัญหา",
+    originalFeedback: `คุณ สิม (ถามชื่อ เดี๋ยวไว้มา update) — ใช้ตอนวิ่ง long run 20 กิโล บอกว่าหนืดเกินไปต้องกินน้ำตาม ปกติกินแต่ Maurten ยี่ห้อเดียว แต่บอกว่ารสชาติดีติ กินแล้วสดชื่น กินแล้วสบายท้อง เพราะปกติเป็นคนที่จุกง่าย แต่กินของเราแล้วไม่มีปัญหา
+
+(GI-positive: จุกง่ายเป็นทุน แต่ของเราไม่จุก · texture: หนืดต้องกินน้ำตาม (baseline Maurten เหลว) · รสดี สดชื่น)`,
+  },
+  {
+    name: "Tum",
+    tag: "Pracheniwet Running Track · long run 25k",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณตั้ม' (คนละคนกับ Tum Kanapon / Tum Frank RC) · long run 25k กินตอนวิ่งมาแล้ว ~1 ชม. · ก่อนหน้ากิน Maurten",
+    originalFeedback: `คุณ ตั้ม — ใช้ตอนวิ่ง long run 25 กิโล โดยกินตอนวิ่งมาแล้วชั่วโมงนึง ก่อนหน้านั้นกิน Maurten ไป รู้สึกว่าหนืดไป พอพูดถึง energy gel เค้าจะคาดหวังว่ามันน่าจะเป็นเจลมากกว่านี้ ส่วนเรื่องพลังงานโอเค มองว่าสามารถใช้เป็นพลังงานได้
+
+(texture: คาดหวังเนื้อ 'เจล' มากกว่านี้ — เหมือน Sompon 'อยากให้เป็นเจลมากกว่านี้' · baseline Maurten เหลว · พลังงานโอเค)`,
+  },
+  {
+    name: "Beer",
+    tag: "Pracheniwet Running Track · speed",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณเบียร์' ใช้ตอนซ้อม Speed · ปกติกิน X Real กับ Mileage (baseline เจลเหลว)",
+    originalFeedback: `คุณ เบียร์ — ใช้ตอนซ้อม Speed พลังงานโอเคเพราะกินแล้ววิ่งเลย ไม่มีปัญหาเรื่อง GI ในการวิ่งที่ intensity สูง ไม่ชอบที่เจลหนืดไป รู้สึกว่าติดอยู่ที่ปาก ต้องกินน้ำสองรอบถึงจะรู้สึกว่าหาย ปกติจะกิน X Real กับ Mileage โดยบอกว่าข้อดีของ X Real คือไม่ต้องกินน้ำตาม และบอกว่า Mileage ให้พลังงานเยอะ
+
+(texture: หนืดติดปาก ต้องกินน้ำ 2 รอบ (baseline X Real/Mileage เหลว ไม่ต้องตามน้ำ) · พลังงาน/GI โอเคตอน speed intensity สูง)`,
+  },
+  {
+    name: "Kob",
+    tag: "Pracheniwet Running Track · long run 21k",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณกบ' (คนละคนกับ Narumol/กบ รอบ 1) · long run 21k กินโลที่ 15",
+    originalFeedback: `คุณ กบ — ใช้วิ่ง long run 21 กิโล กินที่กิโลที่ 15 พลังงานโอเค แต่หนืดไปต้องกินน้ำตาม
+
+(พลังงานโอเค · texture หนืดต้องตามน้ำ · long run 21k กินโลที่ 15)`,
+  },
+  {
+    name: "Frame",
+    tag: "Pracheniwet Running Track · speed",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณเฟรม' เพิ่งคุยครั้งแรก ให้ลอง 1 ซองตอนซ้อม Speed · มอง 'หนืด = คุณสมบัติ' เหมาะ long run/full marathon",
+    originalFeedback: `คุณ เฟรม — เพิ่งคุยกันครั้งแรก เลยให้ลอง 1 ซอง ตอนที่เค้ากำลังซ้อม Speed บอกว่ารสชาติดีเลย เค้าชอบแต่หนืด แต่ที่เค้าบอกว่าหนืดคือไม่ได้บอกว่าไม่ดี แต่มองว่ามันคือคุณสมบัติ และไม่จำเป็นต้องปรับ คิดว่าถ้าใช้ใน longrun หรือ full marathon น่าจะเหมาะเลย เพราะมีเวลากิน แต่อาจจะไม่เหมาะกับใช้ตอนวิ่งเร็วๆ
+
+(rare 'หนืด = feature' — มองความหนืดเป็นคุณสมบัติ ไม่ใช่ข้อเสีย · ตอกย้ำ split use case: long run/full marathon เหมาะ / speed ไม่เหมาะ (เหมือน Peerawit/Tye/Benz Panupong รอบ 1))`,
+  },
+  {
+    name: "Nat",
+    tag: "Pracheniwet Running Track · long run",
+    new: true,
+    originalSource:
+      "ฟีดแบ็กส่งต่อผ่าน Marit Piromthammasiri (Pracheniwet Running Track) — รอบปรับสูตรใหม่ · 'คุณนัท' · rare texture-positive (ไม่ติดหนืด) · แต่ตั้งข้อสังเกตเรื่องรสแปลก + ราคา · ใช้ long run · ส่งเพิ่ม 3 ซอง",
+    originalFeedback: `คุณ นัท — บอกว่ารสชาติกลมกล่อมดี แต่ก็รู้สึกว่าแปลก อาจจะแปลกสำหรับบางคนที่เพิ่งเคยลอง และต้องปรับตัว โดยเฉพาะถ้ามีเรื่องราคาเข้ามาเกี่ยวข้อง อาจจะทำใจยากที่จะควักเงินซื้อมาใช้ รสชาติเหมือน Amino Saurus ของสีขาว เค้าบอกว่าไม่มีปัญหาเรื่องความหนืดเหมือนที่คนอื่นเป็น คิดว่าไม่เหลว ไม่หนืด อยู่กลางๆ หนืดมากกว่า Amino สีแดงนิดหนึ่ง กินแล้วสบายท้อง พลังงานค่อยๆมาจริง แต่ยังบอกไม่ได้ถ่องกว่าว่าได้ผลเลอะ ใช้วิ่ง long run เลย ให้เพิ่มไปสามซอง
+
+(rare texture-positive: ไม่ติดหนืดเหมือนคนอื่น อยู่กลางๆ หนืดกว่า Amino แดงนิดหน่อย · รสกลมกล่อมเหมือน Amino Saurus ขาว แต่ 'แปลก' สำหรับคนใหม่ + ราคา → barrier ความตั้งใจซื้อ · GI สบายท้อง · พลังงานค่อยๆ มา (pending))`,
   },
 ]
 
@@ -1145,4 +1337,8 @@ export const actionItems2: ActionItem[] = [
   { priority: "p2", text: "ระบุรสบนซอง (descriptor สับสนต่อเนื่อง) — Keng Sakyai 'อร่อยแต่นึกรสไม่ออก' + Garfield 'ข้าวโพด' + Mc 'ซอสมะเขือเทศ' + Took 'โคล่า' + Gong 'มะพร้าว/ขนมไทย' + Addy/Minkz รอบ 1 → คนเดารสไม่ตรงกันเลย ควรระบุรส 'ผลไม้รวม' บนซองให้ชัด", isNew: true },
   { priority: "p1", text: "Education timing สำหรับเพซเร็ว (palatinose slow-release) — Kit (Pracheniwet · base pace ~4:30-4:00) กินก่อนวิ่ง 1 ชม. โดยไม่กินอะไร/ไม่วอร์ม → พลังงานมาแป๊บเดียว เดาว่าน้ำตาลจาก palatinose ปล่อยไม่ทัน · ตอกย้ำ Peerawit/Bank NSC รอบ 1 → สื่อสารวิธีกิน (กินพร้อมมื้อ/pre-load + กินซ้ำเป็นช่วง) สำหรับสายเพซเร็ว + อาจพิจารณาผสมคาร์บ fast-release เล็กน้อยสำหรับ 'Race format'", isNew: true },
   { priority: "p2", text: "Cycling packaging — Gong (เพื่อนลองชิม) โน้ตว่ากินตอนวิ่ง OK แต่บนจักรยานต้องรีดซองกินให้หมด อาจลำบาก (ตอกย้ำ O Tachapol รอบ 1) → พิจารณา format/notch/ทิศฉีก + ตำแหน่งจับที่ใช้มือเดียวบนจักรยานได้", isNew: true },
+  { priority: "p0", text: "⚠️ Texture ขึ้นกับ baseline เจลเดิมชัดมาก (กลุ่ม Pracheniwet Running Track) — 5 คนที่ baseline เป็นเจลน้ำตาลเหลว (Toey/Sim/Tum/Beer/Kob · Maurten/GU/X Real/Mileage) ยังบอก 'หนืดไป ต้องกินน้ำตาม/รีดไม่ได้' แม้เป็นสูตรใหม่ · แต่คนกลุ่มเดียวกัน Kae (รอบ 2) 'กินง่ายขึ้น ไม่ติดคอ' + Frame 'หนืด=คุณสมบัติ' + Nat 'อยู่กลางๆ ไม่หนืด' → ยืนยันว่าความรู้สึกหนืดเป็นเรื่อง baseline/บุคคล (สอดคล้อง Garfield/Peerawit) → เดินหน้า 'Race format' เหลว/กลืนเร็วสำหรับสายที่ชินเจลน้ำตาลล้วน + สื่อสารกรอบเทียบให้ชัด", isNew: true },
+  { priority: "p2", text: "Positioning 'หนืด = feature' — Frame (Pracheniwet) มองความหนืดเป็นคุณสมบัติที่ 'เหมาะ long run/full marathon เพราะมีเวลากิน' ไม่ใช่ข้อเสีย (สอดคล้อง Pat 'อยู่ท้อง' · split use case) → ใช้เป็น angle การตลาด: เนื้อแน่น = ปล่อยพลังงานช้า/อยู่ท้อง เหมาะระยะไกล แยกจากสาย speed ที่ควรใช้ Race format", isNew: true },
+  { priority: "p1", text: "Price sensitivity + educate รส (first-time barrier) — Nat (Pracheniwet) รสกลมกล่อมแต่ 'แปลก' สำหรับคนเพิ่งลอง ต้องปรับตัว + ถ้ามีเรื่องราคาเข้ามาอาจทำใจควักเงินซื้อยาก → เตรียมสื่อสารมูลค่า (ทำไมคุ้มราคา) + ระบุ/educate รส 'ผลไม้รวม/ธรรมชาติ' ลดความ 'แปลก' ตอนลองครั้งแรก (ตอกย้ำ action item ระบุรสบนซอง)", isNew: true },
+  { priority: "p1", text: "Performance evidence (before/after) — Kae Prachaniwet (รอบ 2 · สูตรใหม่) long run 19k เพซ 6:00 กินโลที่ 8 เร่งเพซ 5 ปลายๆ ช่วงท้ายได้ ต่อเนื่องจากรอบ 1 (Supersport เร่ง 5:40→5:00) + ยืนยัน 'กินง่ายขึ้น ไม่ติดคอ' → เก็บเป็นเคส race/เร่งเพซฝั่งบวก (ร่วมกับ Bluejeans New PB) สวนทาง debate 'ไม่ดีด' รอบ 1", isNew: true },
 ]
