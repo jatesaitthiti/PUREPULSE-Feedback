@@ -1,15 +1,7 @@
 # ไฟล์ feedback ดิบ (มีข้อมูลส่วนตัวของผู้ทดสอบ — อย่า commit ขึ้น GitHub)
-Feedback/*.jpg
-Feedback/*.jpeg
-Feedback/*.png
-Feedback/*.m4a
-Feedback/*.mp3
-Feedback/*.wav
-Feedback/*.mp4
-Feedback/*.mov
-Feedback/*Screenshot*
-Feedback/*.txt
-Feedback/*.md
+# ignore ทั้งโฟลเดอร์รวมโฟลเดอร์ย่อย (เช่น Feedback/Feedback3/)
+# ห้ามเปลี่ยนกลับเป็น pattern รายนามสกุล — `Feedback/*.jpg` ไม่ครอบไฟล์ในโฟลเดอร์ย่อย
+Feedback/
 
 # macOS
 .DS_Store
