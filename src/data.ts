@@ -1638,7 +1638,7 @@ export const actionItems2: ActionItem[] = [
 ]
 
 // ─────────────────────────────────────────────────────────────
-// drop3 — รอบทดสอบล็อตที่ 3 (ยังไม่มี feedback · โครงว่างรอเติมข้อมูล)
+// การทดสอบครั้งที่ 3 — ล็อตที่ 3 (ยังไม่มี feedback · โครงว่างรอเติมข้อมูล)
 // โครงสร้างเหมือน themes2/testers2/actionItems2 ทุกอย่าง เพื่อให้เติมได้ทันทีที่ feedback เข้ามา
 // ─────────────────────────────────────────────────────────────
 
@@ -1647,7 +1647,7 @@ export const themes3: Theme[] = [
     name: "รสชาติ (Taste)",
     value: 0,
     color: "#7c6bbf",
-    desc: "drop3 — ยังไม่มี feedback",
+    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
     positives: [],
     problems: [],
   },
@@ -1655,7 +1655,7 @@ export const themes3: Theme[] = [
     name: "เนื้อสัมผัสและความหนืด (Texture & Viscosity)",
     value: 0,
     color: "#d94f4f",
-    desc: "drop3 — ยังไม่มี feedback",
+    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
     positives: [],
     problems: [],
   },
@@ -1663,7 +1663,7 @@ export const themes3: Theme[] = [
     name: "พลังงาน (Energy)",
     value: 0,
     color: "#2d9d5e",
-    desc: "drop3 — ยังไม่มี feedback",
+    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
     positives: [],
     problems: [],
   },
@@ -1671,7 +1671,7 @@ export const themes3: Theme[] = [
     name: "Use case / Timing",
     value: 0,
     color: "#c9952c",
-    desc: "drop3 — ยังไม่มี feedback",
+    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
     positives: [],
     problems: [],
     onRadar: false,
@@ -1680,7 +1680,7 @@ export const themes3: Theme[] = [
     name: "GI / ทางเดินอาหาร",
     value: 0,
     color: "#d97a3e",
-    desc: "drop3 — ยังไม่มี feedback",
+    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
     positives: [],
     problems: [],
     onRadar: false,
@@ -1689,7 +1689,7 @@ export const themes3: Theme[] = [
     name: "ความตั้งใจซื้อ",
     value: 0,
     color: "#2a8fa4",
-    desc: "drop3 — ยังไม่มี feedback",
+    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
     positives: [],
     problems: [],
     onRadar: false,

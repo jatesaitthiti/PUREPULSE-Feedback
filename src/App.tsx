@@ -514,11 +514,11 @@ const ROUNDS = [
     actionItems: actionItems2,
   },
   {
-    label: "drop3",
+    label: "การทดสอบครั้งที่ 3",
     subtitle:
       testers3.length > 0
-        ? `drop3 · ${testers3.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`
-        : "drop3 · ยังไม่มี feedback — รอข้อมูลรอบถัดไป",
+        ? `การทดสอบครั้งที่ 3 · ${testers3.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`
+        : "การทดสอบครั้งที่ 3 · ยังไม่มี feedback — รอข้อมูลรอบถัดไป",
     themes: themes3,
     testers: testers3,
     actionItems: actionItems3,

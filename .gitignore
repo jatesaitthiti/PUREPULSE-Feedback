@@ -8,6 +8,8 @@ Feedback/*.wav
 Feedback/*.mp4
 Feedback/*.mov
 Feedback/*Screenshot*
+Feedback/*.txt
+Feedback/*.md
 
 # macOS
 .DS_Store
