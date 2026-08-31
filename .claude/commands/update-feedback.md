@@ -1,5 +1,5 @@
 ---
-description: อ่าน feedback ใหม่จาก ~/Downloads/Feedback + อัปเดต src/data.ts + push GitHub
+description: อ่าน feedback ใหม่จาก Feedback/ + อัปเดต src/data.ts + push GitHub
 argument-hint: "[optional: เพิ่ม note อะไรเฉพาะรอบนี้]"
 ---
 
@@ -7,10 +7,11 @@ argument-hint: "[optional: เพิ่ม note อะไรเฉพาะร�
 
 ## บริบท
 
-ไฟล์ feedback ดิบ (รูปแชท + เสียง) เก็บที่ `~/Downloads/Feedback/`
+ไฟล์ feedback ดิบเก็บที่ `Feedback/` **ในโปรเจกต์** (ย้ายมาจาก `~/Downloads/Feedback/` แล้ว)
 - รูปแชท: `*.jpg` หรือ `*.png` — ผู้ทดสอบรีวิวเจล PUREPULSE
-- เสียง: `*.m4a` — ผู้ทดสอบพูดรีวิว
+- เสียง/วิดีโอ: `*.m4a` / `*.mp4` — ผู้ทดสอบพูดรีวิว
 - Screenshot ถอดเสียง: `Screenshot*.png` — กรณีถอดเสียงเองมาแล้ว
+- Transcript: `*.txt` — เช่น `combined_energy_gel_transcripts.txt`
 
 **Stack:** Vite + React + TypeScript + Tailwind + shadcn/ui (เปลี่ยนจาก vanilla HTML แล้ว)
 - ข้อมูลทั้งหมดอยู่ใน `src/data.ts` — array `themes`, `testers`, `actionItems`
@@ -33,10 +34,12 @@ argument-hint: "[optional: เพิ่ม note อะไรเฉพาะร�
 5. **Verify** — `npm run build` ต้องผ่าน (ดูว่า tsc ไม่ error) แล้ว `npm run dev` เปิดดูใน browser
 6. **Commit + push**:
    ```bash
-   git add -A
-   git commit -m "feat: update feedback summary ($(date +%Y-%m-%d))"
+   git status --porcelain -uall          # ต้องไม่มีไฟล์จาก Feedback/ โผล่
+   git add src/ CLAUDE.md                # เฉพาะไฟล์ที่ตั้งใจแก้ — ห้าม git add -A
+   git commit -m "feat: update feedback summary"
    git push origin main
    ```
+   > push ต้องออกจากบัญชี `jatesaitthiti` — repo นี้ตั้ง `credential.https://github.com.helper = !gh auth git-credential` ไว้แล้ว (keychain เป็นบัญชี suffixworks จะโดน 403)
    GitHub Actions (`.github/workflows/deploy.yml`) จะ build + deploy ให้อัตโนมัติ
 7. **รายงาน** — บอก user ว่า:
    - เพิ่ม tester อะไรไปบ้าง
@@ -45,7 +48,8 @@ argument-hint: "[optional: เพิ่ม note อะไรเฉพาะร�
 
 ## ⚠️ ข้อควรระวัง
 
-- **ห้าม commit รูปต้นฉบับ** จาก `~/Downloads/Feedback/` — ถูก `.gitignore` ไว้แล้ว ถ้า user เพิ่งวางมาที่นี่ ให้ย้ายไปที่อื่น
+- **ห้าม commit ไฟล์ใน `Feedback/`** — โฟลเดอร์นี้อยู่ในโปรเจกต์แต่ `.gitignore` กันไว้ทุกนามสกุลแล้ว (jpg/png/m4a/mp3/wav/mp4/mov/txt/md/Screenshot*) → **ห้ามใช้ `git add -A` ลอยๆ** ให้ `git add` เฉพาะไฟล์ที่ตั้งใจแก้ (`src/...`) และเช็ก `git status --porcelain -uall` ก่อน commit ทุกครั้ง
+- ถ้าเจอไฟล์นามสกุลใหม่ใน `Feedback/` ที่ยังไม่ถูก ignore → เพิ่ม pattern ใน `.gitignore` ก่อน ห้าม commit ไฟล์นั้น
 - ถ้าเจอชื่อจริงในรูป → ตัดสินใจร่วมกับ user ว่าจะใช้ชื่อจริงหรือ anonymize
 - ถ้าเจอเคสที่อ่อนไหว (เช่น GI side effect, allergy) → flag เป็น Alert banner
 - **ห้าม commit `dist/` หรือ `node_modules/`** — gitignore ไว้แล้ว (deploy ผ่าน Actions)

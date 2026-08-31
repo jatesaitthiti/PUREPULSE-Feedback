@@ -19,7 +19,7 @@ Vite + React + TypeScript + Tailwind v4 + shadcn/ui (migrate จาก vanilla H
 
 - **ข้อมูล feedback**: `src/data.ts` — array `themes`, `testers`, `actionItems`
 - **UI**: `src/App.tsx` (header, alert banner, stats, chart, detail, action items, athletes)
-- **Feedback ดิบ**: `~/Downloads/Feedback/` (รูปแชท + .m4a) — *ไม่ commit*
+- **Feedback ดิบ**: `Feedback/` (ในโปรเจกต์ · รูปแชท + .m4a + .mp4 + transcript .txt) — *gitignore ไว้แล้ว ห้าม commit*
 
 ## คำสั่งหลัก
 
