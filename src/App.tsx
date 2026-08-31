@@ -698,7 +698,7 @@ function ViscosityBoard({
       </div>
 
       <Card className="mb-5 gap-0 p-6">
-        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+        <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="text-lg font-bold">ผลโหวตความหนืด</h2>
           <span className="text-[13px] text-muted-foreground">
             {total === 0
@@ -707,6 +707,10 @@ function ViscosityBoard({
                 ? `${leader.option.label} นำอยู่ ${margin} เสียง`
                 : "คะแนนเสมอกัน"}
           </span>
+        </div>
+        <div className="mb-3 text-[13px] text-muted-foreground">
+          ตัวเลข % เทียบกับความหนืดของ<strong className="font-semibold text-foreground/80">สูตรการทดสอบครั้งที่ 2 = 100%</strong>{" "}
+          — ทั้งสองสูตรจึงเหลวกว่ารอบที่แล้ว
         </div>
         <VoteBar tally={tally} total={total} />
         <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
@@ -765,8 +769,8 @@ const ROUNDS = [
     label: "การทดสอบครั้งที่ 3",
     subtitle:
       viscosityVotes.length > 0
-        ? `เลือกความหนืด (75% / 50%) · ${viscosityVotes.length} ผู้ทดสอบ · 1 คนเลือกได้ 1 ความหนืด`
-        : "เลือกความหนืด (75% / 50%) · 1 คนเลือกได้ 1 ความหนืด — ยังไม่มีผลโหวต",
+        ? `เลือกความหนืด 75% / 50% ของสูตรครั้งที่ 2 · ${viscosityVotes.length} ผู้ทดสอบ · 1 คนเลือกได้ 1 ความหนืด`
+        : "เลือกความหนืด 75% / 50% ของสูตรครั้งที่ 2 · 1 คนเลือกได้ 1 ความหนืด — ยังไม่มีผลโหวต",
     kind: "viscosity" as const,
     testers: viscosityVotes,
     actionItems: actionItems3,

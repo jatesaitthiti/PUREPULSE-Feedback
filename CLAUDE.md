@@ -44,7 +44,7 @@ Vite + React + TypeScript + Tailwind v4 + shadcn/ui (migrate จาก vanilla H
 ## Tab การทดสอบ (`ROUNDS` ใน App.tsx)
 
 - **ครั้งที่ 1 / 2** — `kind: "themes"` ใช้ `<Dashboard>` (radar 6 หมวด + Athletes)
-- **ครั้งที่ 3** — `kind: "viscosity"` ใช้ `<ViscosityBoard>` — UI คนละแบบ: โหวตเลือกความหนืด **75% vs 50%** (1 คนเลือกได้ 1 ความหนืด)
+- **ครั้งที่ 3** — `kind: "viscosity"` ใช้ `<ViscosityBoard>` — UI คนละแบบ: โหวตเลือกความหนืด **75% vs 50%** โดย **ความหนืดสูตรครั้งที่ 2 = 100%** (1 คนเลือกได้ 1 ความหนืด)
   - ข้อมูล: `viscosityOptions` (นิยาม 2 สูตร) + `viscosityVotes` (`{ name, choice: "75"|"50", tag?, reason?, note?, new? }`) + `actionItems3`
   - ชื่อซ้ำใน `viscosityVotes` → UI ขึ้น banner แดงเตือน (กันนับซ้ำ)
 
