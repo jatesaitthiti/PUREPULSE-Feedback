@@ -16,13 +16,16 @@ import {
   actionItems3,
   testers,
   testers2,
-  testers3,
   themes,
   themes2,
-  themes3,
+  viscosityOptions,
+  viscosityVotes,
   type ActionItem,
   type Theme,
   type Tester,
+  type ViscosityId,
+  type ViscosityOption,
+  type ViscosityVote,
 } from "@/data"
 import { cn } from "@/lib/utils"
 
@@ -240,6 +243,41 @@ function DetailPanel({ drivers, index }: { drivers: Theme[]; index: number }) {
 }
 
 // Dashboard เต็มของหนึ่งรอบการทดสอบ — รับชุดข้อมูล (themes/testers/actionItems) ของรอบนั้น
+function ActionItemsCard({ items }: { items: ActionItem[] }) {
+  return (
+    <Card className="mt-5 gap-0 p-6">
+      <h2 className="mb-2 text-lg font-bold">Action Items</h2>
+      {items.length === 0 ? (
+        <div className="text-[13px] text-muted-foreground">— ยังไม่มี action item —</div>
+      ) : (
+        sortByPriority(items).map((item, i) => (
+          <div
+            key={i}
+            className="flex items-start gap-2.5 border-b border-border py-2.5 text-sm leading-relaxed text-foreground/85 last:border-b-0"
+          >
+            <Badge
+              className={cn(
+                "shrink-0 rounded px-2 py-0.5 text-[11px] font-semibold uppercase",
+                priorityStyles[item.priority],
+              )}
+            >
+              {item.priority}
+            </Badge>
+            <span>
+              {item.text}
+              {item.isNew && (
+                <Badge className="ml-1.5 rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-semibold text-blue-700">
+                  NEW
+                </Badge>
+              )}
+            </span>
+          </div>
+        ))
+      )}
+    </Card>
+  )
+}
+
 function Dashboard({
   themes: themeList,
   testers: testerList,
@@ -367,32 +405,7 @@ function Dashboard({
         <DetailPanel drivers={drivers} index={selected} />
       </div>
 
-      <Card className="mt-5 gap-0 p-6">
-        <h2 className="mb-2 text-lg font-bold">Action Items</h2>
-        {sortByPriority(actionList).map((item, i) => (
-          <div
-            key={i}
-            className="flex items-start gap-2.5 border-b border-border py-2.5 text-sm leading-relaxed text-foreground/85 last:border-b-0"
-          >
-            <Badge
-              className={cn(
-                "shrink-0 rounded px-2 py-0.5 text-[11px] font-semibold uppercase",
-                priorityStyles[item.priority],
-              )}
-            >
-              {item.priority}
-            </Badge>
-            <span>
-              {item.text}
-              {item.isNew && (
-                <Badge className="ml-1.5 rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-semibold text-blue-700">
-                  NEW
-                </Badge>
-              )}
-            </span>
-          </div>
-        ))}
-      </Card>
+      <ActionItemsCard items={actionList} />
 
       <Card id="athletes" className="mt-5 scroll-mt-6 gap-0 p-6">
         <h2 className="mb-1 text-lg font-bold">Athletes</h2>
@@ -497,11 +510,245 @@ function Dashboard({
   )
 }
 
+// ─── การทดสอบครั้งที่ 3 — โหวตเลือกความหนืด (1 คน = 1 ตัวเลือก) ───────────────
+
+// การ์ดคะแนนของแต่ละความหนืด — คลิกเพื่อโฟกัสคอลัมน์ด้านล่าง
+function VoteStatCard({
+  option,
+  count,
+  total,
+  selected,
+  onClick,
+}: {
+  option: ViscosityOption
+  count: number
+  total: number
+  selected: boolean
+  onClick: () => void
+}) {
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0
+  return (
+    <Card
+      onClick={onClick}
+      style={selected ? { borderColor: option.color, boxShadow: `0 0 0 1px ${option.color}` } : undefined}
+      className="cursor-pointer items-center gap-1.5 px-4 py-4 text-center transition-colors hover:bg-accent/40"
+    >
+      <div className="flex items-baseline justify-center gap-1.5 leading-none">
+        <span className="text-3xl font-bold" style={{ color: option.color }}>
+          {count}
+        </span>
+        <span className="text-sm font-medium text-muted-foreground">คน</span>
+      </div>
+      <div className="text-xs font-medium" style={{ color: selected ? option.color : undefined }}>
+        {option.label}
+      </div>
+      <div className="text-[10px] text-muted-foreground/60">
+        {total > 0 ? `${pct}% ของผู้ทดสอบ` : "ยังไม่มีผลโหวต"}
+      </div>
+    </Card>
+  )
+}
+
+// แถบเปรียบเทียบสัดส่วนแบบ head-to-head
+function VoteBar({
+  tally,
+  total,
+}: {
+  tally: { option: ViscosityOption; count: number }[]
+  total: number
+}) {
+  if (total === 0) {
+    return (
+      <div className="flex h-9 items-center justify-center rounded-md border border-dashed border-border bg-muted/40 text-[12px] text-muted-foreground">
+        ยังไม่มีผลโหวต — แถบเปรียบเทียบจะขึ้นเมื่อมีคนเลือกแล้ว
+      </div>
+    )
+  }
+  return (
+    <div className="flex h-9 overflow-hidden rounded-md">
+      {tally.map(({ option, count }) => {
+        const pct = (count / total) * 100
+        if (count === 0) return null
+        return (
+          <div
+            key={option.id}
+            className="flex items-center justify-center text-[12px] font-semibold text-white transition-all"
+            style={{ width: `${pct}%`, background: option.color }}
+            title={`${option.label} — ${count} คน (${Math.round(pct)}%)`}
+          >
+            {pct >= 12 && `${Math.round(pct)}%`}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+// คอลัมน์รายชื่อคนที่เลือกความหนืดนั้น + เหตุผล
+function VoteColumn({
+  option,
+  votes,
+  total,
+  selected,
+  onSelect,
+}: {
+  option: ViscosityOption
+  votes: ViscosityVote[]
+  total: number
+  selected: boolean
+  onSelect: () => void
+}) {
+  const pct = total > 0 ? Math.round((votes.length / total) * 100) : 0
+  return (
+    <Card
+      onClick={onSelect}
+      style={{
+        borderTop: `3px solid ${option.color}`,
+        ...(selected ? { boxShadow: `0 0 0 1px ${option.color}` } : {}),
+      }}
+      className="cursor-pointer gap-0 p-6 transition-colors"
+    >
+      <div className="mb-1 flex items-baseline gap-2">
+        <span
+          className="inline-block h-[9px] w-[9px] shrink-0 rounded-full"
+          style={{ background: option.color }}
+        />
+        <h2 className="text-lg font-bold">{option.label}</h2>
+        <span className="ml-auto text-[13px] font-semibold" style={{ color: option.color }}>
+          {votes.length} คน{total > 0 && ` · ${pct}%`}
+        </span>
+      </div>
+      <div className="mb-3.5 text-[13px] leading-normal text-muted-foreground">{option.desc}</div>
+
+      {votes.length === 0 ? (
+        <div className="rounded border border-dashed border-border px-3 py-4 text-center text-[13px] text-muted-foreground">
+          — ยังไม่มีคนเลือกสูตรนี้ —
+        </div>
+      ) : (
+        votes.map((v) => (
+          <div
+            key={v.name}
+            className="mb-1.5 rounded border-l-[3px] bg-muted px-3 py-2 text-[13px] leading-normal text-foreground/85"
+            style={{ borderLeftColor: option.color }}
+          >
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-semibold text-foreground">
+                {v.name}
+                {v.new && " 🆕"}
+              </span>
+              {v.tag && <span className="text-[11px] text-muted-foreground">{v.tag}</span>}
+            </div>
+            {v.reason && <div className="mt-0.5">{v.reason}</div>}
+            {v.note && <div className="mt-1 text-[12px] text-muted-foreground">{v.note}</div>}
+          </div>
+        ))
+      )}
+    </Card>
+  )
+}
+
+function ViscosityBoard({
+  options,
+  votes,
+  actionItems: actionList,
+}: {
+  options: ViscosityOption[]
+  votes: ViscosityVote[]
+  actionItems: ActionItem[]
+}) {
+  const [selected, setSelected] = useState<ViscosityId | null>(null)
+
+  const total = votes.length
+  const tally = options.map((option) => ({
+    option,
+    count: votes.filter((v) => v.choice === option.id).length,
+    voters: votes.filter((v) => v.choice === option.id),
+  }))
+
+  // ผลนำ — เสมอถือว่ายังไม่มีผู้ชนะ
+  const top = Math.max(0, ...tally.map((t) => t.count))
+  const leaders = tally.filter((t) => t.count === top && top > 0)
+  const leader = leaders.length === 1 ? leaders[0] : null
+  const margin = leader ? leader.count - Math.min(...tally.map((t) => t.count)) : 0
+
+  // กติกา 1 คน = 1 ความหนืด — ถ้าชื่อซ้ำแปลว่าใส่ข้อมูลผิด ต้องเห็นทันที
+  const dupes = [...new Set(votes.map((v) => v.name).filter((n, i, a) => a.indexOf(n) !== i))]
+
+  return (
+    <>
+      {dupes.length > 0 && (
+        <div className="mb-5 rounded-md border border-red-500/40 bg-red-500/10 px-4 py-3 text-[13px] text-red-700">
+          ⚠️ ชื่อซ้ำในผลโหวต ({dupes.join(", ")}) — กติกาคือ 1 คนเลือกได้ 1 ความหนืด
+          กรุณาตรวจ <code>viscosityVotes</code> ใน <code>src/data.ts</code>
+        </div>
+      )}
+
+      <div className="mb-5 grid grid-cols-3 gap-3">
+        <StatCard num={total} label="ผู้ทดสอบ (Athletes)" />
+        {tally.map(({ option, count }) => (
+          <VoteStatCard
+            key={option.id}
+            option={option}
+            count={count}
+            total={total}
+            selected={selected === option.id}
+            onClick={() => setSelected(selected === option.id ? null : option.id)}
+          />
+        ))}
+      </div>
+
+      <Card className="mb-5 gap-0 p-6">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-lg font-bold">ผลโหวตความหนืด</h2>
+          <span className="text-[13px] text-muted-foreground">
+            {total === 0
+              ? "ผู้ทดสอบลองทั้ง 2 สูตร แล้วเลือกได้คนละ 1 ความหนืด"
+              : leader
+                ? `${leader.option.label} นำอยู่ ${margin} เสียง`
+                : "คะแนนเสมอกัน"}
+          </span>
+        </div>
+        <VoteBar tally={tally} total={total} />
+        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
+          {tally.map(({ option, count }) => (
+            <div key={option.id} className="flex items-center gap-2 text-[12px] text-muted-foreground">
+              <span
+                className="inline-block h-[9px] w-[9px] rounded-full"
+                style={{ background: option.color }}
+              />
+              <span className="font-medium text-foreground">{option.label}</span>
+              <span>
+                {count} คน{total > 0 && ` (${Math.round((count / total) * 100)}%)`}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {tally.map(({ option, voters }) => (
+          <VoteColumn
+            key={option.id}
+            option={option}
+            votes={voters}
+            total={total}
+            selected={selected === option.id}
+            onSelect={() => setSelected(selected === option.id ? null : option.id)}
+          />
+        ))}
+      </div>
+
+      <ActionItemsCard items={actionList} />
+    </>
+  )
+}
+
 // รอบการทดสอบทั้งหมด — เพิ่มรอบใหม่โดยต่อ entry ท้าย array (tab จะขึ้นเอง)
 const ROUNDS = [
   {
     label: "การทดสอบครั้งที่ 1",
     subtitle: "38 ผู้ทดสอบ · แชท 64 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา",
+    kind: "themes" as const,
     themes,
     testers,
     actionItems,
@@ -509,6 +756,7 @@ const ROUNDS = [
   {
     label: "การทดสอบครั้งที่ 2",
     subtitle: `รอบปรับสูตรใหม่ (ลดความหนืด / ให้ลื่นคอขึ้น) · ${testers2.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`,
+    kind: "themes" as const,
     themes: themes2,
     testers: testers2,
     actionItems: actionItems2,
@@ -516,11 +764,11 @@ const ROUNDS = [
   {
     label: "การทดสอบครั้งที่ 3",
     subtitle:
-      testers3.length > 0
-        ? `การทดสอบครั้งที่ 3 · ${testers3.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`
-        : "การทดสอบครั้งที่ 3 · ยังไม่มี feedback — รอข้อมูลรอบถัดไป",
-    themes: themes3,
-    testers: testers3,
+      viscosityVotes.length > 0
+        ? `เลือกความหนืด (75% / 50%) · ${viscosityVotes.length} ผู้ทดสอบ · 1 คนเลือกได้ 1 ความหนืด`
+        : "เลือกความหนืด (75% / 50%) · 1 คนเลือกได้ 1 ความหนืด — ยังไม่มีผลโหวต",
+    kind: "viscosity" as const,
+    testers: viscosityVotes,
     actionItems: actionItems3,
   },
 ]
@@ -561,13 +809,22 @@ export default function App() {
         ))}
       </div>
 
-      {/* key={tab} — รีเซ็ต state (หมวดที่เลือก / athlete ที่เลือก) เมื่อสลับรอบ */}
-      <Dashboard
-        key={tab}
-        themes={round.themes}
-        testers={round.testers}
-        actionItems={round.actionItems}
-      />
+      {/* key={tab} — รีเซ็ต state (หมวด/athlete/ตัวเลือกที่เลือก) เมื่อสลับรอบ */}
+      {round.kind === "viscosity" ? (
+        <ViscosityBoard
+          key={tab}
+          options={viscosityOptions}
+          votes={round.testers}
+          actionItems={round.actionItems}
+        />
+      ) : (
+        <Dashboard
+          key={tab}
+          themes={round.themes}
+          testers={round.testers}
+          actionItems={round.actionItems}
+        />
+      )}
     </div>
   )
 }

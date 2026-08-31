@@ -41,6 +41,15 @@ Vite + React + TypeScript + Tailwind v4 + shadcn/ui (migrate จาก vanilla H
 แต่ละ theme มี: `name`, `value` (count), `color`, `desc`, `positives[]`, `problems[]`
 แต่ละ quote: `{ t: ชื่อ, q: ข้อความ }` — ใส่ 🆕 ในชื่อ `t` ถ้าเป็นคนใหม่ (logic จับชื่อด้วย `includes`)
 
+## Tab การทดสอบ (`ROUNDS` ใน App.tsx)
+
+- **ครั้งที่ 1 / 2** — `kind: "themes"` ใช้ `<Dashboard>` (radar 6 หมวด + Athletes)
+- **ครั้งที่ 3** — `kind: "viscosity"` ใช้ `<ViscosityBoard>` — UI คนละแบบ: โหวตเลือกความหนืด **75% vs 50%** (1 คนเลือกได้ 1 ความหนืด)
+  - ข้อมูล: `viscosityOptions` (นิยาม 2 สูตร) + `viscosityVotes` (`{ name, choice: "75"|"50", tag?, reason?, note?, new? }`) + `actionItems3`
+  - ชื่อซ้ำใน `viscosityVotes` → UI ขึ้น banner แดงเตือน (กันนับซ้ำ)
+
+เพิ่มรอบใหม่ = ต่อ entry ท้าย array `ROUNDS` (tab/subtitle/badge ขึ้นเอง)
+
 ## ข้อควรระวัง
 
 - รูปแชทมีชื่อจริงผู้ทดสอบ — ระวังเรื่อง privacy ก่อน commit

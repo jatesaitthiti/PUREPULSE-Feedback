@@ -22,11 +22,18 @@ argument-hint: "[optional: เพิ่ม note อะไรเฉพาะร�
 
 1. **ตรวจไฟล์ใหม่** — เทียบกับที่ระบุใน `src/data.ts` ปัจจุบัน หาว่ามีรูป/เสียงไหนที่ยังไม่ได้สรุป
 2. **อ่าน + สรุป** — ใช้ Read tool อ่านรูปทีละไฟล์, ถ้าเป็น .m4a บอก user ให้ถอดเสียงมาให้ (sandbox ถอดไม่ได้)
-3. **อัปเดต `src/data.ts`**:
+3. **อัปเดต `src/data.ts`** — *รอบ 1/2 (ตาม 6 หมวด)*:
    - เพิ่ม tester ใหม่ใน array `testers` (ใส่ `new: true` + `tag` ถ้ามี)
    - เพิ่ม quote ในแต่ละ theme (`positives` / `problems`) — ใส่ 🆕 ในชื่อ field `t` ตามแบบเดิม
    - ถ้ามีประเด็นใหม่ในหัวข้อใด อัปเดต `desc` + `value` (count) ของ theme นั้น
    - ถ้ามี action ใหม่ เพิ่มใน array `actionItems` (`priority: "p0"|"p1"|"p2"`, `isNew: true`)
+
+   **การทดสอบครั้งที่ 3 ใช้โครงคนละแบบ** — เป็นการโหวตเลือกความหนืด ไม่ใช่ 6 หมวด:
+   - เพิ่ม entry ใน `viscosityVotes`: `{ name, choice: "75" | "50", tag?, reason?, note?, new? }`
+   - **1 คน = 1 entry = 1 ความหนืด** ถ้าชื่อซ้ำ UI จะขึ้น banner แดงเตือนว่านับซ้ำ
+   - `reason` = เหตุผลที่เลือกสูตรนั้น · `note` = ความเห็นอื่นที่ไม่เกี่ยวกับการเลือก
+   - แก้คำอธิบายสูตรได้ที่ `viscosityOptions` (`desc` ของ 75% / 50%)
+   - action item ของรอบนี้ใส่ใน `actionItems3`
 4. **อัปเดต `src/App.tsx`** ถ้าจำเป็น:
    - subtitle ใน `<header>`: "N ผู้ทดสอบ · M รูป + เสียง"
    - 4 `<StatCard>` ให้ตรงกับยอดใหม่

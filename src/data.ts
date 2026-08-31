@@ -1638,64 +1638,45 @@ export const actionItems2: ActionItem[] = [
 ]
 
 // ─────────────────────────────────────────────────────────────
-// การทดสอบครั้งที่ 3 — ล็อตที่ 3 (ยังไม่มี feedback · โครงว่างรอเติมข้อมูล)
-// โครงสร้างเหมือน themes2/testers2/actionItems2 ทุกอย่าง เพื่อให้เติมได้ทันทีที่ feedback เข้ามา
+// การทดสอบครั้งที่ 3 — Viscosity Preference Test
+// รูปแบบต่างจากรอบ 1/2: ไม่ได้เก็บ feedback ตาม 6 หมวด แต่เป็น "โหวตเลือกความหนืด"
+// ผู้ทดสอบลองทั้ง 2 สูตร แล้วเลือกได้ **คนละ 1 ความหนืด** เท่านั้น (75% หรือ 50%)
 // ─────────────────────────────────────────────────────────────
 
-export const themes3: Theme[] = [
+export type ViscosityId = "75" | "50"
+
+export type ViscosityOption = {
+  id: ViscosityId
+  label: string
+  desc: string
+  color: string
+}
+
+export type ViscosityVote = {
+  name: string
+  choice: ViscosityId // 1 คน = 1 ความหนืด (type บังคับให้เลือกได้ค่าเดียว)
+  tag?: string // กลุ่ม / ที่มา เช่น "Pracheniwet Running Track"
+  reason?: string // เหตุผลที่เลือกสูตรนี้
+  note?: string // ความเห็นเพิ่มเติมที่ไม่เกี่ยวกับการเลือก
+  new?: boolean // 🆕 เพิ่งเพิ่มรอบล่าสุด
+}
+
+export const viscosityOptions: ViscosityOption[] = [
   {
-    name: "รสชาติ (Taste)",
-    value: 0,
+    id: "75",
+    label: "ความหนืด 75%",
+    desc: "เนื้อข้นกว่า — ใกล้สูตรรอบ 2 อยู่ท้องกว่า แต่เสี่ยงติดคอ",
     color: "#7c6bbf",
-    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
-    positives: [],
-    problems: [],
   },
   {
-    name: "เนื้อสัมผัสและความหนืด (Texture & Viscosity)",
-    value: 0,
-    color: "#d94f4f",
-    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
-    positives: [],
-    problems: [],
-  },
-  {
-    name: "พลังงาน (Energy)",
-    value: 0,
-    color: "#2d9d5e",
-    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
-    positives: [],
-    problems: [],
-  },
-  {
-    name: "Use case / Timing",
-    value: 0,
-    color: "#c9952c",
-    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
-    positives: [],
-    problems: [],
-    onRadar: false,
-  },
-  {
-    name: "GI / ทางเดินอาหาร",
-    value: 0,
-    color: "#d97a3e",
-    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
-    positives: [],
-    problems: [],
-    onRadar: false,
-  },
-  {
-    name: "ความตั้งใจซื้อ",
-    value: 0,
+    id: "50",
+    label: "ความหนืด 50%",
+    desc: "เนื้อเหลวกว่า — กลืนง่าย เหมาะตอนวิ่ง แต่อาจรู้สึกเบา/เจือจาง",
     color: "#2a8fa4",
-    desc: "การทดสอบครั้งที่ 3 — ยังไม่มี feedback",
-    positives: [],
-    problems: [],
-    onRadar: false,
   },
 ]
 
-export const testers3: Tester[] = []
+// โหวตของผู้ทดสอบ — 1 entry = 1 คน = 1 ความหนืด (ชื่อซ้ำ = ตั้งใจให้เตือนว่านับซ้ำ)
+export const viscosityVotes: ViscosityVote[] = []
 
 export const actionItems3: ActionItem[] = []
