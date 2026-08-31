@@ -1636,3 +1636,66 @@ export const actionItems2: ActionItem[] = [
   { priority: "p2", text: "Angle บีทรูท/ไนเตรต (O2/ระบบหายใจ) — Chatchawat สังเกต 'ระบบหายใจเปลี่ยนชัดเจน' ตอนขึ้นเนินโล 6 หลังกินครึ่งซองโล 5 → เชื่อมโยง claim บีทรูทสกัด/ไนเตรตเพิ่มออกซิเจนในเลือด · เก็บเป็น testimonial + พิจารณาสื่อสารจุดขายไนเตรต (ยังเป็น n=1 → หา evidence เพิ่ม)", isNew: true },
   { priority: "p1", text: "⭐ Poon (รอบ 2 · before/after) returning tester ยืนยัน texture fix — รอบ 1 'ตกใจ texture เพราะไม่เคยกินแบบนี้ เหมือนตอนกิน MAURTEN ครั้งแรก' → รอบ 2 สูตรใหม่ 'กินลื่นคอ ไม่ติดคอแล้ว' = อีกเสียงที่เคยติง texture รอบ 1 แล้วกลับมายืนยันหนืดน้อยลง (ต่อจาก Bank Wasan) · long run 'พลังงานนิ่งมาก เหมาะกับวิ่งปั่นยาว · คิดว่าดี สำหรับมาราธอน' · ⚠️ 'Interval ยังมาช้าไปหน่อย' = ตอกย้ำ onset ช้าที่เพซเร็ว/interval ต้อง pre-load (เหมือน Kit/Peerawit/Bank NSC) · engagement สูง: อาสาเทส long session 3-4 ชม. ถ้าส่ง batch ก่อน final 5 ซอง → ส่งไปเทสต่อ", isNew: true },
 ]
+
+// ─────────────────────────────────────────────────────────────
+// drop3 — รอบทดสอบล็อตที่ 3 (ยังไม่มี feedback · โครงว่างรอเติมข้อมูล)
+// โครงสร้างเหมือน themes2/testers2/actionItems2 ทุกอย่าง เพื่อให้เติมได้ทันทีที่ feedback เข้ามา
+// ─────────────────────────────────────────────────────────────
+
+export const themes3: Theme[] = [
+  {
+    name: "รสชาติ (Taste)",
+    value: 0,
+    color: "#7c6bbf",
+    desc: "drop3 — ยังไม่มี feedback",
+    positives: [],
+    problems: [],
+  },
+  {
+    name: "เนื้อสัมผัสและความหนืด (Texture & Viscosity)",
+    value: 0,
+    color: "#d94f4f",
+    desc: "drop3 — ยังไม่มี feedback",
+    positives: [],
+    problems: [],
+  },
+  {
+    name: "พลังงาน (Energy)",
+    value: 0,
+    color: "#2d9d5e",
+    desc: "drop3 — ยังไม่มี feedback",
+    positives: [],
+    problems: [],
+  },
+  {
+    name: "Use case / Timing",
+    value: 0,
+    color: "#c9952c",
+    desc: "drop3 — ยังไม่มี feedback",
+    positives: [],
+    problems: [],
+    onRadar: false,
+  },
+  {
+    name: "GI / ทางเดินอาหาร",
+    value: 0,
+    color: "#d97a3e",
+    desc: "drop3 — ยังไม่มี feedback",
+    positives: [],
+    problems: [],
+    onRadar: false,
+  },
+  {
+    name: "ความตั้งใจซื้อ",
+    value: 0,
+    color: "#2a8fa4",
+    desc: "drop3 — ยังไม่มี feedback",
+    positives: [],
+    problems: [],
+    onRadar: false,
+  },
+]
+
+export const testers3: Tester[] = []
+
+export const actionItems3: ActionItem[] = []

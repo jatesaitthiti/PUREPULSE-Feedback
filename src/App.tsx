@@ -13,10 +13,13 @@ import { Badge } from "@/components/ui/badge"
 import {
   actionItems,
   actionItems2,
+  actionItems3,
   testers,
   testers2,
+  testers3,
   themes,
   themes2,
+  themes3,
   type ActionItem,
   type Theme,
   type Tester,
@@ -494,8 +497,37 @@ function Dashboard({
   )
 }
 
+// รอบการทดสอบทั้งหมด — เพิ่มรอบใหม่โดยต่อ entry ท้าย array (tab จะขึ้นเอง)
+const ROUNDS = [
+  {
+    label: "การทดสอบครั้งที่ 1",
+    subtitle: "38 ผู้ทดสอบ · แชท 64 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา",
+    themes,
+    testers,
+    actionItems,
+  },
+  {
+    label: "การทดสอบครั้งที่ 2",
+    subtitle: `รอบปรับสูตรใหม่ (ลดความหนืด / ให้ลื่นคอขึ้น) · ${testers2.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`,
+    themes: themes2,
+    testers: testers2,
+    actionItems: actionItems2,
+  },
+  {
+    label: "drop3",
+    subtitle:
+      testers3.length > 0
+        ? `drop3 · ${testers3.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`
+        : "drop3 · ยังไม่มี feedback — รอข้อมูลรอบถัดไป",
+    themes: themes3,
+    testers: testers3,
+    actionItems: actionItems3,
+  },
+]
+
 export default function App() {
-  const [tab, setTab] = useState(0) // 0 = การทดสอบครั้งที่ 1 · 1 = ครั้งที่ 2 (รอบปรับสูตรใหม่)
+  const [tab, setTab] = useState(0) // index ใน ROUNDS
+  const round = ROUNDS[tab]
 
   return (
     <div className="mx-auto min-h-screen max-w-[1100px] px-6 py-12">
@@ -503,18 +535,14 @@ export default function App() {
         <h1 className="mb-1.5 text-[26px] font-bold tracking-tight">
           PUREPULSE Energy Gel — Feedback Summary
         </h1>
-        <div className="text-sm text-muted-foreground">
-          {tab === 0
-            ? "38 ผู้ทดสอบ · แชท 64 รูป + เสียง/วิดีโอ · คลิกที่กราฟเพื่อดูรายละเอียดและปัญหา"
-            : `รอบปรับสูตรใหม่ (ลดความหนืด / ให้ลื่นคอขึ้น) · ${testers2.length} ผู้ทดสอบ · คลิกที่กราฟเพื่อดูรายละเอียด`}
-        </div>
+        <div className="text-sm text-muted-foreground">{round.subtitle}</div>
       </header>
 
       {/* Tabs — สลับรอบการทดสอบ */}
       <div className="mb-7 flex gap-1 border-b border-border">
-        {["การทดสอบครั้งที่ 1", "การทดสอบครั้งที่ 2"].map((label, i) => (
+        {ROUNDS.map((r, i) => (
           <button
-            key={label}
+            key={r.label}
             onClick={() => setTab(i)}
             className={cn(
               "relative -mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors",
@@ -523,21 +551,23 @@ export default function App() {
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
-            {label}
-            {i === 1 && (
+            {r.label}
+            {i > 0 && r.testers.length > 0 && (
               <span className="ml-1.5 rounded-full bg-blue-500/15 px-1.5 py-0.5 text-[10px] font-semibold text-blue-700">
-                {testers2.length}
+                {r.testers.length}
               </span>
             )}
           </button>
         ))}
       </div>
 
-      {tab === 0 ? (
-        <Dashboard themes={themes} testers={testers} actionItems={actionItems} />
-      ) : (
-        <Dashboard themes={themes2} testers={testers2} actionItems={actionItems2} />
-      )}
+      {/* key={tab} — รีเซ็ต state (หมวดที่เลือก / athlete ที่เลือก) เมื่อสลับรอบ */}
+      <Dashboard
+        key={tab}
+        themes={round.themes}
+        testers={round.testers}
+        actionItems={round.actionItems}
+      />
     </div>
   )
 }
