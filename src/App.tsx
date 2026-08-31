@@ -512,6 +512,10 @@ function Dashboard({
 
 // ─── การทดสอบครั้งที่ 3 — โหวตเลือกความหนืด (1 คน = 1 ตัวเลือก) ───────────────
 
+// สีประจำความหนืดที่เลือก — fallback เป็นสีเทาถ้าไม่เจอ option
+const colorOf = (options: ViscosityOption[], id: ViscosityId) =>
+  options.find((o) => o.id === id)?.color ?? "#71717a"
+
 // การ์ดคะแนนของแต่ละความหนืด — คลิกเพื่อโฟกัสคอลัมน์ด้านล่าง
 function VoteStatCard({
   option,
@@ -657,6 +661,7 @@ function ViscosityBoard({
   actionItems: ActionItem[]
 }) {
   const [selected, setSelected] = useState<ViscosityId | null>(null)
+  const [selectedTester, setSelectedTester] = useState<number | null>(null)
 
   const total = votes.length
   const tally = options.map((option) => ({
@@ -670,6 +675,8 @@ function ViscosityBoard({
   const leaders = tally.filter((t) => t.count === top && top > 0)
   const leader = leaders.length === 1 ? leaders[0] : null
   const margin = leader ? leader.count - Math.min(...tally.map((t) => t.count)) : 0
+
+  const tester = selectedTester !== null ? votes[selectedTester] : null
 
   // กติกา 1 คน = 1 ความหนืด — ถ้าชื่อซ้ำแปลว่าใส่ข้อมูลผิด ต้องเห็นทันที
   const dupes = [...new Set(votes.map((v) => v.name).filter((n, i, a) => a.indexOf(n) !== i))]
@@ -743,6 +750,109 @@ function ViscosityBoard({
       </div>
 
       <ActionItemsCard items={actionList} />
+
+      <Card id="athletes" className="mt-5 scroll-mt-6 gap-0 p-6">
+        <h2 className="mb-1 text-lg font-bold">Athletes</h2>
+        <div className="mb-3.5 text-[13px] text-muted-foreground">
+          {votes.length} คน · คลิกชื่อเพื่อดูฟีดแบ็กเต็ม · จุดสีบอกความหนืดที่เลือก · 🆕 = เพิ่มล่าสุด
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {votes.map((v, i) => {
+            const isSel = selectedTester === i
+            const color = colorOf(options, v.choice)
+            return (
+              <button
+                key={v.name}
+                onClick={() => setSelectedTester(isSel ? null : i)}
+                className={cn(
+                  "inline-flex items-baseline gap-1.5 rounded-full border px-3.5 py-1.5 text-[13px] font-semibold transition-colors",
+                  isSel
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : v.new
+                      ? "border-blue-500/40 bg-blue-500/10 text-blue-700 hover:border-blue-500/60"
+                      : "border-border bg-muted text-foreground hover:border-muted-foreground/40",
+                )}
+              >
+                <span
+                  className="inline-block h-[7px] w-[7px] shrink-0 self-center rounded-full"
+                  style={{ background: color }}
+                />
+                {v.new ? "🆕 " : ""}
+                {v.name}
+                <span
+                  className={cn(
+                    "text-[11px] font-medium",
+                    isSel
+                      ? "text-primary-foreground/70"
+                      : v.new
+                        ? "text-blue-700/70"
+                        : "text-muted-foreground",
+                  )}
+                >
+                  {v.choice}%
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        {tester && (
+          <div className="mt-[18px] border-t border-border pt-[18px]">
+            <div className="mb-3 flex flex-wrap items-baseline gap-2 text-base font-bold text-foreground">
+              {tester.new ? "🆕 " : ""}
+              {tester.name}
+              {tester.tag && (
+                <span className="text-xs font-medium text-muted-foreground">{tester.tag}</span>
+              )}
+              <span
+                className="rounded-full px-2 py-0.5 text-[11px] font-semibold text-white"
+                style={{ background: colorOf(options, tester.choice) }}
+              >
+                เลือกความหนืด {tester.choice}%
+              </span>
+            </div>
+
+            {tester.reason && (
+              <div
+                className="mb-1.5 rounded border-l-[3px] bg-muted px-3 py-2 text-[13px] leading-normal text-foreground/85"
+                style={{ borderLeftColor: colorOf(options, tester.choice) }}
+              >
+                <span className="mr-1.5 text-[11px] font-semibold text-muted-foreground">
+                  เหตุผลที่เลือก
+                </span>
+                {tester.reason}
+              </div>
+            )}
+            {tester.note && (
+              <div className="mb-1.5 rounded border-l-[3px] border-l-border bg-muted px-3 py-2 text-[13px] leading-normal text-foreground/85">
+                <span className="mr-1.5 text-[11px] font-semibold text-muted-foreground">
+                  หมายเหตุ
+                </span>
+                {tester.note}
+              </div>
+            )}
+
+            {tester.originalFeedback ? (
+              <div className="mt-5">
+                <div className="mb-2 flex items-baseline gap-2 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
+                  <span className="inline-block h-[7px] w-[7px] rounded-full bg-muted-foreground/60" />
+                  Original Feedback
+                </div>
+                {tester.originalSource && (
+                  <div className="mb-2 text-[12px] text-muted-foreground">{tester.originalSource}</div>
+                )}
+                <div className="rounded border border-border bg-muted/40 px-4 py-3 text-[13px] leading-relaxed whitespace-pre-line text-foreground/80">
+                  {tester.originalFeedback}
+                </div>
+              </div>
+            ) : (
+              <div className="mt-3 text-[13px] text-muted-foreground">
+                — ยังไม่มีฟีดแบ็กดิบที่บันทึก —
+              </div>
+            )}
+          </div>
+        )}
+      </Card>
     </>
   )
 }
